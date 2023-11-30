@@ -14,7 +14,7 @@ public class CompanyController {
     @Autowired
     private CompanyService companyService;
 
-    @PostMapping("/addUser")
+    @PostMapping("/addCompany")
     public Company addCompany(@RequestBody Company company)
     {
         return companyService.saveCompany(company);
@@ -26,13 +26,13 @@ public class CompanyController {
         return companyService.getCompanies();
     }
 
-    @GetMapping("/getUserById/{id}")
+    @GetMapping("/getCompanyById/{id}")
     public Company getCompanyById(@PathVariable Integer id)
     {
         return companyService.getCompanyById(id);
     }
 
-    @PutMapping("/updateUser")
+    @PutMapping("/updateCompany")
     public Company updateCompany(@RequestBody Company company)
     {
         return companyService.updateCompany(company);
