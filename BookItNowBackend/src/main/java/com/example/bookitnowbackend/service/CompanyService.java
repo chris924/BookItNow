@@ -1,13 +1,16 @@
 package com.example.bookitnowbackend.service;
 
 import com.example.bookitnowbackend.entity.Company;
-import com.example.bookitnowbackend.entity.Service;
 import com.example.bookitnowbackend.repository.ICompanyRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class CompanyService {
 
+    @Autowired
     private ICompanyRepository companyRepository;
 
     public Company saveCompany(Company company)

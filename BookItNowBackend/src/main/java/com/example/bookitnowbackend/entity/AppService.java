@@ -13,7 +13,7 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @Entity
 @Table(name = "SERVICE_TBL")
-public class Service {
+public class AppService {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
