@@ -2,11 +2,15 @@ package com.example.bookitnowbackend.service;
 
 import com.example.bookitnowbackend.entity.Appointment;
 import com.example.bookitnowbackend.repository.IAppointmentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class AppointmentService {
 
+    @Autowired
     private IAppointmentRepository appointmentRepository;
 
     public Appointment saveAppointment(Appointment appointment)
@@ -38,7 +42,7 @@ public class AppointmentService {
         {
             throw  new AssertionError();
         }
-        existingAppointment.setService(appointment.getService());
+        existingAppointment.setAppService(appointment.getAppService());
         existingAppointment.setUser(appointment.getUser());
         existingAppointment.setDateAndTime(appointment.getDateAndTime());
 
