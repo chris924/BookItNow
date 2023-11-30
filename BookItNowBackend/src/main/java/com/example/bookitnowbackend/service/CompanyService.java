@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CompanyService {
@@ -15,36 +16,60 @@ public class CompanyService {
 
     public Company saveCompany(Company company)
     {
-        return companyRepository.save(company);
+        try {
+            return companyRepository.save(company);
+        }catch (Exception e){
+
+            throw new RuntimeException("Error saving company", e);
+        }
     }
 
     public List<Company> getCompanies()
     {
-        return companyRepository.findAll();
+        try {
+            return companyRepository.findAll();
+        }catch (Exception e){
+            throw new RuntimeException("Error getting companies", e);
+        }
     }
 
     public Company getCompanyById(int id)
     {
-        return companyRepository.findById(id).orElse(null);
+        try {
+            Optional<Company> optionalCompany = companyRepository.findById(id);
+            return optionalCompany.orElse(null);
+        }catch (Exception e){
+           throw new RuntimeException("Error getting company by id", e);
+        }
     }
 
     public String deleteCompany(int id)
     {
-        companyRepository.deleteById(id);
-        return "Company deleted!" + id;
+        try {
+            companyRepository.deleteById(id);
+            return "Company deleted!" + id;
+        }catch (Exception e){
+            throw new RuntimeException("Error deleting company by id", e);
+        }
     }
 
     public Company updateCompany(Company company)
     {
-        Company existingCompany = companyRepository.findById(company.getId()).orElse(null);
-        if (existingCompany == null) {
-            throw new AssertionError();
-        }
-        existingCompany.setCompanyName(company.getCompanyName());
-        existingCompany.setDescription(company.getDescription());
-        existingCompany.setCreatedAt(company.getCreatedAt());
+        try {
+            Company existingCompany = companyRepository.findById(company.getId()).orElse(null);
+            if (existingCompany == null) {
+                throw new IllegalArgumentException("Company with ID " + company.getId() + " not found");
+            }
+            existingCompany.setCompanyName(company.getCompanyName());
+            existingCompany.setDescription(company.getDescription());
+            existingCompany.setCreatedAt(company.getCreatedAt());
 
-        return companyRepository.save(existingCompany);
+            return companyRepository.save(existingCompany);
+        }catch (Exception e){
+            throw new RuntimeException("Error updating company", e);
+        }
+
+
     }
 
 }

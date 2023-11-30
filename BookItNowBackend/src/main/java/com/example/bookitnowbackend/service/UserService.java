@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -13,42 +14,55 @@ public class UserService {
     @Autowired
     private IUserRepository userRepository;
 
-
-    public User saveUser(User user)
-    {
-       return userRepository.save(user);
-    }
-
-    public List<User> getUsers()
-    {
-        return userRepository.findAll();
-    }
-
-    public User getUserById(int id)
-    {
-        return userRepository.findById(id).orElse(null);
-    }
-
-    public String deleteUser(int id)
-    {
-        userRepository.deleteById(id);
-        return "User removed!" + id;
-    }
-
-    public User updateUser(User user)
-    {
-        User existingUser = userRepository.findById(user.getId()).orElse(null);
-        if (existingUser == null) {
-            throw new AssertionError();
+    public User saveUser(User user) {
+        try {
+            return userRepository.save(user);
+        } catch (Exception e) {
+            throw new RuntimeException("Error saving user", e);
         }
-        existingUser.setName(user.getName());
-        existingUser.setUsername(user.getUsername());
-        existingUser.setEmail(user.getEmail());
-        existingUser.setPassword(user.getPassword());
-        existingUser.setCreatedAt(user.getCreatedAt());
-
-        return userRepository.save(existingUser);
     }
 
+    public List<User> getUsers() {
+        try {
+            return userRepository.findAll();
+        } catch (Exception e) {
+            throw new RuntimeException("Error retrieving users", e);
+        }
+    }
 
+    public User getUserById(int id) {
+        try {
+            Optional<User> optionalUser = userRepository.findById(id);
+            return optionalUser.orElse(null);
+        } catch (Exception e) {
+            throw new RuntimeException("Error retrieving user by ID", e);
+        }
+    }
+
+    public String deleteUser(int id) {
+        try {
+            userRepository.deleteById(id);
+            return "User removed!" + id;
+        } catch (Exception e) {
+            throw new RuntimeException("Error deleting user", e);
+        }
+    }
+
+    public User updateUser(User user) {
+        try {
+            User existingUser = userRepository.findById(user.getId()).orElse(null);
+            if (existingUser == null) {
+                throw new IllegalArgumentException("User with ID " + user.getId() + " not found");
+            }
+            existingUser.setName(user.getName());
+            existingUser.setUsername(user.getUsername());
+            existingUser.setEmail(user.getEmail());
+            existingUser.setPassword(user.getPassword());
+            existingUser.setCreatedAt(user.getCreatedAt());
+
+            return userRepository.save(existingUser);
+        } catch (Exception e) {
+            throw new RuntimeException("Error updating user", e);
+        }
+    }
 }

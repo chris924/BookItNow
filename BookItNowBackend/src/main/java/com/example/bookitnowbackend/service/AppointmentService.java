@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AppointmentService {
@@ -15,38 +16,68 @@ public class AppointmentService {
 
     public Appointment saveAppointment(Appointment appointment)
     {
-        return appointmentRepository.save(appointment);
+        try{
+            return appointmentRepository.save(appointment);
+        }catch (Exception e){
+            throw new RuntimeException("Error saving appointment", e);
+        }
     }
 
     public List<Appointment> getAppointments()
     {
-        return appointmentRepository.findAll();
+        try{
+            return appointmentRepository.findAll();
+        }catch (Exception e){
+            throw new RuntimeException("Error retrieving appointments", e);
+        }
+
+
     }
 
     public Appointment getAppointmentById(int id)
     {
-        return appointmentRepository.findById(id).orElse(null);
+        try{
+            Optional<Appointment> optionalAppointment = appointmentRepository.findById(id);
+            return optionalAppointment.orElse(null);
+        }catch (Exception e)
+        {
+            throw new RuntimeException("Error retrieving appointment by id", e);
+        }
+
     }
 
     public String deleteAppointment(int id)
     {
-        appointmentRepository.deleteById(id);
-        return "Appointment deleted!" + id;
-    }
+        try{
+            appointmentRepository.deleteById(id);
+            return "Appointment deleted!" + id;
+        }catch (Exception e){
 
+            throw new RuntimeException("Error deleting appointment", e);
+        }
+
+    }
 
     public Appointment updateAppointment(Appointment appointment)
     {
-        Appointment existingAppointment = appointmentRepository.findById(appointment.getId()).orElse(null);
-        if(existingAppointment == null)
-        {
-            throw  new AssertionError();
-        }
-        existingAppointment.setAppService(appointment.getAppService());
-        existingAppointment.setUser(appointment.getUser());
-        existingAppointment.setDateAndTime(appointment.getDateAndTime());
 
-       return appointmentRepository.save(existingAppointment);
+        try{
+            Appointment existingAppointment = appointmentRepository.findById(appointment.getId()).orElse(null);
+            if(existingAppointment == null)
+            {
+                throw  new IllegalArgumentException("Appointment with ID " + appointment.getId() + " not found");
+            }
+            existingAppointment.setAppService(appointment.getAppService());
+            existingAppointment.setUser(appointment.getUser());
+            existingAppointment.setDateAndTime(appointment.getDateAndTime());
+
+            return appointmentRepository.save(existingAppointment);
+        }catch (Exception e){
+
+            throw new RuntimeException("Error updating appointment", e);
+        }
+
+
 
     }
 

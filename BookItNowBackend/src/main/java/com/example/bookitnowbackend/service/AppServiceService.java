@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AppServiceService {
@@ -15,38 +16,63 @@ public class AppServiceService {
 
     public AppService saveService(AppService appService)
     {
-        return serviceRepository.save(appService);
+        try {
+            return serviceRepository.save(appService);
+        }catch (Exception e) {
+            throw new RuntimeException("Error saving service", e);
+        }
     }
-
     public List<AppService> getServices()
     {
-        return serviceRepository.findAll();
+        try {
+            return serviceRepository.findAll();
+        }catch (Exception e) {
+
+            throw new RuntimeException("Error getting services", e);
+        }
+
     }
 
     public AppService getServiceById(int id)
     {
-        return serviceRepository.findById(id).orElse(null);
+        try {
+            Optional<AppService> optionalAppService = serviceRepository.findById(id);
+            return optionalAppService.orElse(null);
+        }catch (Exception e) {
+
+            throw new RuntimeException("Error retrieving app service by id", e);
+        }
     }
 
     public String deleteService(int id)
     {
-        serviceRepository.deleteById(id);
-        return "Company deleted!" + id;
+        try {
+            serviceRepository.deleteById(id);
+            return "Company deleted!" + id;
+        } catch (Exception e) {
+            throw new RuntimeException("Error deleting company by id", e);
+        }
     }
 
     public AppService updateService(AppService appService)
     {
-        AppService existingAppService = serviceRepository.findById(appService.getId()).orElse(null);
 
-        if(existingAppService == null)
-        {
-            throw new AssertionError();
+        try{
+            AppService existingAppService = serviceRepository.findById(appService.getId()).orElse(null);
+
+            if(existingAppService == null)
+            {
+                throw  new IllegalArgumentException("App Service with ID " + appService.getId() + " not found");
+            }
+            // EXISTING SERVICE CAN NOT CHANGE COMPANY? existingService.setCompany()
+            existingAppService.setName(appService.getName());
+            existingAppService.setDescription(appService.getDescription());
+            existingAppService.setCreatedAt(appService.getCreatedAt());
+            return serviceRepository.save(existingAppService);
+        }catch (Exception e){
+            throw new RuntimeException("Error updating appointment", e);
         }
-        // EXISTING SERVICE CAN NOT CHANGE COMPANY? existingService.setCompany()
-        existingAppService.setName(appService.getName());
-        existingAppService.setDescription(appService.getDescription());
-        existingAppService.setCreatedAt(appService.getCreatedAt());
-        return serviceRepository.save(existingAppService);
+
     }
 
 
