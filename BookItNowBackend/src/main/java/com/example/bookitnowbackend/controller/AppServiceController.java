@@ -31,7 +31,7 @@ public class AppServiceController {
             AppService savedAppService = appServiceService.saveService(appService);
             return ResponseEntity.status(HttpStatus.CREATED).body(savedAppService);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal server error");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error adding app service");
         }
     }
 
