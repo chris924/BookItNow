@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -26,5 +27,9 @@ public class User {
     private String password;
 
     private Timestamp createdAt;
+
+    @OneToMany(mappedBy = "user")
+    private List<Appointment> appointments;
+
 
 }
