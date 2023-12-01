@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -23,4 +24,7 @@ public class Company {
     private String description;
 
     private Timestamp createdAt;
+
+    @OneToMany(mappedBy= "company")
+    private List<AppService> services;
 }

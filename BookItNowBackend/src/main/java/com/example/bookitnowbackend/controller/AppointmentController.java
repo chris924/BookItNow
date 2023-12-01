@@ -1,13 +1,21 @@
 package com.example.bookitnowbackend.controller;
 
 import com.example.bookitnowbackend.entity.Appointment;
-import com.example.bookitnowbackend.entity.Company;
 import com.example.bookitnowbackend.service.AppointmentService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.validation.BindingResult;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
+@Validated
 @RestController
 public class AppointmentController {
 
@@ -15,37 +23,71 @@ public class AppointmentController {
     private AppointmentService appointmentService;
 
     @PostMapping("/addAppointment")
-    public Appointment addAppointment(@RequestBody Appointment appointment)
+    public ResponseEntity<?> addAppointment(@Valid @RequestBody Appointment appointment, BindingResult bindingResult)
     {
-        return appointmentService.saveAppointment(appointment);
+        if(bindingResult.hasErrors())
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid request");
+        }
+        try {
+            Appointment savedAppointment = appointmentService.saveAppointment(appointment);
+            return ResponseEntity.status(HttpStatus.CREATED).body(savedAppointment);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error adding appointment");
+        }
+
     }
 
     @GetMapping("/getAllAppointments")
-    public List<Appointment> getAllAppointments()
+    public ResponseEntity<?> getAllAppointments()
     {
-        return appointmentService.getAppointments();
+        try {
+            List<Appointment> allAppointments = appointmentService.getAppointments();
+            return ResponseEntity.status(HttpStatus.OK).body(allAppointments);
+        }catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error getting appointments");
+        }
+
     }
 
     @GetMapping("/getAppointmentById/{id}")
-    public Appointment getAppointmentById(@PathVariable Integer id)
+    public ResponseEntity<?> getAppointmentById(@PathVariable Integer id)
     {
-        return appointmentService.getAppointmentById(id);
+        try {
+            Appointment appointmentById = appointmentService.getAppointmentById(id);
+            return  ResponseEntity.status(HttpStatus.OK).body(appointmentById);
+        }catch (Exception e){
+
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error getting appointment by id");
+        }
+
     }
 
     @PutMapping("/updateAppointment")
-    public Appointment updateAppointment(@RequestBody Appointment appointment)
+    public ResponseEntity<?> updateAppointment(@Valid @RequestBody Appointment appointment, BindingResult bindingResult)
     {
-        return appointmentService.updateAppointment(appointment);
+        if(bindingResult.hasErrors())
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid request");
+        }
+        try {
+            Appointment updatedAppointment = appointmentService.updateAppointment(appointment);
+            return ResponseEntity.status(HttpStatus.OK).body(updatedAppointment);
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error updating appointment");
+        }
     }
 
     @DeleteMapping("/deleteAppointment/{id}")
-    public String deleteAppointment(@PathVariable Integer id)
+    public ResponseEntity<?> deleteAppointment(@PathVariable Integer id)
     {
-        return appointmentService.deleteAppointment(id);
+        try {
+            String deletedAppointment = appointmentService.deleteAppointment(id);
+            return ResponseEntity.status(HttpStatus.OK).body(deletedAppointment);
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error deleting appointment");
+        }
     }
-
-
-
 
 
 }
