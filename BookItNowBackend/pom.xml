@@ -67,7 +67,11 @@
 			<artifactId>spring-security-core</artifactId>
 			<version>6.2.0</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+			<version>3.2.0</version>
+		</dependency>
 		<dependency>
 			<groupId>jakarta.mail</groupId>
 			<artifactId>jakarta.mail-api</artifactId>
