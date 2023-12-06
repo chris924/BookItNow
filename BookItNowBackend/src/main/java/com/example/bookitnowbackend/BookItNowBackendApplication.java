@@ -29,24 +29,4 @@ public class BookItNowBackendApplication {
 		SpringApplication.run(BookItNowBackendApplication.class, args);
 	}
 
-	@Bean
-	CommandLineRunner run(IRoleRepository roleRepository, IUserRepository userRepository, PasswordEncoder passwordEncoder)
-	{
-		return args ->{
-			if(roleRepository.findByAuthority("ADMIN").isPresent()) return;
-
-			Role adminRole = roleRepository.save(new Role("ADMIN"));
-			roleRepository.save(new Role("USER"));
-
-
-			Set<Role> roles = new HashSet<>();
-			roles.add(adminRole);
-			List<Appointment> appointments = new ArrayList<>();
-			User admin = new User(1, "admin", "admin", "admin@gadmin.com", passwordEncoder.encode("password"),new Timestamp(System.currentTimeMillis()), appointments, roles);
-
-			userRepository.save(admin);
-		};
-	}
-
-
 }
