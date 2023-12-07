@@ -1,19 +1,17 @@
 package com.example.bookitnowbackend.data;
 
-import com.example.bookitnowbackend.entity.AppService;
-import com.example.bookitnowbackend.entity.Appointment;
-import com.example.bookitnowbackend.entity.Company;
-import com.example.bookitnowbackend.entity.User;
-import com.example.bookitnowbackend.repository.IAppointmentRepository;
-import com.example.bookitnowbackend.repository.ICompanyRepository;
-import com.example.bookitnowbackend.repository.IServiceRepository;
-import com.example.bookitnowbackend.repository.IUserRepository;
+import com.example.bookitnowbackend.entity.*;
+import com.example.bookitnowbackend.repository.*;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Component
 public class DatabaseSeeder implements CommandLineRunner {
@@ -23,57 +21,90 @@ public class DatabaseSeeder implements CommandLineRunner {
     private final ICompanyRepository companyRepository;
     private final IAppointmentRepository appointmentRepository;
 
-    public DatabaseSeeder(IAppointmentRepository appointmentRepository, ICompanyRepository companyRepository, IServiceRepository appServiceRepository, IUserRepository userRepository) {
+    private final IRoleRepository roleRepository;
+    private final PasswordEncoder passwordEncoder;
+
+    public DatabaseSeeder(IAppointmentRepository appointmentRepository, ICompanyRepository companyRepository, IRoleRepository roleRepository, IServiceRepository appServiceRepository, IUserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.appointmentRepository = appointmentRepository;
         this.companyRepository = companyRepository;
         this.appServiceRepository = appServiceRepository;
         this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
 @Override
     public void run(String... args) {
 
-        //Creating entities
-        User user = new User();
-        Company company = new Company();
-        List<AppService> appServices = new ArrayList<>();
-        List<Appointment> appointments = new ArrayList<>();
+    /*appointmentRepository.deleteAll(); //FOR DELETING DATABASE ON STARTUP
+    userRepository.deleteAll();
+    appServiceRepository.deleteAll();
+    companyRepository.deleteAll();
+    roleRepository.deleteAll();*/
 
-        //User details
-        user.setName("John Doe");
-        user.setUsername("john_doe");
-        user.setEmail("john.doe@example.com");
-        user.setPassword("password");
-        user.setCreatedAt(new Timestamp(System.currentTimeMillis()));
 
-        // Company details
-        company.setCompanyName("ABC Company");
-        company.setDescription("A company description");
-        company.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+    CreateAdmin();
+    CreateUser();
 
-        // Create an AppService associated with the company
-        AppService appService = new AppService();
-        appService.setName("Service A");
-        appService.setDescription("Description of Service A");
-        appService.setCompany(company);
-        appService.setCreatedAt(new Timestamp(System.currentTimeMillis()));
-        appServices.add(appService);
-        company.setServices(appServices);
-
-        // Create an appointment associated with the user and AppService
-        Appointment appointment = new Appointment();
-        appointment.setUser(user);
-        appointment.setAppService(appService);
-        appointment.setDateAndTime(new Timestamp(System.currentTimeMillis() + 86400000)); // Set date and time one day from now
-        appointments.add(appointment);
-
-    userRepository.save(user);
-    companyRepository.save(company);
-    appServiceRepository.save(appService);
-    appointmentRepository.save(appointment);
 
     }
 
+    private void CreateAdmin()
+    {
+        System.out.println("CREATING ADMIN");
+        if(roleRepository.findByAuthority("ADMIN").isEmpty())
+        {
+            // Creating the admin role with authority "ADMIN"
+            Role adminRole = new Role("ADMIN");
+            roleRepository.save(adminRole);
+
+            // Creating a user with the admin role
+            Set<Role> roles = new HashSet<>();
+            roles.add(adminRole);
+
+            List<Appointment> appointments = new ArrayList<>();
+            User admin = new User();
+            admin.setName("admin");
+            admin.setUsername("admin");
+            admin.setEmail("admin@admin.com");
+            admin.setPassword(passwordEncoder.encode("password"));
+            admin.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+            admin.setAuthorities(roles);
+            admin.setAppointments(appointments);
+
+            userRepository.save(admin);
+        }
+    }
+
+    private void CreateUser()
+    {
+        if(roleRepository.findByAuthority("USER").isEmpty())
+        {
+            // Creating the admin role with authority "ADMIN"
+            Role userRole = new Role("USER");
+            roleRepository.save(userRole);
+
+            // Creating a user with the admin role
+            Set<Role> roles = new HashSet<>();
+            roles.add(userRole);
+
+            List<Appointment> appointments = new ArrayList<>();
+            User user = new User();
+            user.setName("user");
+            user.setUsername("user");
+            user.setEmail("user@user.com");
+            user.setPassword(passwordEncoder.encode("password"));
+            user.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+            user.setAuthorities(roles);
+            user.setAppointments(appointments);
+
+            userRepository.save(user);
+
+        }
+
+
+
+    }
 
 
 }
