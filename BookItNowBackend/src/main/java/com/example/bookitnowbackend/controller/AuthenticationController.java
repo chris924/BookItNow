@@ -1,5 +1,6 @@
 package com.example.bookitnowbackend.controller;
 
+import com.example.bookitnowbackend.entity.LoginResponseDTO;
 import com.example.bookitnowbackend.entity.RegistrationDTO;
 import com.example.bookitnowbackend.entity.User;
 import com.example.bookitnowbackend.service.AuthenticationService;
@@ -18,6 +19,12 @@ public class AuthenticationController {
     public User registerUser(@RequestBody RegistrationDTO body)
     {
         return authenticationService.registerUser(body.getName(), body.getUsername(), body.getEmail(), body.getPassword());
+    }
+
+    @PostMapping("/login")
+    public LoginResponseDTO loginUser(@RequestBody RegistrationDTO body)
+    {
+        return authenticationService.loginUser(body.getUsername(), body.getPassword());
     }
 
 }
