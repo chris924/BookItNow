@@ -3,7 +3,6 @@ package com.example.bookitnowbackend.data;
 import com.example.bookitnowbackend.entity.*;
 import com.example.bookitnowbackend.repository.*;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -36,15 +35,16 @@ public class DatabaseSeeder implements CommandLineRunner {
 @Override
     public void run(String... args) {
 
-    /*appointmentRepository.deleteAll(); //FOR DELETING DATABASE ON STARTUP
+    appointmentRepository.deleteAll(); //FOR DELETING DATABASE ON STARTUP
     userRepository.deleteAll();
     appServiceRepository.deleteAll();
     companyRepository.deleteAll();
-    roleRepository.deleteAll();*/
+    roleRepository.deleteAll();
 
 
     CreateAdmin();
     CreateUser();
+    CreateCompany();
 
 
     }
@@ -99,11 +99,27 @@ public class DatabaseSeeder implements CommandLineRunner {
             user.setAppointments(appointments);
 
             userRepository.save(user);
-
         }
+    }
 
+    private void CreateCompany()
+    {
+        if(roleRepository.findByAuthority("COMPANY").isEmpty())
+        {
+            Role companyRole = new Role("COMPANY");
+            Set<Role> roles = new HashSet<>();
+            roles.add(companyRole);
 
+            List<AppService> appServices = new ArrayList<>();
+            Company company = new Company();
+            company.setCompanyName("company");
+            company.setPassword(passwordEncoder.encode("password"));
+            company.setDescription("company description");
+            company.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+            company.setServices(appServices);
 
+            companyRepository.save(company);
+        }
     }
 
 

@@ -1,7 +1,7 @@
 package com.example.bookitnowbackend.controller;
 
 import com.example.bookitnowbackend.entity.*;
-import com.example.bookitnowbackend.service.AuthenticationService;
+import com.example.bookitnowbackend.service.UserAuthenticationService;
 import jakarta.validation.Valid;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 public class AuthenticationController {
 
     @Autowired
-    private AuthenticationService authenticationService;
+    private UserAuthenticationService userAuthenticationService;
 
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@Valid @RequestBody RegistrationDTO body, @NotNull BindingResult bindingResult)
@@ -26,7 +26,7 @@ public class AuthenticationController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid register request");
         }
         try {
-            authenticationService.registerUser(body.getName(), body.getUsername(), body.getEmail(), body.getPassword());
+            userAuthenticationService.registerUser(body.getName(), body.getUsername(), body.getEmail(), body.getPassword());
 
             return ResponseEntity.status(HttpStatus.OK).body(new RegistrationResponseDTO(body.getName(), body.getUsername(), body.getEmail()));
 
@@ -46,7 +46,7 @@ public class AuthenticationController {
         }
 
         try {
-          LoginResponseDTO loginResponseDTO =  authenticationService.loginUser(body.getUsername(), body.getPassword());
+          LoginResponseDTO loginResponseDTO =  userAuthenticationService.loginUser(body.getUsername(), body.getPassword());
             return ResponseEntity.status(HttpStatus.OK).body(loginResponseDTO);
         } catch (Exception e)
         {

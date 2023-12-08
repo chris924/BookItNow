@@ -21,6 +21,8 @@ public class Company {
 
     private String companyName;
 
+    private String password;
+
     private String description;
 
     private Timestamp createdAt;

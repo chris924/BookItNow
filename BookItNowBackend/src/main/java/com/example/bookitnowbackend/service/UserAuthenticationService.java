@@ -23,7 +23,7 @@ import java.util.Set;
 
 @Service
 @Transactional
-public class AuthenticationService {
+public class UserAuthenticationService {
 
     @Autowired
     private IUserRepository userRepository;
