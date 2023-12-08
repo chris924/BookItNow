@@ -39,6 +39,17 @@ public class UserService {
         }
     }
 
+    public User getUserByUsername(String username)
+    {
+        try {
+            Optional<User> optionalUser = userRepository.getUserByUsername(username);
+            return optionalUser.orElse(null);
+        } catch (Exception e) {
+            throw new RuntimeException("Error retrieving user by username");
+        }
+    }
+
+
     public String deleteUser(int id) {
         try {
             userRepository.deleteById(id);

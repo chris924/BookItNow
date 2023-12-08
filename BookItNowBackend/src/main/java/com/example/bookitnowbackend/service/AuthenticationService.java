@@ -69,7 +69,7 @@ public LoginResponseDTO loginUser(String username, String password)
         Authentication auth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
         String token = tokenService.generateJwt(auth);
 
-        return new LoginResponseDTO(userRepository.findByUsername(username).get(), token);
+        return new LoginResponseDTO(userRepository.getUserByUsername(username).get(), token);
 
     }catch (AuthenticationException e) {
         return new LoginResponseDTO(null, "");
@@ -77,7 +77,5 @@ public LoginResponseDTO loginUser(String username, String password)
 
 
 }
-
-
 
 }
