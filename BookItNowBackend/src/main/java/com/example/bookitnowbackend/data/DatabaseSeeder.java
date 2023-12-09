@@ -107,9 +107,9 @@ public class DatabaseSeeder implements CommandLineRunner {
         if(roleRepository.findByAuthority("COMPANY").isEmpty())
         {
             Role companyRole = new Role("COMPANY");
+            roleRepository.save(companyRole);
             Set<Role> roles = new HashSet<>();
             roles.add(companyRole);
-
             List<AppService> appServices = new ArrayList<>();
             Company company = new Company();
             company.setCompanyName("company");

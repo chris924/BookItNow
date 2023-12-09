@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/auth/user")
 @CrossOrigin("*")
-public class AuthenticationController {
+public class UserAuthenticationController {
 
     @Autowired
     private UserAuthenticationService userAuthenticationService;

@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -41,8 +42,16 @@ public class CompanyAuthenticationService {
     public CompanyRegistrationResponseDTO registerCompany(String companyName, String password, String email, String description)
     {
         try{
+            System.out.println(companyName);
+            System.out.println(password);
+            System.out.println(email);
+            System.out.println(description);
+
+
             String encodedPassword = passwordEncoder.encode(password);
+            System.out.println(encodedPassword);
             Role companyRole = roleRepository.findByAuthority("COMPANY").get();
+            System.out.println("COMPANY ROLE:" + companyRole);
 
             Set<Role> authorities = new HashSet<>();
             List<AppService> appServices = new ArrayList<>();
@@ -56,13 +65,18 @@ public class CompanyAuthenticationService {
             newCompany.setEmail(email);
             newCompany.setServices(appServices);
             newCompany.setAuthorities(authorities);
-
+            newCompany.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+            for(Integer x = 0; x < 20; x++)
+            {
+                System.out.println("COMPANY AUTHENTICATION SERVICE");
+            }
             companyRepository.save(newCompany);
 
             return new CompanyRegistrationResponseDTO(companyName, email);
 
         }catch (Exception e)
         {
+            System.out.println("ERROR: " + e);
             return new CompanyRegistrationResponseDTO("","");
         }
 
