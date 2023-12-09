@@ -1,6 +1,7 @@
 package com.example.bookitnowbackend.controller;
 
 import com.example.bookitnowbackend.entity.Company;
+import com.example.bookitnowbackend.repository.ICompanyRepository;
 import com.example.bookitnowbackend.service.CompanyService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +14,21 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 @RestController
+@RequestMapping("/company")
+@CrossOrigin("*")
 public class CompanyController {
 
 
     @Autowired
     private CompanyService companyService;
+
+    @GetMapping("/")
+    public String helloCompanyController()
+    {
+
+        return "Company level access";
+    }
+
 
     @PostMapping("/addCompany")
     public ResponseEntity<?> addCompany(@Valid @RequestBody Company company, BindingResult bindingResult)

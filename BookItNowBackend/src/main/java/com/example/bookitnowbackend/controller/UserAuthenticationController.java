@@ -11,15 +11,15 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/auth/user")
 @CrossOrigin("*")
-public class AuthenticationController {
+public class UserAuthenticationController {
 
     @Autowired
     private UserAuthenticationService userAuthenticationService;
 
     @PostMapping("/register")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody RegistrationDTO body, @NotNull BindingResult bindingResult)
+    public ResponseEntity<?> registerUser(@Valid @RequestBody UserRegistrationDTO body, @NotNull BindingResult bindingResult)
     {
         if(bindingResult.hasErrors())
         {
@@ -28,7 +28,7 @@ public class AuthenticationController {
         try {
             userAuthenticationService.registerUser(body.getName(), body.getUsername(), body.getEmail(), body.getPassword());
 
-            return ResponseEntity.status(HttpStatus.OK).body(new RegistrationResponseDTO(body.getName(), body.getUsername(), body.getEmail()));
+            return ResponseEntity.status(HttpStatus.OK).body(new UserRegistrationResponseDTO(body.getName(), body.getUsername(), body.getEmail()));
 
         }catch (Exception e)
         {
@@ -38,7 +38,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> loginUser(@Valid @RequestBody LoginDTO body, @NotNull BindingResult bindingResult)
+    public ResponseEntity<?> loginUser(@Valid @RequestBody UserLoginDTO body, @NotNull BindingResult bindingResult)
     {
         if(bindingResult.hasErrors())
         {
@@ -46,8 +46,8 @@ public class AuthenticationController {
         }
 
         try {
-          LoginResponseDTO loginResponseDTO =  userAuthenticationService.loginUser(body.getUsername(), body.getPassword());
-            return ResponseEntity.status(HttpStatus.OK).body(loginResponseDTO);
+          UserLoginResponseDTO userLoginResponseDTO =  userAuthenticationService.loginUser(body.getUsername(), body.getPassword());
+            return ResponseEntity.status(HttpStatus.OK).body(userLoginResponseDTO);
         } catch (Exception e)
         {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error during login user");
