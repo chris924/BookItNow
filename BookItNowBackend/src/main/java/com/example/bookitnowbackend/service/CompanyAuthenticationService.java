@@ -4,6 +4,7 @@ import com.example.bookitnowbackend.entity.*;
 import com.example.bookitnowbackend.repository.ICompanyRepository;
 import com.example.bookitnowbackend.repository.IRoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -30,6 +31,7 @@ public class CompanyAuthenticationService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Qualifier("companyAuthManager")
     @Autowired
     private AuthenticationManager authenticationManager;
 
