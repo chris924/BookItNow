@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -23,10 +24,20 @@ public class Company {
 
     private String password;
 
+    private String email;
+
     private String description;
 
     private Timestamp createdAt;
 
     @OneToMany(mappedBy= "company")
     private List<AppService> services;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "company_role_junction",
+            joinColumns = @JoinColumn(name = "company_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> authorities;
 }

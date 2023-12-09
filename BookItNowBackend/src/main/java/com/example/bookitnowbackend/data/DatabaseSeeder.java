@@ -113,6 +113,7 @@ public class DatabaseSeeder implements CommandLineRunner {
             List<AppService> appServices = new ArrayList<>();
             Company company = new Company();
             company.setCompanyName("company");
+            company.setEmail("company@company.com");
             company.setPassword(passwordEncoder.encode("password"));
             company.setDescription("company description");
             company.setCreatedAt(new Timestamp(System.currentTimeMillis()));

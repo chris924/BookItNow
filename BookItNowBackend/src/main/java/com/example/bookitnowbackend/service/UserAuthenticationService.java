@@ -1,9 +1,6 @@
 package com.example.bookitnowbackend.service;
 
-import com.example.bookitnowbackend.entity.Appointment;
-import com.example.bookitnowbackend.entity.LoginResponseDTO;
-import com.example.bookitnowbackend.entity.Role;
-import com.example.bookitnowbackend.entity.User;
+import com.example.bookitnowbackend.entity.*;
 import com.example.bookitnowbackend.repository.IRoleRepository;
 import com.example.bookitnowbackend.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,40 +36,51 @@ public class UserAuthenticationService {
     private TokenService tokenService;
 
 
-    public User registerUser(String name, String username, String email, String password)
+    public UserRegistrationResponseDTO registerUser(String name, String username, String email, String password)
     {
-        String encodedPassword = passwordEncoder.encode(password);
-        Role userRole = roleRepository.findByAuthority("USER").get();
+        try {
+            String encodedPassword = passwordEncoder.encode(password);
+            Role userRole = roleRepository.findByAuthority("USER").get();
 
 
-        Set<Role> authorities = new HashSet<>();
-        List<Appointment> appointments = new ArrayList<>();
+            Set<Role> authorities = new HashSet<>();
+            List<Appointment> appointments = new ArrayList<>();
 
-        authorities.add(userRole);
+            authorities.add(userRole);
 
-        User newUser = new User();
-        newUser.setName(name);
-        newUser.setUsername(username);
-        newUser.setEmail(email);
-        newUser.setPassword(encodedPassword);
-        newUser.setCreatedAt(new Timestamp(System.currentTimeMillis()));
-        newUser.setAppointments(appointments);
-        newUser.setAuthorities(authorities);
+            User newUser = new User();
+            newUser.setName(name);
+            newUser.setUsername(username);
+            newUser.setEmail(email);
+            newUser.setPassword(encodedPassword);
+            newUser.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+            newUser.setAppointments(appointments);
+            newUser.setAuthorities(authorities);
 
-        return userRepository.save(newUser);
+            userRepository.save(newUser);
+
+            return new UserRegistrationResponseDTO(name, username, email);
+
+        }catch (Exception e)
+        {
+            return new UserRegistrationResponseDTO("","","");
+        }
+
+
+
     }
 
-public LoginResponseDTO loginUser(String username, String password)
+public UserLoginResponseDTO loginUser(String username, String password)
 {
     try{
 
         Authentication auth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
         String token = tokenService.generateJwt(auth);
 
-        return new LoginResponseDTO(userRepository.getUserByUsername(username).get(), token);
+        return new UserLoginResponseDTO(userRepository.getUserByUsername(username).get(), token);
 
     }catch (AuthenticationException e) {
-        return new LoginResponseDTO(null, "");
+        return new UserLoginResponseDTO(null, "");
     }
 
 
