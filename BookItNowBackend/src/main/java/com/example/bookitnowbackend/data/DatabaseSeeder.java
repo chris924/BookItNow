@@ -35,11 +35,11 @@ public class DatabaseSeeder implements CommandLineRunner {
 @Override
     public void run(String... args) {
 
-    appointmentRepository.deleteAll(); //FOR DELETING DATABASE ON STARTUP
+   /* appointmentRepository.deleteAll(); //FOR DELETING DATABASE ON STARTUP
     userRepository.deleteAll();
     appServiceRepository.deleteAll();
     companyRepository.deleteAll();
-    roleRepository.deleteAll();
+    roleRepository.deleteAll();*/
 
 
     CreateAdmin();
