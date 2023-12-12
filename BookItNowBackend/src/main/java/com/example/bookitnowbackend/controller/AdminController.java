@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin("*")
 public class AdminController {
     @GetMapping("/")
-    public String helloAdminController()
+    public String HelloAdminController()
     {
 
         return "Admin level access";

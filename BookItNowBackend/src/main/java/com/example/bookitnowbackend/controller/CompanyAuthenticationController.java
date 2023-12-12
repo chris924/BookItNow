@@ -21,7 +21,7 @@ public class CompanyAuthenticationController {
     private CompanyAuthenticationService companyAuthenticationService;
 
     @PostMapping("/register")
-    public ResponseEntity<?> registerCompany(@Valid @RequestBody CompanyRegistrationDTO body, @NotNull BindingResult bindingResult)
+    public ResponseEntity<?> RegisterCompany(@Valid @RequestBody CompanyRegistrationDTO body, @NotNull BindingResult bindingResult)
     {
         if(bindingResult.hasErrors())
         {
@@ -40,7 +40,7 @@ public class CompanyAuthenticationController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> loginCompany(@Valid @RequestBody CompanyLoginDTO body, @NotNull BindingResult bindingResult)
+    public ResponseEntity<?> LoginCompany(@Valid @RequestBody CompanyLoginDTO body, @NotNull BindingResult bindingResult)
     {
         if(bindingResult.hasErrors())
         {

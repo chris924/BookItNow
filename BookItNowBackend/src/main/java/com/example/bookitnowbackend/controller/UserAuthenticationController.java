@@ -19,7 +19,7 @@ public class UserAuthenticationController {
     private UserAuthenticationService userAuthenticationService;
 
     @PostMapping("/register")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody UserRegistrationDTO body, @NotNull BindingResult bindingResult)
+    public ResponseEntity<?> RegisterUser(@Valid @RequestBody UserRegistrationDTO body, @NotNull BindingResult bindingResult)
     {
         if(bindingResult.hasErrors())
         {
@@ -38,7 +38,7 @@ public class UserAuthenticationController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> loginUser(@Valid @RequestBody UserLoginDTO body, @NotNull BindingResult bindingResult)
+    public ResponseEntity<?> LoginUser(@Valid @RequestBody UserLoginDTO body, @NotNull BindingResult bindingResult)
     {
         if(bindingResult.hasErrors())
         {

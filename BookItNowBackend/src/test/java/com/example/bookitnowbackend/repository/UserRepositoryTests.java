@@ -30,7 +30,7 @@ public class UserRepositoryTests {
     private IUserRepository userRepository;
 
     @Test
-    public void userRepository_Save_ReturnSavedUser()
+    public void UserRepository_Save_ReturnSavedUser()
     {
         //Arrange
         User testUser = User.builder().build();
@@ -48,7 +48,7 @@ public class UserRepositoryTests {
     }
 
     @Test
-    public void userRepository_GetUserByUsername_ReturnUser()
+    public void UserRepository_GetUserByUsername_ReturnUser()
     {
         //Arrange
         User testUser = User.builder().build();
@@ -64,7 +64,7 @@ public class UserRepositoryTests {
     }
 
     @Test
-    public void userRepository_GetUserById_ReturnUser()
+    public void UserRepository_GetUserById_ReturnUser()
     {
         //Arrange
         User testUser = User.builder().build();
@@ -80,7 +80,7 @@ public class UserRepositoryTests {
     }
 
     @Test
-    public void userRepository_GetUserById_ReturnOptionalEmptyIfNotFound()
+    public void UserRepository_GetUserById_ReturnOptionalEmptyIfNotFound()
     {
         Optional<User> notFoundUser = userRepository.findById(4);
 

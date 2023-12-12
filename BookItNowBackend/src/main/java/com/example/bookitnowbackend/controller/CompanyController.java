@@ -23,7 +23,7 @@ public class CompanyController {
     private CompanyService companyService;
 
     @GetMapping("/")
-    public String helloCompanyController()
+    public String HelloCompanyController()
     {
 
         return "Company level access";
@@ -31,7 +31,7 @@ public class CompanyController {
 
 
     @PostMapping("/addCompany")
-    public ResponseEntity<?> addCompany(@Valid @RequestBody Company company, BindingResult bindingResult)
+    public ResponseEntity<?> AddCompany(@Valid @RequestBody Company company, BindingResult bindingResult)
     {
         if(bindingResult.hasErrors())
         {
@@ -46,7 +46,7 @@ public class CompanyController {
     }
 
     @GetMapping("/getAllCompanies")
-    public ResponseEntity<?> getAllCompanies()
+    public ResponseEntity<?> GetAllCompanies()
     {
         try {
             List<Company> companies = companyService.getCompanies();
@@ -57,7 +57,7 @@ public class CompanyController {
     }
 
     @GetMapping("/getCompanyById/{id}")
-    public ResponseEntity<?> getCompanyById(@PathVariable Integer id)
+    public ResponseEntity<?> GetCompanyById(@PathVariable Integer id)
     {
         try {
             Company companyById = companyService.getCompanyById(id);
@@ -68,7 +68,7 @@ public class CompanyController {
     }
 
     @PutMapping("/updateCompany")
-    public ResponseEntity<?> updateCompany(@Valid @RequestBody Company company, BindingResult bindingResult)
+    public ResponseEntity<?> UpdateCompany(@Valid @RequestBody Company company, BindingResult bindingResult)
     {
        if(bindingResult.hasErrors())
        {
@@ -83,7 +83,7 @@ public class CompanyController {
     }
 
     @DeleteMapping("/deleteCompany/{id}")
-    public ResponseEntity<?> deleteCompany(@PathVariable Integer id)
+    public ResponseEntity<?> DeleteCompany(@PathVariable Integer id)
     {
         try {
             String deletedCompany = companyService.deleteCompany(id);

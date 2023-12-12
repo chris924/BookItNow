@@ -17,7 +17,7 @@ import java.util.List;
 public class UserController {
 
    @GetMapping("/")
-    public String helloUserController()
+    public String HelloUserController()
    {
        return "User access level";
    }

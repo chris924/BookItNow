@@ -20,7 +20,7 @@ public class AppServiceController {
     private AppServiceService appServiceService;
 
     @PostMapping("/addAppService")
-    public ResponseEntity<?> addAppService(@Valid @RequestBody AppService appService, BindingResult bindingResult)
+    public ResponseEntity<?> AddAppService(@Valid @RequestBody AppService appService, BindingResult bindingResult)
     {
         if(bindingResult.hasErrors())
         {
@@ -36,7 +36,7 @@ public class AppServiceController {
     }
 
     @GetMapping("/getAllAppServices")
-    public ResponseEntity<?> getAllAppServices()
+    public ResponseEntity<?> GetAllAppServices()
     {
         try {
             List<AppService> allAppServices = appServiceService.getServices();
@@ -47,7 +47,7 @@ public class AppServiceController {
     }
 
     @GetMapping("/getAppServiceById/{id}")
-    public ResponseEntity<?> getAppServiceById(@PathVariable Integer id)
+    public ResponseEntity<?> GetAppServiceById(@PathVariable Integer id)
     {
         try {
             AppService appServiceById = appServiceService.getServiceById(id);
@@ -58,7 +58,7 @@ public class AppServiceController {
     }
 
     @PutMapping("/updateAppService")
-    public ResponseEntity<?> updateAppService(@Valid @RequestBody AppService appService, BindingResult bindingResult)
+    public ResponseEntity<?> UpdateAppService(@Valid @RequestBody AppService appService, BindingResult bindingResult)
     {
         if(bindingResult.hasErrors())
         {
