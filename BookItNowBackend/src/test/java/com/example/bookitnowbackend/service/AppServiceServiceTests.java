@@ -50,6 +50,9 @@ public class AppServiceServiceTests {
         when(serviceRepository.save(Mockito.any(AppService.class))).thenReturn(appService);
 
       AppService savedAppService =  appServiceService.saveService(appService);
+
+      Assertions.assertEquals(savedAppService.getId(), appService.getId());
+
     }
 
     @Test
