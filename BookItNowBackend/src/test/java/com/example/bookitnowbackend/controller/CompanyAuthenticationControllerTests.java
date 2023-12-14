@@ -1,9 +1,7 @@
 package com.example.bookitnowbackend.controller;
 
-import com.example.bookitnowbackend.entity.User;
-import com.example.bookitnowbackend.entity.UserLoginResponseDTO;
-import com.example.bookitnowbackend.entity.UserRegistrationResponseDTO;
-import com.example.bookitnowbackend.service.UserAuthenticationService;
+import com.example.bookitnowbackend.entity.*;
+import com.example.bookitnowbackend.service.CompanyAuthenticationService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,62 +17,64 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
-@WebMvcTest(controllers = UserAuthenticationController.class)
+@WebMvcTest(controllers = CompanyAuthenticationController.class)
 @AutoConfigureMockMvc(addFilters = false)
 @ExtendWith(MockitoExtension.class)
-public class UserAuthenticationControllerTests {
+public class CompanyAuthenticationControllerTests {
+
 
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
-    private UserAuthenticationService userAuthenticationService;
+    private CompanyAuthenticationService companyAuthenticationService;
 
     @Autowired
     private ObjectMapper objectMapper;
 
-    private UserRegistrationResponseDTO userRegistrationResponseDTO;
+    private CompanyRegistrationResponseDTO companyRegistrationResponseDTO;
 
-    private UserLoginResponseDTO userLoginResponseDTO;
+    private CompanyLoginResponseDTO companyLoginResponseDTO;
 
     @BeforeEach
     public void init() {
-        userRegistrationResponseDTO = new UserRegistrationResponseDTO("test", "test", "test");
-        userLoginResponseDTO = new UserLoginResponseDTO(new User(), "test");
+        companyRegistrationResponseDTO = new CompanyRegistrationResponseDTO("test", "test");
+        companyLoginResponseDTO = new CompanyLoginResponseDTO(new Company(), "test");
     }
 
     @Test
-    public void UserAuthenticationController_RegisterUser_ReturnOk() throws Exception {
-        given(userAuthenticationService.registerUser(
+    public void CompanyAuthenticationController_RegisterCompany_ReturnOk() throws Exception {
+        given(companyAuthenticationService.registerCompany(
                 ArgumentMatchers.any(), ArgumentMatchers.any(), ArgumentMatchers.any(), ArgumentMatchers.any()
-        )).willReturn(userRegistrationResponseDTO);
+        )).willReturn(companyRegistrationResponseDTO);
 
 
-        ResultActions response = mockMvc.perform(post("/auth/user/register")
+        ResultActions response = mockMvc.perform(post("/auth/company/register")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(userRegistrationResponseDTO)));
+                .content(objectMapper.writeValueAsString(companyRegistrationResponseDTO)));
 
         response.andExpect(MockMvcResultMatchers.status().isOk());
     }
-
 
     @Test
-    public void UserAuthenticationController_LoginUser_ReturnOK() throws Exception
+    public void CompanyAuthenticationController_LoginCompany_ReturnOk() throws Exception
     {
-        given(userAuthenticationService.loginUser(
+        given(companyAuthenticationService.loginCompany(
                 ArgumentMatchers.any(), ArgumentMatchers.any()
-        )).willReturn(userLoginResponseDTO);
+        )).willReturn(companyLoginResponseDTO);
 
 
-        ResultActions response = mockMvc.perform(post("/auth/user/register")
+        ResultActions response = mockMvc.perform(post("/auth/company/register")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(userLoginResponseDTO)));
+                .content(objectMapper.writeValueAsString(companyLoginResponseDTO)));
 
         response.andExpect(MockMvcResultMatchers.status().isOk());
     }
+
+
+
 
 }
