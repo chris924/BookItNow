@@ -23,7 +23,7 @@ public class AppointmentController {
     private AppointmentService appointmentService;
 
     @PostMapping("/addAppointment")
-    public ResponseEntity<?> addAppointment(@Valid @RequestBody Appointment appointment, BindingResult bindingResult)
+    public ResponseEntity<?> AddAppointment(@Valid @RequestBody Appointment appointment, BindingResult bindingResult)
     {
         if(bindingResult.hasErrors())
         {
@@ -31,7 +31,7 @@ public class AppointmentController {
         }
         try {
             Appointment savedAppointment = appointmentService.saveAppointment(appointment);
-            return ResponseEntity.status(HttpStatus.CREATED).body(savedAppointment);
+            return ResponseEntity.status(HttpStatus.OK).body(savedAppointment);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error adding appointment");
         }
@@ -39,7 +39,7 @@ public class AppointmentController {
     }
 
     @GetMapping("/getAllAppointments")
-    public ResponseEntity<?> getAllAppointments()
+    public ResponseEntity<?> GetAllAppointments()
     {
         try {
             List<Appointment> allAppointments = appointmentService.getAppointments();
@@ -51,7 +51,7 @@ public class AppointmentController {
     }
 
     @GetMapping("/getAppointmentById/{id}")
-    public ResponseEntity<?> getAppointmentById(@PathVariable Integer id)
+    public ResponseEntity<?> GetAppointmentById(@PathVariable Integer id)
     {
         try {
             Appointment appointmentById = appointmentService.getAppointmentById(id);
@@ -64,7 +64,7 @@ public class AppointmentController {
     }
 
     @PutMapping("/updateAppointment")
-    public ResponseEntity<?> updateAppointment(@Valid @RequestBody Appointment appointment, BindingResult bindingResult)
+    public ResponseEntity<?> UpdateAppointment(@Valid @RequestBody Appointment appointment, BindingResult bindingResult)
     {
         if(bindingResult.hasErrors())
         {
@@ -79,7 +79,7 @@ public class AppointmentController {
     }
 
     @DeleteMapping("/deleteAppointment/{id}")
-    public ResponseEntity<?> deleteAppointment(@PathVariable Integer id)
+    public ResponseEntity<?> DeleteAppointment(@PathVariable Integer id)
     {
         try {
             String deletedAppointment = appointmentService.deleteAppointment(id);
