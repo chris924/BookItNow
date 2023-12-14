@@ -25,8 +25,15 @@ import java.util.Set;
 @RestController
 public class BookItNowBackendApplication {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
+
+			Thread.sleep(15000);
+
+
+
 		SpringApplication.run(BookItNowBackendApplication.class, args);
 	}
+
+
 
 }

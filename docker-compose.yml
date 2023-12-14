@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  MySQL-DB:
+    image: mysql:latest
+    env_file: .env
+    ports:
+      - "3306:3306"
+
+  BookItNowBackend:
+    image: bookitnowbackend:latest
+    build:
+      context: BookItNowBackend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - MySQL-DB
+    env_file: .env
+

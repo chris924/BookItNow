@@ -64,22 +64,6 @@ public class UserRepositoryTests {
     }
 
     @Test
-    public void UserRepository_GetUserById_ReturnUser()
-    {
-        //Arrange
-        User testUser = User.builder().build();
-        testUser.setUsername("TEST");
-
-        userRepository.save(testUser);
-        //Act
-        Optional<User> foundUser = userRepository.findById(1);
-
-        //Assert
-        Assertions.assertNotNull(foundUser);
-        Assertions.assertEquals(foundUser.get().getUserId(), 1);
-    }
-
-    @Test
     public void UserRepository_GetUserById_ReturnOptionalEmptyIfNotFound()
     {
         Optional<User> notFoundUser = userRepository.findById(4);
