@@ -31,7 +31,7 @@ public class AppointmentController {
         }
         try {
             Appointment savedAppointment = appointmentService.saveAppointment(appointment);
-            return ResponseEntity.status(HttpStatus.CREATED).body(savedAppointment);
+            return ResponseEntity.status(HttpStatus.OK).body(savedAppointment);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error adding appointment");
         }
