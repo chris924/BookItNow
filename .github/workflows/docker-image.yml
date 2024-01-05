@@ -62,3 +62,7 @@ jobs:
         run: docker-compose push
         env:
           SPRING_DATASOURCE_URL: ${{secrets.SPRING_DATASOURCE_URL}}
+          MYSQL_DATABASE: ${{secrets.MYSQL_DATABASE}}
+          MYSQL_ROOT_PASSWORD: ${{secrets.MYSQL_ROOT_PASSWORD}}
+          MYSQL_USER: ${{secrets.MYSQL_USER}}
+          MYSQL_PASSWORD: ${{secrets.MYSQL_PASSWORD}}
