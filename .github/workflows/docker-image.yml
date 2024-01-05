@@ -60,6 +60,8 @@ jobs:
 
       - name: Tag Docker Compose Image
         run: docker tag bookitnowbackend:latest chris924/bookitnowbackend:latest
+      - name: Tag Docker Compose Image 2
+        run: docker tag mysql:latest chris924/mysql:latest
 
 
       - name: Push Docker Compose Image to DockerHub
