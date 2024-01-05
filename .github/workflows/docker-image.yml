@@ -26,6 +26,9 @@ jobs:
       - name: Change to project directory
         run: cd ../../../../..
 
+      - name: Print current directory
+        run: pwd
+
       - name: Build with Maven
         run: mvn clean install
 
