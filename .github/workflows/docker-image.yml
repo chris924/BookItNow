@@ -11,8 +11,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: List project directory contents
-        run: ls -R
+      - name: Print current directory
+        run: pwd
     
       - name: Checkout code
         uses: actions/checkout@v2
