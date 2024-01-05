@@ -11,8 +11,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Print current directory
-        run: pwd
+      - name: List contents of the current directory
+        run: ls -R
     
       - name: Checkout code
         uses: actions/checkout@v2
@@ -25,9 +25,6 @@ jobs:
 
       - name: Change to project directory
         run: cd ../../../../..
-
-      - name: Print current directory
-        run: pwd
 
       - name: Build with Maven
         run: mvn clean install
