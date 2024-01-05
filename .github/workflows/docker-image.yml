@@ -13,7 +13,7 @@ jobs:
     steps:
 
       - name: Change to project directory
-        run: cd ../../../../..
+        run: cd /
         
       - name: List contents of the current directory
         run: ls -R
