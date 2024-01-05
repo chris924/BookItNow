@@ -65,7 +65,7 @@ jobs:
 
 
       - name: Push Docker Compose Image to DockerHub
-        run: docker-compose push
+        run: docker-compose push chris924/booktinowbackend:latest
         env:
           SPRING_DATASOURCE_URL: ${{secrets.SPRING_DATASOURCE_URL}}
           MYSQL_DATABASE: ${{secrets.MYSQL_DATABASE}}
