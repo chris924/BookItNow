@@ -39,6 +39,9 @@ jobs:
         run: docker-compose --version
         continue-on-error: true
 
+      - name: Navigate back to the root directory
+        run: cd ..
+
       - name: Build and Start Docker Compose
         run: |
           docker-compose build
