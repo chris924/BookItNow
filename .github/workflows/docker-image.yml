@@ -59,7 +59,7 @@ jobs:
           password: ${{secrets.DOCKERHUB_PASSWORD}}
 
       - name: Tag Docker Compose Image
-        run: docker tag bookitnow:latest chris924/bookitnow:latest
+        run: docker tag bookitnowbackend:latest chris924/bookitnowbackend:latest
 
 
       - name: Push Docker Compose Image to DockerHub
