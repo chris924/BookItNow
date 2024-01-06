@@ -44,7 +44,9 @@ jobs:
 
       - name: Build and Start Docker Compose
         run: |
-         docker-compose -f docker-compose.yml up -d
+          docker-compose -f docker-compose.yml build
+          docker tag mysql:latest ${{secrets.DOCKERHUB_USERNAME}}/mysql:latest
+          docker tag bookitnowbackend:latest ${{secrets.DOCKERHUB_USERNAME}}/bookitnowbackend:latest
         env:
           SPRING_DATASOURCE_URL: ${{secrets.SPRING_DATASOURCE_URL}}
           SPRING_DATASOURCE_USERNAME: ${{secrets.SPRING_DATASOURCE_USERNAME}}
@@ -63,7 +65,9 @@ jobs:
 
 
       - name: Push Docker Compose Image to DockerHub
-        run: docker-compose push 
+        run: |
+          docker push ${{secrets.DOCKERHUB_USERNAME}}/mysql:latest
+          docker push ${{secrets.DOCKERHUB_USERNAME}}/bookitnowbackend:latest
         env:
           SPRING_DATASOURCE_URL: ${{secrets.SPRING_DATASOURCE_URL}}
           MYSQL_DATABASE: ${{secrets.MYSQL_DATABASE}}
