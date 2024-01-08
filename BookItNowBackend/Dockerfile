@@ -1,4 +1,4 @@
-# Use an official Maven image as a parent image
+# Official Maven image as a parent image
 FROM maven:eclipse-temurin AS build
 
 # Set the working directory to /app
