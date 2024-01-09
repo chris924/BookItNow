@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { NextUIProvider } from '@nextui-org/system'
 import {BrowserRouter, Route, Routes, useNavigate} from 'react-router-dom';
 import UserLoginPage from './pages/UserLoginPage';
+import UserRegisterPage from './pages/UserRegisterPage';
 import HomePage from './pages/HomePage';
 import RootLayout from './layouts/RootLayout';
 import useDarkMode from 'use-dark-mode';
@@ -20,6 +21,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<HomePage />}/>
         <Route path="user/login" element={<UserLoginPage/>} />
+        <Route path="user/register" element={<UserRegisterPage/>}/>
       </Routes>
       </main>
     </NextUIProvider>

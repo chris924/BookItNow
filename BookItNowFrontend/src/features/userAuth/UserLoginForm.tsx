@@ -12,8 +12,8 @@ export default function UserLoginForm({ onBackButtonClick}: LoginFormProps): JSX
 {
     return (
         <div className="flex justify-center items-center h-screen">
-    <div className="w-full max-w-[200px] space-y-2">
-      <div className="w-full flex flex-row flex-wrap gap-4">
+    <div className="w-full max-w-[200px] space-y-4">
+      <div className="w-full flex flex-row flex-wrap gap-5">
         <Input
           key="danger"
           type="email"
@@ -22,9 +22,7 @@ export default function UserLoginForm({ onBackButtonClick}: LoginFormProps): JSX
           placeholder="Enter your email"
           className="max-w-[220px]"
         />
-      </div>
-      <div className="w-full flex flex-row flex-wrap gap-4">
-        <Input
+         <Input
           key="danger"
           type="password"
           color="primary"
