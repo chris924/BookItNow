@@ -12,11 +12,11 @@ import useDarkMode from 'use-dark-mode';
 
 export default function App() {
   const navigate = useNavigate();
-  const darkMode = useDarkMode(true);
+ // const darkMode = useDarkMode(true);
 
   return (
     <NextUIProvider navigate={navigate}>
-       <main className="purple-dark text-foreground bg-background bg-gradient-to-r from-gray-700 via-gray-900 to-black">
+       <main className="purple-dark bg-gradient-to-r from-gray-700 via-gray-900 to-black">
        <RootLayout/>
       <Routes>
         <Route path="/" element={<HomePage />}/>
@@ -50,13 +50,13 @@ export default function App() {
       <React.StrictMode>
        
        <NextUIProvider>
-       <main className="purple-dark text-foreground bg-background bg-gradient-to-r from-gray-700 via-gray-900 to-black">
+   
        <BrowserRouter>
        
            <App/>
            
         </BrowserRouter>
-       </main>
+     
        </NextUIProvider>
        
        

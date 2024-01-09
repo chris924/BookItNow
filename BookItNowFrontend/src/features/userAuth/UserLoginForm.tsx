@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {Button} from "@nextui-org/button";
 import { Input } from "@nextui-org/react";
 import "../../styles/userLoginForm.css"
@@ -5,11 +6,17 @@ import "../../styles/userLoginForm.css"
 
 interface LoginFormProps{
     onBackButtonClick: () => void;
+    onLoginClick: (email: string, password: string) => void;
 }
 
 
-export default function UserLoginForm({ onBackButtonClick}: LoginFormProps): JSX.Element
+export default function UserLoginForm({ onBackButtonClick, onLoginClick}: LoginFormProps): JSX.Element
 {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+
+
     return (
         <div className="flex justify-center items-center h-screen">
     <div className="w-full max-w-[200px] space-y-4">
@@ -21,6 +28,7 @@ export default function UserLoginForm({ onBackButtonClick}: LoginFormProps): JSX
           label="Email"
           placeholder="Enter your email"
           className="max-w-[220px]"
+          onChange={(e) => setEmail(e.target.value)}
         />
          <Input
           key="danger"
@@ -29,15 +37,16 @@ export default function UserLoginForm({ onBackButtonClick}: LoginFormProps): JSX
           label="Password"
           placeholder="Enter your password"
           className="max-w-[220px]"
+          onChange={(e) => setPassword(e.target.value)}
         />
       </div>
       <div className="flex justify-center gap-8 items-center">
       <Button color="danger" onClick={() => onBackButtonClick()}>
        Go Back
       </Button>
-      <Button color="secondary">
+      <Button color="secondary" onClick={() => onLoginClick(email, password)}>
        Log In
-      </Button>
+      </Button >
       </div>
     </div>
   </div>
