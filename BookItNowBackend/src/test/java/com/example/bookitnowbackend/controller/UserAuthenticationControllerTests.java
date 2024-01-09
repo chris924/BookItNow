@@ -44,7 +44,7 @@ public class UserAuthenticationControllerTests {
     @BeforeEach
     public void init() {
         userRegistrationResponseDTO = new UserRegistrationResponseDTO("test", "test", "test");
-        userLoginResponseDTO = new UserLoginResponseDTO(new User(), "test");
+        userLoginResponseDTO = new UserLoginResponseDTO(new User().getEmail(), "test");
     }
 
     @Test
