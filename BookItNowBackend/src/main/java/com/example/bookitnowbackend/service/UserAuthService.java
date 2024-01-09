@@ -18,10 +18,12 @@ public class UserAuthService implements UserDetailsService {
     private IUserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
        System.out.println("In the user details service");
+        System.out.println(email);
 
-        return userRepository.getUserByUsername(username).orElseThrow(() -> new UsernameNotFoundException("user is not valid"));
-
+        return userRepository.getUserByEmail(email).orElseThrow(() -> new UsernameNotFoundException("user is not valid"));
     }
+
+
 }

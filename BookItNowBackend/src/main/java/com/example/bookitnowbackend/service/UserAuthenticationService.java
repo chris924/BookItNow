@@ -72,14 +72,16 @@ public class UserAuthenticationService {
 
     }
 
-public UserLoginResponseDTO loginUser(String username, String password)
+public UserLoginResponseDTO loginUser(String email, String password)
 {
     try{
 
-        Authentication auth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+        Authentication auth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
         String token = tokenService.generateJwt(auth);
 
-        return new UserLoginResponseDTO(userRepository.getUserByUsername(username).get(), token);
+
+        return new UserLoginResponseDTO(userRepository.getUserByEmail(email).get().getEmail(), token);
+      //  return new UserLoginResponseDTO(userRepository.getUserByUsername(username).get(), token);
 
     }catch (AuthenticationException e) {
         return new UserLoginResponseDTO(null, "");

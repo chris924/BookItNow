@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Objects;
+
 @RestController
 @RequestMapping("/auth/user")
 @CrossOrigin("*")
@@ -46,8 +48,18 @@ public class UserAuthenticationController {
         }
 
         try {
-          UserLoginResponseDTO userLoginResponseDTO =  userAuthenticationService.loginUser(body.getUsername(), body.getPassword());
-            return ResponseEntity.status(HttpStatus.OK).body(userLoginResponseDTO);
+            System.out.println(body.getEmail()+ "THIS IS THE USERNAME?");
+          UserLoginResponseDTO userLoginResponseDTO =  userAuthenticationService.loginUser(body.getEmail(), body.getPassword());
+
+
+            if(userLoginResponseDTO.getUser() == null || Objects.equals(userLoginResponseDTO.getJwt(), ""))
+            {
+                return  ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Bad Credentials");
+            }
+            else {
+                return ResponseEntity.status(HttpStatus.OK).body(userLoginResponseDTO);
+            }
+
         } catch (Exception e)
         {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error during login user");
