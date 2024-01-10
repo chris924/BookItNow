@@ -1,13 +1,14 @@
 import UserLoginFetch from "../../services/userAuth/UserLoginFetch";
+import SetCookie from "../../utils/cookies/SetCookie";
 
-
-export default async function UserLoginAuth(email:string, password:string):Promise<boolean | boolean>
+export default async function UserLoginAuth(email:string, password:string):Promise<string | boolean>
 {
   const token = await UserLoginFetch(email, password);
 
   
   if (token !== false) {
     console.log("Successfully logged in!");
+    SetCookie("authToken", token.toString(), 1);
     return true;
   } else {
     console.log("Bad Credentials");
