@@ -77,7 +77,7 @@ public UserLoginResponseDTO loginUser(String email, String password)
     try{
 
         Authentication auth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
-        String token = tokenService.generateJwt(auth);
+        String token = tokenService.generateJwt(auth, userRepository.getUserByEmail(email).get().getUserId());
 
 
         return new UserLoginResponseDTO(userRepository.getUserByEmail(email).get().getEmail(), token);
@@ -89,5 +89,12 @@ public UserLoginResponseDTO loginUser(String email, String password)
 
 
 }
+
+public Integer getUserData(String jwt)
+{
+
+    return Integer.valueOf(tokenService.decodeJwt(jwt).getSubject());
+}
+
 
 }

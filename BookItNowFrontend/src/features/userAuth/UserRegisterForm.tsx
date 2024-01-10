@@ -1,11 +1,19 @@
 import {Button} from "@nextui-org/button";
 import { Input } from "@nextui-org/react";
 import "../../styles/userLoginForm.css"
-
+import confetti from "canvas-confetti";
 
 interface LoginFormProps{
     onBackButtonClick: () => void;
 }
+
+const handleConfetti = () => {
+  confetti({
+    particleCount: 100,
+    spread: 70,
+    
+  });
+};
 
 
 export default function UserLoginForm({ onBackButtonClick}: LoginFormProps): JSX.Element
@@ -63,7 +71,7 @@ export default function UserLoginForm({ onBackButtonClick}: LoginFormProps): JSX
       <Button color="danger" onClick={() => onBackButtonClick()}>
        Go Back
       </Button>
-      <Button color="secondary">
+      <Button color="secondary" onPress={handleConfetti}>
        Register
       </Button>
       </div>
@@ -71,3 +79,5 @@ export default function UserLoginForm({ onBackButtonClick}: LoginFormProps): JSX
   </div>
     )
 }
+
+

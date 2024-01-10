@@ -48,11 +48,11 @@ public class UserAuthenticationController {
         }
 
         try {
-            System.out.println(body.getEmail()+ "THIS IS THE USERNAME?");
+
           UserLoginResponseDTO userLoginResponseDTO =  userAuthenticationService.loginUser(body.getEmail(), body.getPassword());
 
 
-            if(userLoginResponseDTO.getUser() == null || Objects.equals(userLoginResponseDTO.getJwt(), ""))
+            if(userLoginResponseDTO.getEmail() == null || Objects.equals(userLoginResponseDTO.getJwt(), ""))
             {
                 return  ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Bad Credentials");
             }

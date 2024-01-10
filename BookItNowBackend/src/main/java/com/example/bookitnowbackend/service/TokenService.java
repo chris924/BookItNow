@@ -3,10 +3,7 @@ package com.example.bookitnowbackend.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.oauth2.jwt.JwtClaimsSet;
-import org.springframework.security.oauth2.jwt.JwtDecoder;
-import org.springframework.security.oauth2.jwt.JwtEncoder;
-import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
+import org.springframework.security.oauth2.jwt.*;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -21,7 +18,7 @@ public class TokenService {
     @Autowired
     private JwtDecoder jwtDecoder;
 
-    public String generateJwt(Authentication auth)
+    public String generateJwt(Authentication auth, Integer id)
     {
         Instant now = Instant.now();
 
@@ -32,12 +29,19 @@ public class TokenService {
         JwtClaimsSet claims = JwtClaimsSet.builder()
                 .issuer("self")
                 .issuedAt(now)
-                .subject(auth.getName())
+                .subject(String.valueOf(id))
                 .claim("roles", scope)
                 .build();
 
         return jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
     }
 
+    public Jwt decodeJwt(String jwt)
+    {
+        var decode = jwtDecoder.decode(jwt);
+        System.out.println(decode.getSubject());
+        System.out.println(decode.getClaims());
 
+        return decode;
+    }
 }

@@ -6,7 +6,6 @@ import UserLoginPage from './pages/UserLoginPage';
 import UserRegisterPage from './pages/UserRegisterPage';
 import HomePage from './pages/HomePage';
 import RootLayout from './layouts/RootLayout';
-import useDarkMode from 'use-dark-mode';
 
 
 

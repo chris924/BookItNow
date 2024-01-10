@@ -87,7 +87,7 @@ public class CompanyAuthenticationService {
         try{
 
             Authentication auth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
-            String token = tokenService.generateJwt(auth);
+            String token = tokenService.generateJwt(auth, companyRepository.getCompanyByEmail(email).get().getId());
 
             return new CompanyLoginResponseDTO(companyRepository.getCompanyByEmail(email).get(), token);
 

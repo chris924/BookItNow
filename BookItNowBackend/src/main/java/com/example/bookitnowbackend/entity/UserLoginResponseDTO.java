@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 public class UserLoginResponseDTO {
 
-    private String user;
+    private String email;
     private String jwt;
 
 }
