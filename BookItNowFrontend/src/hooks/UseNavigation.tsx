@@ -9,8 +9,15 @@ export default function UseNavigation()
         navigate('/');
     }
 
+    function navigateToUserLoggedInPage()
+    {
+        navigate('/user/home')
+    }
+
+
     return{
-        navigateToMainPage
+        navigateToMainPage,
+        navigateToUserLoggedInPage
     }
 
     

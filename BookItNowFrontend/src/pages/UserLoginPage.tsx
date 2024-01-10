@@ -5,6 +5,7 @@ import UseNavigation from "../hooks/UseNavigation";
 export default function UserLoginPage(): JSX.Element
 {
    const { navigateToMainPage } = UseNavigation();
+   const {navigateToUserLoggedInPage} = UseNavigation();
 
     const handleLogin = async (email: string, password: string) =>{
 
@@ -13,9 +14,13 @@ export default function UserLoginPage(): JSX.Element
         if (result) {
             console.log("User logged in successfully!");
            
-            navigateToMainPage();
+           navigateToUserLoggedInPage();
         } else {
-            console.log("Bad credentials!");
+           return(
+
+            <h2>Bad Credentials!</h2>
+            
+           )
            
         }
     }
