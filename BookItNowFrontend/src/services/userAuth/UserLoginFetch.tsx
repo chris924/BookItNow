@@ -2,7 +2,15 @@ import * as apiURL from "../../lib/constants/apiURL"
 
 
 
-export default async function UserLoginFetch(email:string, password:string): Promise<string | boolean>
+
+export interface LoginResponse {
+    success: boolean,
+    jwt?:string;
+    errorMessage?: string
+}
+
+
+export default async function UserLoginFetch(email:string, password:string): Promise<LoginResponse>
 {
 
     const LoginData = {
@@ -10,9 +18,7 @@ export default async function UserLoginFetch(email:string, password:string): Pro
         password: password,
     };
 
-    interface LoginResponse {
-        jwt:string;
-    }
+   
 
 
 
@@ -27,21 +33,21 @@ export default async function UserLoginFetch(email:string, password:string): Pro
         
         if(response.ok)
         {
-            return new Promise(async (resolve) => {
+            
                 const data: LoginResponse = await response.json();
                     const token = data.jwt;
                     console.log("Successfully logged in!");
-                    resolve(token);
-                });
+                    return {success: true, jwt: token};
+               
         }else {
         console.log("Bad Credentials");
-        return false;
+        return {success: false, errorMessage: "Failed to fetch user login."};
         }
 
    }catch(err)
    {
     console.error(err);
-    return false;
+    return {success: false, errorMessage: "An error occured while fetching user login"};
    }
 
 

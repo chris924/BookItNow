@@ -14,16 +14,16 @@ import {
 import { DataResponse, UserDataResult } from '../services/userData/UserDataFetch';
 
 interface UserLoggedInLayoutProps {
-  userData: UserDataResult['data'];
+  UserData: UserDataResult['data'];
 }
 
-const UserLoggedInLayout: React.FC<UserLoggedInLayoutProps> = ({ userData }) => {
+const UserLoggedInLayout: React.FC<UserLoggedInLayoutProps> = ({ UserData }) => {
 
-    console.log(userData);
+    console.log(UserData);
 
     return (
       <>
-        {userData && typeof userData !== 'boolean' && (
+        {UserData && typeof UserData !== 'boolean' && (
           <Navbar>
             <NavbarBrand>
               <p className="font-bold text-inherit">BookItNow</p>
@@ -63,7 +63,7 @@ const UserLoggedInLayout: React.FC<UserLoggedInLayoutProps> = ({ userData }) => 
                 <DropdownMenu aria-label="Profile Actions" variant="flat">
                   <DropdownItem key="profile" className="h-14 gap-2">
                     <p className="font-semibold">Signed in as</p>
-                    <p className="font-semibold">{userData['email']}</p>
+                    <p className="font-semibold">{UserData['email']}</p>
                   </DropdownItem>
                   <DropdownItem key="settings">My Settings</DropdownItem>
                   <DropdownItem key="team_settings">Team Settings</DropdownItem>

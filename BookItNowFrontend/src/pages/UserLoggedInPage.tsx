@@ -6,14 +6,15 @@ import UserDataFetch, { DataResponse, UserDataResult } from '../services/userDat
 
 export default function UserLoggedInPage(): JSX.Element
 {
-  const [userData, setUserData] = useState<UserDataResult | null>(null);
+  const [userData, setUserData] = useState<UserDataResult>();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const result = await UserDataFetch();
-        setUserData(result);
+          setUserData(result);
+        
       } catch (error) {
         console.error("Error fetching user data", error);
       }
@@ -22,18 +23,18 @@ export default function UserLoggedInPage(): JSX.Element
     fetchData();
   }, []);
 
-  if (userData === null) {
-    // Loading state or handle the error
+  if (userData === null || userData === undefined) {
     return <div>Loading...</div>;
   }
-
-  if (!userData) {
+  
+  if (userData?.success === false) {
+    console.log("ASD");
     return <Navigate to="/user/login" />;
   }
   
     return (
       <>
-        <UserLoggedInLayout  userData={userData.data}/>
+        <UserLoggedInLayout  UserData={userData.data}/>
        
       </>
     );
