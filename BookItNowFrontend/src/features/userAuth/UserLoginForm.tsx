@@ -21,6 +21,7 @@ export default function UserLoginForm({ onBackButtonClick, onLoginClick, onWrong
     return (
         <div className="flex justify-center items-center h-screen">
     <div className="w-full max-w-[200px] space-y-4">
+    <div className="flex justify-center text-xl font-semibold text-blue-600/75 dark:text-blue-500/75">Login</div>
     {onWrongCredentials && (
       <div className="flex justify-center">
        <Tooltip content="Try Again" color="secondary">
