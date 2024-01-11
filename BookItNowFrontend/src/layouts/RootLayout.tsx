@@ -1,7 +1,27 @@
 
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button} from "@nextui-org/react";
+import UseNavigation from "../hooks/UseNavigation";
 
 export default function App() {
+  
+  const {navigateToLoginPage} = UseNavigation();
+  const {navigateToRegisterPage} = UseNavigation();
+
+
+  function handleLoginClick()
+  {
+    
+    navigateToLoginPage();
+  }
+
+  function handleRegisterClick()
+  {
+    
+    navigateToRegisterPage();
+  }
+
+
+
   return (
     <Navbar>
       <NavbarBrand>
@@ -26,12 +46,12 @@ export default function App() {
       </NavbarContent>
       <NavbarContent justify="end">
       <NavbarItem>
-          <Button as={Link} color="primary" href="/user/login" variant="flat">
+          <Button as={Link} color="primary" variant="flat" onClick={() => handleLoginClick()}>
             Log in
           </Button>
         </NavbarItem>
         <NavbarItem>
-          <Button as={Link} color="primary" href="/user/register" variant="flat">
+          <Button as={Link} color="primary" variant="flat" onClick={() => handleRegisterClick()}>
             Sign Up
           </Button>
         </NavbarItem>

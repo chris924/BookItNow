@@ -19,9 +19,8 @@ export default function App() {
   <NextUIProvider>
     <main className="purple-dark bg-gradient-to-r from-gray-700 via-gray-900 to-black">
       <Routes>
-        <Route path="/" element={<RootLayout />}>
+        <Route path="/" element={<HomePage />}>
          
-          <Route index element={<HomePage />} />
         </Route>
         <Route path="user">
           

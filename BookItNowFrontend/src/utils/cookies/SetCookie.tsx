@@ -21,3 +21,13 @@ export function GetCookie(name: string) {
     }
     return "";
   }
+
+  export function RemoveCookie(name: string)
+  {
+
+    const pastDate = new Date(0).toUTCString();
+    const domain = window.location.hostname; 
+    
+    document.cookie = name + "=;expires=" + pastDate + ";path=/;domain=" + domain;
+  
+  }

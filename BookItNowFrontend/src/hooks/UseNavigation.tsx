@@ -11,13 +11,25 @@ export default function UseNavigation()
 
     function navigateToUserLoggedInPage()
     {
-        navigate('/user/home')
+        navigate('/user/home');
+    }
+
+    function navigateToLoginPage()
+    {
+        navigate('/user/login');
+    }
+
+    function navigateToRegisterPage()
+    {
+        navigate('/user/register');
     }
 
 
     return{
         navigateToMainPage,
-        navigateToUserLoggedInPage
+        navigateToUserLoggedInPage,
+        navigateToLoginPage,
+        navigateToRegisterPage,
     }
 
     

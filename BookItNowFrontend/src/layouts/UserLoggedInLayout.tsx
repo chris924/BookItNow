@@ -12,6 +12,8 @@ import {
   Avatar,
 } from '@nextui-org/react';
 import { DataResponse, UserDataResult } from '../services/userData/UserDataFetch';
+import SetCookie, { GetCookie, RemoveCookie } from '../utils/cookies/SetCookie';
+import UseNavigation from '../hooks/UseNavigation';
 
 interface UserLoggedInLayoutProps {
   UserData: UserDataResult['data'];
@@ -19,7 +21,16 @@ interface UserLoggedInLayoutProps {
 
 const UserLoggedInLayout: React.FC<UserLoggedInLayoutProps> = ({ UserData }) => {
 
-    console.log(UserData);
+
+  const {navigateToMainPage} = UseNavigation();
+
+    function handleLogout()
+    {
+      RemoveCookie("authToken");
+      navigateToMainPage();
+      
+
+    }
 
     return (
       <>
@@ -71,7 +82,7 @@ const UserLoggedInLayout: React.FC<UserLoggedInLayoutProps> = ({ UserData }) => 
                   <DropdownItem key="system">System</DropdownItem>
                   <DropdownItem key="configurations">Configurations</DropdownItem>
                   <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
-                  <DropdownItem key="logout" color="danger">
+                  <DropdownItem key="logout" color="danger" onClick={() => handleLogout()}>
                     Log Out
                   </DropdownItem>
                 </DropdownMenu>
