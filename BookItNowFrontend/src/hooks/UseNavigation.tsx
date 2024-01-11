@@ -7,6 +7,7 @@ export default function UseNavigation()
     function navigateToMainPage()
     {
         navigate('/');
+        return <div>Redirecting to the main page...</div>;
     }
 
     function navigateToUserLoggedInPage()
