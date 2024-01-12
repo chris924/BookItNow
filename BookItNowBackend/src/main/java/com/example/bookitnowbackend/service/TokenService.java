@@ -6,6 +6,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.jwt.*;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.time.Duration;
 import java.time.Instant;
 import java.util.stream.Collectors;
 
@@ -21,6 +23,8 @@ public class TokenService {
     public String generateJwt(Authentication auth, Integer id)
     {
         Instant now = Instant.now();
+        Duration validityDuration = Duration.ofMinutes(30);
+        Instant expirationTime = now.plus(validityDuration);
 
         String scope = auth.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
@@ -30,6 +34,7 @@ public class TokenService {
                 .issuer("self")
                 .issuedAt(now)
                 .subject(String.valueOf(id))
+                .expiresAt(expirationTime)
                 .claim("roles", scope)
                 .build();
 
