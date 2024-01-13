@@ -15,9 +15,7 @@ export default function userRegisterPage(): JSX.Element
         const handleRegister = async (name: string, username: string, email: string, password: string) =>
         {
 
-           
-
-
+        
             const result = await UserRegisterFetch(name, username, email, password);
 
             if (result.success === true) {
@@ -29,7 +27,6 @@ export default function userRegisterPage(): JSX.Element
               } else {
                 
                   setRegisterResult(false);
-                
               }
         }
 

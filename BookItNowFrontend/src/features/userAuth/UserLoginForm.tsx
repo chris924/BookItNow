@@ -1,14 +1,9 @@
 import { useState } from "react";
 import {Button} from "@nextui-org/button";
-import { Input, Textarea, Tooltip } from "@nextui-org/react";
+import { Input } from "@nextui-org/react";
 import "../../styles/userLoginForm.css"
-
-
-interface LoginFormProps{
-    onBackButtonClick: () => void;
-    onLoginClick: (email: string, password: string) => void;
-    onWrongCredentials: boolean;
-}
+import BadCredentials from "../../components/BadCredentials";
+import { LoginFormProps } from "../../lib/constants/interfaces/interfaces";
 
 
 export default function UserLoginForm({ onBackButtonClick, onLoginClick, onWrongCredentials}: LoginFormProps): JSX.Element
@@ -17,16 +12,13 @@ export default function UserLoginForm({ onBackButtonClick, onLoginClick, onWrong
   const [password, setPassword] = useState("");
 
 
-
     return (
         <div className="flex justify-center items-center h-screen">
     <div className="w-full max-w-[200px] space-y-4">
     <div className="flex justify-center text-xl font-semibold text-blue-600/75 dark:text-blue-500/75">Login</div>
     {onWrongCredentials && (
       <div className="flex justify-center">
-       <Tooltip content="Try Again" color="secondary">
-       <Button color="danger">Wrong Credentials</Button>
-     </Tooltip>
+      <BadCredentials/>
      </div>
      )}
       <div className="w-full flex flex-row flex-wrap gap-5">  

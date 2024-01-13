@@ -11,13 +11,11 @@ import {
   DropdownMenu,
   Avatar,
 } from '@nextui-org/react';
-import { DataResponse, UserDataResult } from '../services/userData/UserDataFetch';
-import SetCookie, { GetCookie, RemoveCookie } from '../utils/cookies/SetCookie';
-import UseNavigation from '../hooks/UseNavigation';
 
-interface UserLoggedInLayoutProps {
-  UserData: UserDataResult['data'];
-}
+import { RemoveCookie } from '../utils/cookies/SetCookie';
+import UseNavigation from '../hooks/UseNavigation';
+import { UserLoggedInLayoutProps } from '../lib/constants/interfaces/interfaces';
+
 
 const UserLoggedInLayout: React.FC<UserLoggedInLayoutProps> = ({ UserData }) => {
 

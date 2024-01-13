@@ -1,9 +1,7 @@
-import { Navigate } from "react-router-dom";
 import UserLoggedInLayout from "../layouts/UserLoggedInLayout";
-import { user } from "@nextui-org/theme";
 import { useEffect, useState } from "react";
 import UseNavigation from "../hooks/UseNavigation";
-import UserDataFetch, { DataResponse, UserDataResult } from '../services/userData/UserDataFetch';
+import UserDataFetch, { UserDataResult } from '../services/userData/UserDataFetch';
 import LoadingCircle from "../components/LoadingCircle";
 
 export default function UserLoggedInPage(): JSX.Element
@@ -15,8 +13,6 @@ export default function UserLoggedInPage(): JSX.Element
 
 
   useEffect(() => {
-
-    
 
     const fetchData = async () => { 
       try {

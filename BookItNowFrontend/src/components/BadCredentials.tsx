@@ -1,11 +1,12 @@
+import { Button, Tooltip } from "@nextui-org/react";
 
 
 
 export default function BadCredentials()
 {
     return(
-        <div className="w-full bg-red-500 text-white p-4 text-center z-100">
-      Bad CREDENTIALS!
-    </div>
+      <Tooltip content="Try Again" color="secondary">
+      <Button color="danger">Wrong Credentials</Button>
+    </Tooltip>
     )
 }

@@ -1,8 +1,5 @@
 import * as apiURL from "../../lib/constants/apiURL"
 
-
-
-
 export interface LoginResponse {
     success: boolean,
     jwt?:string;
@@ -17,9 +14,6 @@ export default async function UserLoginFetch(email:string, password:string): Pro
         email: email, 
         password: password,
     };
-
-   
-
 
 
     try{

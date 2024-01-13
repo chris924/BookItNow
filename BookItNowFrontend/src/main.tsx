@@ -1,18 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { NextUIProvider } from '@nextui-org/system'
-import {BrowserRouter, Route, Routes, useNavigate} from 'react-router-dom';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import UserLoginPage from './pages/UserLoginPage';
 import UserRegisterPage from './pages/UserRegisterPage';
 import UserLoggedInPage from './pages/UserLoggedInPage';
 import HomePage from './pages/HomePage';
-import RootLayout from './layouts/RootLayout';
-import UserLoggedInLayout from './layouts/UserLoggedInLayout';
+
 
 
 
 export default function App() {
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
  // const darkMode = useDarkMode(true);
 
  return (
@@ -20,10 +19,8 @@ export default function App() {
     <main className="purple-dark bg-gradient-to-r from-gray-700 via-gray-900 to-black">
       <Routes>
         <Route path="/" element={<HomePage />}>
-         
         </Route>
         <Route path="user">
-          
           <Route path="login" element={<UserLoginPage />} />
           <Route path="register" element={<UserRegisterPage />} />
           <Route path="home" element={<UserLoggedInPage />}>

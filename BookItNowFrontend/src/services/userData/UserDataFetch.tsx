@@ -29,9 +29,11 @@ export interface UserDataResult {
 }
 
 export default async function UserDataFetch(): Promise<UserDataResult> {
-    const authToken = GetCookie("authToken");
+
+    const authToken  = await GetCookie("authToken");
+   
     const headers = new Headers({
-        "Authorization": `Bearer ${authToken}`,
+        "Authorization": `Bearer ${authToken.jwt}`,
         "Content-Type": "application/json",
     });
 

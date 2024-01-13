@@ -1,26 +1,15 @@
 import {Button} from "@nextui-org/button";
-import { Input, Tooltip } from "@nextui-org/react";
+import { Input } from "@nextui-org/react";
 import "../../styles/userLoginForm.css"
-import confetti from "canvas-confetti";
-import { useEffect, useState } from "react";
-
-interface LoginFormProps{
-    onBackButtonClick: () => void;
-    onRegisterClick: (name: string, username:string, email:string, password:string) => void;
-    registerResult: boolean;
-}
+import { registerConfetti } from "../../components/Confetti";
+import { useState } from "react";
+import { RegisterFormProps } from "../../lib/constants/interfaces/interfaces";
+import { useRegistrationValidation } from "../../hooks/UseEffect";
 
 
-const handleConfetti = () => {
-  confetti({
-    particleCount: 100,
-    spread: 70,
-    
-  });
-};
 
 
-export default function UserLoginForm({ onBackButtonClick , onRegisterClick, registerResult }: LoginFormProps): JSX.Element
+export default function UserRegisterForm({ onBackButtonClick , onRegisterClick, registerResult }: RegisterFormProps): JSX.Element
 {
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
@@ -31,18 +20,22 @@ export default function UserLoginForm({ onBackButtonClick , onRegisterClick, reg
   const [registerButtonDisabled, setRegisterButtonDisabled] = useState(true);
 
 
-  useEffect(() => {
+  useRegistrationValidation(
+    name,
+    username,
+    email,
+    password,
+    rePassword,
+    setRegisterButtonDisabled
+  );
 
-    if(password !== rePassword || password.length == 0 || rePassword.length == 0 || name.length == 0 || username.length == 0 || email.length == 0)
-    {
-      setRegisterButtonDisabled(true);
-    }
-    else
-    {
-      setRegisterButtonDisabled(false);
-    }
 
-  }, [password, rePassword, email, username, name])
+  const handleRegisterClick = () => {
+    if (!registerButtonDisabled) {
+      setRegisterButtonDisabled(true); 
+      onRegisterClick(name, username, email, password);
+    }
+  };
 
 
 
@@ -110,7 +103,7 @@ export default function UserLoginForm({ onBackButtonClick , onRegisterClick, reg
       <Button color="danger" onClick={() => onBackButtonClick()}>
        Go Back
       </Button>
-      <Button isDisabled={registerButtonDisabled} color="secondary" onPress={handleConfetti} onClick={() => onRegisterClick(name, username, email, password)}>
+      <Button isDisabled={registerButtonDisabled} color="secondary" onPress={registerConfetti} onClick={() => handleRegisterClick()}>
        Register
       </Button>
       </div>
