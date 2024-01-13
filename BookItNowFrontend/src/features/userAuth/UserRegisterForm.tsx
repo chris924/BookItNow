@@ -43,10 +43,12 @@ export default function UserRegisterForm({ onBackButtonClick , onRegisterClick, 
         <div className="flex justify-center items-center h-screen">
     <div className="w-full max-w-[350px] space-y-4">
     <div className="flex justify-center text-xl font-semibold text-blue-600/75 dark:text-blue-500/75">Register</div>
-      {registerResult && (
+      {registerResult && (<>
       <div className="flex justify-center">
       <Button color="success">Succesfully Registered</Button>
+      {registerConfetti()}
      </div>
+     </>
       )}
       <div className="w-full flex flex-row flex-wrap gap-5 justify-center items-center ">
         <Input
@@ -103,7 +105,7 @@ export default function UserRegisterForm({ onBackButtonClick , onRegisterClick, 
       <Button color="danger" onClick={() => onBackButtonClick()}>
        Go Back
       </Button>
-      <Button isDisabled={registerButtonDisabled} color="secondary" onPress={registerConfetti} onClick={() => handleRegisterClick()}>
+      <Button isDisabled={registerButtonDisabled} color="secondary" onClick={() => handleRegisterClick()}>
        Register
       </Button>
       </div>
