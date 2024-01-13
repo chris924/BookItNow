@@ -3,6 +3,7 @@ package com.example.bookitnowbackend.controller;
 import com.example.bookitnowbackend.entity.User;
 import com.example.bookitnowbackend.entity.UserLoginResponseDTO;
 import com.example.bookitnowbackend.entity.UserRegistrationResponseDTO;
+import com.example.bookitnowbackend.repository.IUserRepository;
 import com.example.bookitnowbackend.service.UserAuthenticationService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -33,6 +34,9 @@ public class UserAuthenticationControllerTests {
 
     @MockBean
     private UserAuthenticationService userAuthenticationService;
+
+    @MockBean
+    private IUserRepository userRepository;
 
     @Autowired
     private ObjectMapper objectMapper;
