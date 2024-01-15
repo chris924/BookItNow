@@ -3,15 +3,15 @@ import { Input, Popover, PopoverContent, PopoverTrigger, Tooltip } from "@nextui
 import "../../styles/userLoginForm.css"
 import { registerConfetti } from "../../components/Confetti";
 import { useState } from "react";
-import { RegisterFormProps } from "../../lib/constants/interfaces/userInterface/UserInterfaces";
+import { UserRegisterFormProps } from "../../lib/constants/interfaces/UserInterfaces";
 import { useRegistrationValidation } from "../../hooks/UseEffect";
-import UserInputDuplicateFetch from "../../services/userAuth/UserInputDuplicateFetch";
+import UserInputDuplicateFetch from "../../services/user/UserInputDuplicateFetch";
 
 
 
 
 
-export default function UserRegisterForm({ onBackButtonClick , onRegisterClick, registerResult }: RegisterFormProps): JSX.Element
+export default function UserRegisterForm({ onBackButtonClick , onRegisterClick, registerResult }: UserRegisterFormProps): JSX.Element
 {
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");

@@ -1,7 +1,9 @@
 package com.example.bookitnowbackend.controller;
 
 import com.example.bookitnowbackend.entity.Company;
+import com.example.bookitnowbackend.entity.User;
 import com.example.bookitnowbackend.repository.ICompanyRepository;
+import com.example.bookitnowbackend.service.CompanyAuthenticationService;
 import com.example.bookitnowbackend.service.CompanyService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,11 @@ import java.util.concurrent.ExecutionException;
 @RequestMapping("/company")
 @CrossOrigin("*")
 public class CompanyController {
+
+    @Autowired
+    private CompanyAuthenticationService companyAuthenticationService;
+
+
 
 
     @Autowired
@@ -94,6 +101,18 @@ public class CompanyController {
 
 
 
+    }
+
+    @GetMapping("/companydata")
+    public ResponseEntity<?> GetCompanyData(@RequestHeader("Authorization") String token)
+    {
+        String jwtToken = token.substring(7);
+
+        Integer userId = companyAuthenticationService.getCompanyData(jwtToken);
+
+        Company company = companyService.getCompanyById(userId);
+
+        return ResponseEntity.status(HttpStatus.OK).body(company);
     }
 
 

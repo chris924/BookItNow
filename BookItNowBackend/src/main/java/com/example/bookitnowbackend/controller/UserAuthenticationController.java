@@ -80,8 +80,6 @@ public class UserAuthenticationController {
         String username = request.getUsername();
         String email = request.getEmail();
 
-        System.out.println("USERNAME:" + username);
-        System.out.println("EMAIL:" + email);
 
         if (userRepository.getUserByEmail(email).isPresent() && userRepository.getUserByUsername(username).isPresent()) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(new UserDuplicateCheckDTO(true, username, email));

@@ -11,6 +11,7 @@ export interface DecodeJwtInterface{
     success: boolean;
     decoded?: {
         exp?: number;
+        roles?: string;
     };
     errorMessage?: string;
 }

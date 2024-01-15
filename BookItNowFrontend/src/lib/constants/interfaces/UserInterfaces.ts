@@ -1,11 +1,11 @@
 
-export interface LoginFormProps{
+export interface UserLoginFormProps{
     onBackButtonClick: () => void;
     onLoginClick: (email: string, password: string) => void;
     onWrongCredentials: boolean;
 }
 
-export interface RegisterFormProps{
+export interface UserRegisterFormProps{
     onBackButtonClick: () => void;
     onRegisterClick: (name: string, username:string, email:string, password:string) => void;
     registerResult: boolean;
@@ -17,13 +17,13 @@ export interface UserLoggedInLayoutProps {
 
 
 
-export interface LoginResponse {
+export interface UserLoginResponse {
     success: boolean,
     jwt?:string;
     errorMessage?: string
 }
 
-export interface RegisterResponse {
+export interface UserRegisterResponse {
     success: boolean,
     name?: string,
     username?: string,
@@ -32,7 +32,7 @@ export interface RegisterResponse {
 }
 
 
-export interface DataResponse {
+export interface UserDataResponse {
     
     id: bigint;
     name: string;
@@ -55,7 +55,7 @@ export interface DataResponse {
 
 export interface UserDataResult {
 success: boolean;
-data?: DataResponse;
+data?: UserDataResponse;
 errorMessage?: string;
 }
 

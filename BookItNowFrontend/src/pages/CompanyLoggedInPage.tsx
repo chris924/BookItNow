@@ -1,13 +1,14 @@
 import UserLoggedInLayout from "../layouts/UserLoggedInLayout";
 import { useEffect, useState } from "react";
 import UseNavigation from "../hooks/UseNavigation";
-import UserDataFetch from '../services/user/UserDataFetch';
+import CompanyDataFetch from "../services/company/CompanyDataFetch";
 import LoadingCircle from "../components/LoadingCircle";
-import { UserDataResult } from "../lib/constants/interfaces/UserInterfaces";
+import { CompanyDataResult } from "../lib/constants/interfaces/CompanyInterfaces";
+import CompanyLoggedInLayout from "../layouts/CompanyLoggedInLayout";
 
-export default function UserLoggedInPage(): JSX.Element
+export default function CompanyLoggedInPage(): JSX.Element
 {
-  const [userData, setUserData] = useState<UserDataResult>();
+  const [companyData, setCompanyData] = useState<CompanyDataResult>();
   const [loading, setLoading] = useState(false);
   
   const {navigateToMainPage} = UseNavigation();
@@ -18,8 +19,8 @@ export default function UserLoggedInPage(): JSX.Element
     const fetchData = async () => { 
       try {
         await new Promise(resolve => setTimeout(resolve, 1000));
-        const result = await UserDataFetch();
-          setUserData(result);
+        const result = await CompanyDataFetch();
+          setCompanyData(result);
         
       } catch (error) {
         console.error("Error fetching user data", error);
@@ -31,18 +32,18 @@ export default function UserLoggedInPage(): JSX.Element
     fetchData();
   }, []);
 
-  if (userData === null || userData === undefined || loading) {
+  if (companyData === null || companyData === undefined || loading) {
     return <LoadingCircle/>;
   }
   
-  if (userData?.success === false) {
+  if (companyData?.success === false) {
 
     return navigateToMainPage();
   }
   
     return (
       <>
-        <UserLoggedInLayout  UserData={userData.data}/>
+        <CompanyLoggedInLayout  CompanyData={companyData.data}/>
        
       </>
     );

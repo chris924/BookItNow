@@ -15,9 +15,10 @@ import {
 import { RemoveCookie } from '../utils/cookies/SetCookie';
 import UseNavigation from '../hooks/UseNavigation';
 import { UserLoggedInLayoutProps } from '../lib/constants/interfaces/UserInterfaces';
+import { CompanyLoggedInLayoutProps } from '../lib/constants/interfaces/CompanyInterfaces';
 
 
-const UserLoggedInLayout: React.FC<UserLoggedInLayoutProps> = ({ UserData }) => {
+const CompanyLoggedInLayout: React.FC<CompanyLoggedInLayoutProps> = ({ CompanyData }) => {
 
 
   const {navigateToMainPage} = UseNavigation();
@@ -31,7 +32,7 @@ const UserLoggedInLayout: React.FC<UserLoggedInLayoutProps> = ({ UserData }) => 
 
     return (
       <>
-        {UserData && typeof UserData !== 'boolean' && (
+        {CompanyData && typeof CompanyData !== 'boolean' && (
           <Navbar>
             <NavbarBrand>
               <p className="font-bold text-inherit">BookItNow</p>
@@ -71,7 +72,7 @@ const UserLoggedInLayout: React.FC<UserLoggedInLayoutProps> = ({ UserData }) => 
                 <DropdownMenu aria-label="Profile Actions" variant="flat">
                   <DropdownItem key="profile" className="h-14 gap-2">
                     <p className="font-semibold">Signed in as</p>
-                    <p className="font-semibold">{UserData['name']}</p>
+                    <p className="font-semibold">{CompanyData['email']}</p>
                   </DropdownItem>
                   <DropdownItem key="settings">My Settings</DropdownItem>
                   <DropdownItem key="appointments">My Appointments</DropdownItem>
@@ -88,4 +89,4 @@ const UserLoggedInLayout: React.FC<UserLoggedInLayoutProps> = ({ UserData }) => 
     );
 };
 
-export default UserLoggedInLayout;
+export default CompanyLoggedInLayout;

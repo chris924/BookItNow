@@ -4,9 +4,8 @@ import { GetCookie, RemoveCookie, decodeJwt } from "../utils/cookies/SetCookie";
 import UseNavigation from "../hooks/UseNavigation";
 
 export default function HomePage() {
-  const [expirationDate, setExpirationDate] = useState<Date | undefined>(undefined);
-  const { navigateToMainPage, navigateToUserLoggedInPage } = UseNavigation();
-  const [validAuthToken, setValidAuthToken] = useState(true);
+  const [userRole, setUserRole] = useState<string | null>(null);
+  const { navigateToMainPage, navigateToUserLoggedInPage, navigateToCompanyLoggedInPage } = UseNavigation();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -14,37 +13,29 @@ export default function HomePage() {
         const authToken = await GetCookie("authToken");
 
         if (!authToken.success) {
-          console.log("No auth token");
-          setValidAuthToken(false);
+          handleInvalidToken();
           return;
         }
 
         const decodedJwt = await decodeJwt("authToken");
-        if (!decodedJwt.success || !decodedJwt.decoded) {
-          console.log("Invalid decodedJwt");
-          setValidAuthToken(false);
+
+        if (!decodedJwt.success || decodedJwt.decoded === undefined || decodedJwt.decoded.exp === undefined || decodedJwt.decoded.roles === undefined) {
+          handleInvalidToken();
           return;
         }
 
-        const expTimestamp = decodedJwt.decoded.exp;
-        if (expTimestamp === undefined) {
-          console.log("Invalid expTimestamp");
-          setValidAuthToken(false);
-          return;
-        }
-
-        const expirationDateValue = new Date(expTimestamp * 1000);
-        setExpirationDate(expirationDateValue);
-
+        const expireTimestamp = decodedJwt.decoded.exp;
+        const expirationDateValue = new Date(expireTimestamp * 1000);
         const currentDate = new Date();
 
-        if (expirationDateValue > currentDate) {
-          setValidAuthToken(true);
-        } else {
+        if (expirationDateValue <= currentDate) {
           console.log("Token expired or not found");
-          RemoveCookie("authToken");
-          setValidAuthToken(false);
+          handleInvalidToken();
+          return;
         }
+
+        setUserRole(decodedJwt.decoded.roles);
+
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -53,5 +44,17 @@ export default function HomePage() {
     fetchData();
   }, []);
 
-  return <>{validAuthToken ? navigateToUserLoggedInPage() : <RootLayout />}</>;
-};
+  const handleInvalidToken = () => {
+    RemoveCookie("authToken");
+    setUserRole("NONE");
+
+  };
+
+  return (
+    <>
+      {userRole === "USER" && navigateToUserLoggedInPage()}
+      {userRole === "COMPANY" && navigateToCompanyLoggedInPage()}
+      {userRole === "NONE" && <RootLayout />}
+    </>
+  );
+}

@@ -6,6 +6,8 @@ import UserLoginPage from './pages/UserLoginPage';
 import UserRegisterPage from './pages/UserRegisterPage';
 import UserLoggedInPage from './pages/UserLoggedInPage';
 import HomePage from './pages/HomePage';
+import CompanyLoginPage from './pages/CompanyLoginPage';
+import CompanyLoggedInPage from './pages/CompanyLoggedInPage';
 
 
 
@@ -16,19 +18,22 @@ export default function App() {
 
  return (
   <NextUIProvider>
-    <main className="purple-dark bg-gradient-to-r from-gray-700 via-gray-900 to-black">
-      <Routes>
-        <Route path="/" element={<HomePage />}>
-        </Route>
-        <Route path="user">
-          <Route path="login" element={<UserLoginPage />} />
-          <Route path="register" element={<UserRegisterPage />} />
-          <Route path="home" element={<UserLoggedInPage />}>
-          </Route>
-        </Route>
-      </Routes>
-    </main>
-  </NextUIProvider>
+  <main className="purple-dark bg-gradient-to-r from-gray-700 via-gray-900 to-black">
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="user">
+        <Route path="login" element={<UserLoginPage />} />
+        <Route path="register" element={<UserRegisterPage />} />
+        <Route path="home" element={<UserLoggedInPage />} />
+      </Route>
+      <Route path="company">
+        <Route path="login" element={<CompanyLoginPage />} />
+
+        <Route path="home" element={<CompanyLoggedInPage/>}></Route>
+      </Route>
+    </Routes>
+  </main>
+</NextUIProvider>
 );
 
   }

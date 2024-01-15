@@ -1,5 +1,5 @@
 import * as apiURL from "../../lib/constants/apiURL";
-import { DataResponse, UserDataResult } from "../../lib/constants/interfaces/userInterface/UserInterfaces";
+import { UserDataResponse, UserDataResult } from "../../lib/constants/interfaces/UserInterfaces";
 import { GetCookie } from "../../utils/cookies/SetCookie";
 
 
@@ -20,7 +20,7 @@ export default async function UserDataFetch(): Promise<UserDataResult> {
         });
 
         if (response.ok) {
-            const data: DataResponse = await response.json();
+            const data: UserDataResponse = await response.json();
             console.log(data);
             return { success: true, data };
         } else {

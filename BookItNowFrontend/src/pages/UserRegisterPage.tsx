@@ -1,6 +1,6 @@
 import UseNavigation from "../hooks/UseNavigation";
 import UserRegisterForm from "../features/userAuth/UserRegisterForm";
-import UserRegisterFetch from "../services/userAuth/UserRegisterFetch";
+import UserRegisterFetch from "../services/user/UserRegisterFetch";
 import { useState } from "react";
 
 

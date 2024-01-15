@@ -4,20 +4,25 @@ import UseNavigation from "../hooks/UseNavigation";
 
 export default function App() {
 
-  const {navigateToLoginPage} = UseNavigation();
-  const {navigateToRegisterPage} = UseNavigation();
+  const {navigateToUserLoginPage, navigateToUserRegisterPage, navigateToCompanyLoginPage} = UseNavigation();
+ 
 
 
   function handleLoginClick()
   {
     
-    navigateToLoginPage();
+    navigateToUserLoginPage();
   }
 
   function handleRegisterClick()
   {
     
-    navigateToRegisterPage();
+    navigateToUserRegisterPage();
+  }
+
+  function handleCompaniesClick()
+  {
+    navigateToCompanyLoginPage()
   }
 
 
@@ -39,7 +44,7 @@ export default function App() {
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="#">
+          <Link color="foreground" href="#" onClick={() => handleCompaniesClick()}>
             For Companies
           </Link>
         </NavbarItem>
@@ -51,7 +56,7 @@ export default function App() {
           </Button>
         </NavbarItem>
         <NavbarItem>
-          <Button as={Link} color="primary" variant="flat" onClick={() => handleRegisterClick()}>
+          <Button as={Link}  color="primary" variant="flat" onClick={() => handleRegisterClick()}>
             Sign Up
           </Button>
         </NavbarItem>

@@ -1,11 +1,11 @@
 import * as apiURL from "../../lib/constants/apiURL"
-import { RegisterResponse } from "../../lib/constants/interfaces/userInterface/UserInterfaces";
+import { UserRegisterResponse } from "../../lib/constants/interfaces/UserInterfaces";
 
 
 
 
 
-export default async function UserRegisterFetch(name: string, username: string, email: string, password: string): Promise<RegisterResponse>
+export default async function UserRegisterFetch(name: string, username: string, email: string, password: string): Promise<UserRegisterResponse>
 {
     const RegisterData = {
         name: name,
@@ -16,7 +16,7 @@ export default async function UserRegisterFetch(name: string, username: string, 
 
 
     try{
-        const response = await fetch(`${apiURL.BASE_URL}${apiURL.REGISTER_ENDPOINT}`, {
+        const response = await fetch(`${apiURL.BASE_URL}${apiURL.USER_REGISTER_ENDPOINT}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -29,7 +29,7 @@ export default async function UserRegisterFetch(name: string, username: string, 
             console.log("Successfully registered");
 
 
-            const data: RegisterResponse = await response.json();
+            const data: UserRegisterResponse = await response.json();
            
             return { success: true, name: data.name, username: data.username, email: data.email}
             

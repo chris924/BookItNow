@@ -3,24 +3,26 @@ import UserLoginForm from "../features/userAuth/UserLoginForm";
 import UseNavigation from "../hooks/UseNavigation";
 import UserLoginFetch from "../services/user/UserLoginFetch";
 import { SetCookie } from "../utils/cookies/SetCookie";
+import CompanyLoginForm from "../features/companyAuth/CompanyLoginForm";
+import CompanyLoginFetch from "../services/company/CompanyLoginFetch";
 
-export default function UserLoginPage(): JSX.Element
+export default function CompanyLoginPage(): JSX.Element
 {
-   const { navigateToMainPage } = UseNavigation();
-   const {navigateToUserLoggedInPage} = UseNavigation();
+   const { navigateToMainPage, navigateToCompanyLoggedInPage } = UseNavigation();
+   
 
    const [showBadCredentials, setShowBadCredentials] = useState(false);
 
     const handleLogin = async (email: string, password: string) =>{
 
-        const result = await UserLoginFetch(email, password);
+        const result = await CompanyLoginFetch(email, password);
 
         const token = result.jwt;
 
         if (result.success === true && token !== undefined) {
-            console.log("User logged in successfully!");
+            console.log("Company logged in successfully!");
             SetCookie("authToken", token);
-            navigateToUserLoggedInPage();
+            navigateToCompanyLoggedInPage();
         } else {
            setShowBadCredentials(true);
            setTimeout(() => {
@@ -33,7 +35,7 @@ export default function UserLoginPage(): JSX.Element
 
     return (
         <>
-          <UserLoginForm
+          <CompanyLoginForm
             onBackButtonClick={navigateToMainPage}
             onLoginClick={handleLogin}
             onWrongCredentials={showBadCredentials}

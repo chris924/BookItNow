@@ -26,7 +26,8 @@ export function GetCookie(name: string): Promise<GetCookieInterface> {
 )}
 
 export function RemoveCookie(name: string) {
-  cookies.remove(name, { path: '/' });
+  console.log("REMOVING COOKIE", name);
+  cookies.remove(name);
 }
 
 export function decodeJwt(name: string): Promise<DecodeJwtInterface> {
@@ -36,7 +37,7 @@ export function decodeJwt(name: string): Promise<DecodeJwtInterface> {
 
     if (token) {
       const decoded = jwt.jwtDecode(token);
-     
+      console.log(decoded);
       resolve({success: true, decoded: decoded})
     } else {
      resolve({success: false, errorMessage: "Could not decode JWT"})

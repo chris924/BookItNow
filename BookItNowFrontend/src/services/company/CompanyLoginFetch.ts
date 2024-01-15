@@ -1,10 +1,10 @@
 import * as apiURL from "../../lib/constants/apiURL"
-import { LoginResponse } from "../../lib/constants/interfaces/userInterface/UserInterfaces";
+import { CompanyLoginResponse } from "../../lib/constants/interfaces/CompanyInterfaces";
 
 
 
 
-export default async function UserLoginFetch(email:string, password:string): Promise<LoginResponse>
+export default async function CompanyLoginFetch(email:string, password:string): Promise<CompanyLoginResponse>
 {
 
     const LoginData = {
@@ -14,7 +14,7 @@ export default async function UserLoginFetch(email:string, password:string): Pro
 
 
     try{
-        const response = await fetch(`${apiURL.BASE_URL}${apiURL.LOGIN_ENDPOINT}`,{
+        const response = await fetch(`${apiURL.BASE_URL}${apiURL.COMPANY_LOGIN_ENDPONT}`,{
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -25,20 +25,20 @@ export default async function UserLoginFetch(email:string, password:string): Pro
         if(response.ok)
         {
             
-                const data: LoginResponse = await response.json();
+                const data: CompanyLoginResponse = await response.json();
                     const token = data.jwt;
                     console.log("Successfully logged in!");
                     return {success: true, jwt: token};
                
         }else {
         console.log("Bad Credentials");
-        return {success: false, errorMessage: "Failed to fetch user login."};
+        return {success: false, errorMessage: "Failed to fetch company login."};
         }
 
    }catch(err)
    {
     console.error(err);
-    return {success: false, errorMessage: "An error occured while fetching user login"};
+    return {success: false, errorMessage: "An error occured while fetching company login"};
    }
 
 

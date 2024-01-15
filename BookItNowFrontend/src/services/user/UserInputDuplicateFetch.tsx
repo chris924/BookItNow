@@ -1,5 +1,5 @@
 import { BASE_URL, USER_INPUT_DUPLICATE_ENDPOINT } from "../../lib/constants/apiURL";
-import { UserDuplicateResponse } from "../../lib/constants/interfaces/userInterface/UserInterfaces";
+import { UserDuplicateResponse } from "../../lib/constants/interfaces/UserInterfaces";
 
 
 

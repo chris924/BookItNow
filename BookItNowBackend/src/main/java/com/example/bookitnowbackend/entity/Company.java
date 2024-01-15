@@ -1,5 +1,6 @@
 package com.example.bookitnowbackend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,6 +24,7 @@ public class Company implements UserDetails {
 
     private String companyName;
 
+    @JsonIgnore
     private String password;
 
     private String email;

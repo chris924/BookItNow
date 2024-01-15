@@ -3,10 +3,10 @@ import {Button} from "@nextui-org/button";
 import { Input } from "@nextui-org/react";
 import "../../styles/userLoginForm.css"
 import BadCredentials from "./BadCredentials";
-import { UserLoginFormProps } from "../../lib/constants/interfaces/UserInterfaces";
+import { CompanyLoginFormProps } from "../../lib/constants/interfaces/CompanyInterfaces";
 
 
-export default function UserLoginForm({ onBackButtonClick, onLoginClick, onWrongCredentials}: UserLoginFormProps): JSX.Element
+export default function CompanyLoginForm({ onBackButtonClick, onLoginClick, onWrongCredentials}: CompanyLoginFormProps): JSX.Element
 {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,7 +23,7 @@ export default function UserLoginForm({ onBackButtonClick, onLoginClick, onWrong
      )}
       <div className="w-full flex flex-row flex-wrap gap-5">  
         <Input
-          key="emailInput"
+          key="danger"
           type="email"
           color="primary"
           label="Email"
@@ -32,7 +32,7 @@ export default function UserLoginForm({ onBackButtonClick, onLoginClick, onWrong
           onChange={(e) => setEmail(e.target.value)}
         />
          <Input
-          key="passwordInput"
+          key="danger"
           type="password"
           color="primary"
           label="Password"
