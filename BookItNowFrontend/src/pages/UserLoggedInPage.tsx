@@ -1,8 +1,9 @@
 import UserLoggedInLayout from "../layouts/UserLoggedInLayout";
 import { useEffect, useState } from "react";
 import UseNavigation from "../hooks/UseNavigation";
-import UserDataFetch, { UserDataResult } from '../services/userData/UserDataFetch';
+import UserDataFetch from '../services/userData/UserDataFetch';
 import LoadingCircle from "../components/LoadingCircle";
+import { UserDataResult } from "../lib/constants/interfaces/userInterface/UserInterfaces";
 
 export default function UserLoggedInPage(): JSX.Element
 {

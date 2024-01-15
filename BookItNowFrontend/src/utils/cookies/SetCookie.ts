@@ -1,6 +1,7 @@
 import Cookies from "universal-cookie";
 import * as jwt from "jwt-decode";
-import { DecodeJwtInterface, GetCookieInterface } from "../../lib/constants/interfaces/interfaces";
+import { DecodeJwtInterface, GetCookieInterface } from "../../lib/constants/interfaces/globalinterfaces";
+
 
 
 const cookies = new Cookies();

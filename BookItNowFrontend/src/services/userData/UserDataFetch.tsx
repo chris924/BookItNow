@@ -1,32 +1,8 @@
 import * as apiURL from "../../lib/constants/apiURL";
+import { DataResponse, UserDataResult } from "../../lib/constants/interfaces/userInterface/UserInterfaces";
 import { GetCookie } from "../../utils/cookies/SetCookie";
 
-export interface DataResponse {
-    
-        id: bigint;
-        name: string;
-        username: string;
-        email: string;
-        createdAt: Date;
-        appointments: any[];
-        authorities: {
-            id: number;
-            authority: string;
-            roleId: number;
-        }[];
-        enabled: boolean;
-        userId: number;
-        accountNonExpired: boolean;
-        credentialsNonExpired: boolean;
-        accountNonLocked: boolean;
-    
-}
 
-export interface UserDataResult {
-    success: boolean;
-    data?: DataResponse;
-    errorMessage?: string;
-}
 
 export default async function UserDataFetch(): Promise<UserDataResult> {
 

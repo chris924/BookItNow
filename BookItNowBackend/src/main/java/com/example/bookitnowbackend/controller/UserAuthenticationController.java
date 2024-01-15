@@ -72,37 +72,26 @@ public class UserAuthenticationController {
     }
 
     @PostMapping("/check-duplicate")
-    public ResponseEntity<?> CheckDuplicate(@Valid @RequestBody UserDuplicateCheckDTO request, @NotNull BindingResult bindingResult)
-    {
-        if(bindingResult.hasErrors())
-        {
+    public ResponseEntity<?> CheckDuplicate(@Valid @RequestBody UserDuplicateCheckDTO request, @NotNull BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid check-duplicate request");
         }
 
-            String username = request.getUsername();
-            String email = request.getEmail();
+        String username = request.getUsername();
+        String email = request.getEmail();
 
-            System.out.println(username);
-            System.out.println(email);
+        System.out.println("USERNAME:" + username);
+        System.out.println("EMAIL:" + email);
 
-
-        if(userRepository.getUserByEmail(email).isPresent() && userRepository.getUserByUsername(username).isPresent())
-        {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(request);
+        if (userRepository.getUserByEmail(email).isPresent() && userRepository.getUserByUsername(username).isPresent()) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(new UserDuplicateCheckDTO(true, username, email));
+        } else if (userRepository.getUserByEmail(email).isPresent()) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(new UserDuplicateCheckDTO(true, null, email));
+        } else if (userRepository.getUserByUsername(username).isPresent()) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(new UserDuplicateCheckDTO(true, username, null));
+        } else {
+            return ResponseEntity.status(HttpStatus.OK).body(new UserDuplicateCheckDTO(false));
         }
-        else if (userRepository.getUserByEmail(email).isPresent())
-        {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(request);
-        }
-        else if (userRepository.getUserByUsername(username).isPresent())
-        {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(request);
-        }
-        else
-        {
-            return ResponseEntity.status(HttpStatus.OK).body("No duplicate");
-        }
-
     }
 
 

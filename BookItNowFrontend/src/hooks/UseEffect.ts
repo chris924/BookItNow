@@ -6,6 +6,8 @@ export const useRegistrationValidation = (
   email: string,
   password: string,
   rePassword: string,
+  usernameInvalid: boolean,
+  emailInvalid: boolean,
   setRegisterButtonDisabled: (value: boolean) => void
 ) => {
   useEffect(() => {
@@ -15,11 +17,13 @@ export const useRegistrationValidation = (
       rePassword.length === 0 ||
       name.length === 0 ||
       username.length === 0 ||
-      email.length === 0
+      email.length === 0 ||
+      usernameInvalid === true ||
+      emailInvalid === true
     ) {
       setRegisterButtonDisabled(true);
     } else {
       setRegisterButtonDisabled(false);
     }
-  }, [password, rePassword, email, username, name]);
+  }, [password, rePassword, email, username, name, usernameInvalid, emailInvalid]);
 };

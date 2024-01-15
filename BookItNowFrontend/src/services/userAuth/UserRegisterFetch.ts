@@ -1,13 +1,7 @@
 import * as apiURL from "../../lib/constants/apiURL"
+import { RegisterResponse } from "../../lib/constants/interfaces/userInterface/UserInterfaces";
 
 
-export interface RegisterResponse {
-    success: boolean,
-    name?: string,
-    username?: string,
-    email?: string
-    errorMessage?: string
-}
 
 
 

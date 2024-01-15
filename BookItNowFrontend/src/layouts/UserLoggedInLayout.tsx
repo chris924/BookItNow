@@ -14,7 +14,7 @@ import {
 
 import { RemoveCookie } from '../utils/cookies/SetCookie';
 import UseNavigation from '../hooks/UseNavigation';
-import { UserLoggedInLayoutProps } from '../lib/constants/interfaces/interfaces';
+import { UserLoggedInLayoutProps } from '../lib/constants/interfaces/userInterface/UserInterfaces';
 
 
 const UserLoggedInLayout: React.FC<UserLoggedInLayoutProps> = ({ UserData }) => {

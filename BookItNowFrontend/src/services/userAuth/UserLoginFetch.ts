@@ -1,10 +1,7 @@
 import * as apiURL from "../../lib/constants/apiURL"
+import { LoginResponse } from "../../lib/constants/interfaces/userInterface/UserInterfaces";
 
-export interface LoginResponse {
-    success: boolean,
-    jwt?:string;
-    errorMessage?: string
-}
+
 
 
 export default async function UserLoginFetch(email:string, password:string): Promise<LoginResponse>
