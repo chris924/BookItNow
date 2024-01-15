@@ -42,7 +42,7 @@ public class CompanyAuthenticationControllerTests {
     @BeforeEach
     public void init() {
         companyRegistrationResponseDTO = new CompanyRegistrationResponseDTO("test", "test");
-        companyLoginResponseDTO = new CompanyLoginResponseDTO(new Company(), "test");
+        companyLoginResponseDTO = new CompanyLoginResponseDTO("test", "test");
     }
 
     @Test
