@@ -2,7 +2,7 @@ import { useState } from "react";
 import {Button} from "@nextui-org/button";
 import { Input } from "@nextui-org/react";
 import "../../styles/userLoginForm.css"
-import BadCredentials from "./BadCredentials";
+import BadCredentials from "../../components/BadCredentials";
 import { CompanyLoginFormProps } from "../../lib/constants/interfaces/CompanyInterfaces";
 
 

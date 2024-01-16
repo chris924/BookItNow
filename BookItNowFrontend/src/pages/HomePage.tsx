@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import RootLayout from "../layouts/RootLayout";
 import { GetCookie, RemoveCookie, decodeJwt } from "../utils/cookies/SetCookie";
 import UseNavigation from "../hooks/UseNavigation";
+import LoadingCircle from "../components/LoadingCircle";
 
 export default function HomePage() {
   const [userRole, setUserRole] = useState<string | null>(null);
@@ -49,6 +50,12 @@ export default function HomePage() {
     setUserRole("NONE");
 
   };
+
+
+  if(userRole === null)
+  {
+    return <LoadingCircle/>
+  }
 
   return (
     <>

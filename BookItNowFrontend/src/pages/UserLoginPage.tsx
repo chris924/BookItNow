@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import UserLoginForm from "../features/userAuth/UserLoginForm";
 import UseNavigation from "../hooks/UseNavigation";
 import UserLoginFetch from "../services/user/UserLoginFetch";
-import { SetCookie } from "../utils/cookies/SetCookie";
+import { GetCookie, SetCookie } from "../utils/cookies/SetCookie";
+import CheckForCookie from "../components/CheckForCookie";
+import { useCheckCookie } from "../hooks/UseEffect";
 
 export default function UserLoginPage(): JSX.Element
 {
@@ -30,6 +32,7 @@ export default function UserLoginPage(): JSX.Element
         }
     }
 
+    useCheckCookie(navigateToMainPage);
 
     return (
         <>

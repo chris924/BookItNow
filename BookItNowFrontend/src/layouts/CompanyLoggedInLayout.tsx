@@ -23,9 +23,9 @@ const CompanyLoggedInLayout: React.FC<CompanyLoggedInLayoutProps> = ({ CompanyDa
 
   const {navigateToMainPage} = UseNavigation();
 
-    function handleLogout()
+    async function handleLogout()
     {
-      RemoveCookie("authToken");
+     await RemoveCookie("authToken");
       navigateToMainPage();
       
     }

@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import UserLoginForm from "../features/userAuth/UserLoginForm";
 import UseNavigation from "../hooks/UseNavigation";
 import UserLoginFetch from "../services/user/UserLoginFetch";
-import { SetCookie } from "../utils/cookies/SetCookie";
+import { GetCookie, SetCookie } from "../utils/cookies/SetCookie";
 import CompanyLoginForm from "../features/companyAuth/CompanyLoginForm";
 import CompanyLoginFetch from "../services/company/CompanyLoginFetch";
+import { useCheckCookie } from "../hooks/UseEffect";
+
 
 export default function CompanyLoginPage(): JSX.Element
 {
@@ -17,7 +19,7 @@ export default function CompanyLoginPage(): JSX.Element
 
         const result = await CompanyLoginFetch(email, password);
 
-        const token = result.jwt;
+        const token = result.jwt;   
 
         if (result.success === true && token !== undefined) {
             console.log("Company logged in successfully!");
@@ -31,6 +33,8 @@ export default function CompanyLoginPage(): JSX.Element
            
         }
     }
+
+    useCheckCookie(navigateToMainPage);
 
 
     return (

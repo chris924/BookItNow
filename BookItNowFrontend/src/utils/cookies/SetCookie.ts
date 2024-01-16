@@ -9,7 +9,7 @@ const cookies = new Cookies();
 
 export function SetCookie(name: string, value: string) {
   
-  cookies.set(name, value);
+  cookies.set(name, value, {path: '/'});
 }
 
 export function GetCookie(name: string): Promise<GetCookieInterface> {
@@ -25,9 +25,9 @@ export function GetCookie(name: string): Promise<GetCookieInterface> {
   }
 )}
 
-export function RemoveCookie(name: string) {
+export async function RemoveCookie(name: string) {
   console.log("REMOVING COOKIE", name);
-  cookies.remove(name);
+  cookies.remove(name, { path: '/' });
 }
 
 export function decodeJwt(name: string): Promise<DecodeJwtInterface> {

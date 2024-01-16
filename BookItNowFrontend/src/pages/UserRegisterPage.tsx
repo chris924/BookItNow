@@ -2,13 +2,14 @@ import UseNavigation from "../hooks/UseNavigation";
 import UserRegisterForm from "../features/userAuth/UserRegisterForm";
 import UserRegisterFetch from "../services/user/UserRegisterFetch";
 import { useState } from "react";
+import { useCheckCookie } from "../hooks/UseEffect";
 
 
 export default function userRegisterPage(): JSX.Element
 {
         const { navigateToMainPage } = UseNavigation();
 
-        const { navigateToLoginPage } = UseNavigation();
+        const { navigateToUserLoginPage } = UseNavigation();
 
         const [registerResult, setRegisterResult] = useState(false);
 
@@ -20,7 +21,7 @@ export default function userRegisterPage(): JSX.Element
 
             if (result.success === true) {
                 setTimeout(() => {
-                  navigateToLoginPage();
+                  navigateToUserLoginPage();
                 }, 3000);
           
                 setRegisterResult(true);
@@ -29,6 +30,8 @@ export default function userRegisterPage(): JSX.Element
                   setRegisterResult(false);
               }
         }
+
+        useCheckCookie(navigateToMainPage);
 
         return(
             <UserRegisterForm onBackButtonClick={navigateToMainPage} onRegisterClick={handleRegister} registerResult={registerResult}/>

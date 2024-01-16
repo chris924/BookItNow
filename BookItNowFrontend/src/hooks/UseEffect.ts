@@ -1,4 +1,7 @@
 import { useEffect } from 'react';
+import { GetCookie } from '../utils/cookies/SetCookie';
+import UseNavigation from "../hooks/UseNavigation";
+
 
 export const useRegistrationValidation = (
   name: string,
@@ -26,4 +29,24 @@ export const useRegistrationValidation = (
       setRegisterButtonDisabled(false);
     }
   }, [password, rePassword, email, username, name, usernameInvalid, emailInvalid]);
+};
+
+export const useCheckCookie = (redirectCallback: () => void) => {
+  useEffect(() => {
+    const checkCookie = async () => {
+      try {
+        const cookie = await GetCookie("authToken");
+        console.log(cookie);
+
+        if (cookie && cookie.success === true) {
+          console.log("FOUND COOKIE, REDIRECTING");
+          redirectCallback();
+        }
+      } catch (error) {
+        console.error("Error checking for cookie:", error);
+      }
+    };
+
+    checkCookie();
+  }, [redirectCallback]);
 };

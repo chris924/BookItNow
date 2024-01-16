@@ -2,8 +2,10 @@ import { useState } from "react";
 import {Button} from "@nextui-org/button";
 import { Input } from "@nextui-org/react";
 import "../../styles/userLoginForm.css"
-import BadCredentials from "./BadCredentials";
+import BadCredentials from "../../components/BadCredentials";
 import { UserLoginFormProps } from "../../lib/constants/interfaces/UserInterfaces";
+import 'animate.css';
+
 
 
 export default function UserLoginForm({ onBackButtonClick, onLoginClick, onWrongCredentials}: UserLoginFormProps): JSX.Element
@@ -15,7 +17,7 @@ export default function UserLoginForm({ onBackButtonClick, onLoginClick, onWrong
     return (
         <div className="flex justify-center items-center h-screen">
     <div className="w-full max-w-[200px] space-y-4">
-    <div className="flex justify-center text-xl font-semibold text-blue-600/75 dark:text-blue-500/75">Login</div>
+    <div className="flex justify-center text-xl font-semibold text-blue-600/75 dark:text-blue-500/75 animate__animated animate__bounceInLeft">Login</div>
     {onWrongCredentials && (
       <div className="flex justify-center">
       <BadCredentials/>
