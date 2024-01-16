@@ -1,5 +1,6 @@
 package com.example.bookitnowbackend.controller;
 
+import com.example.bookitnowbackend.entity.AppService;
 import com.example.bookitnowbackend.entity.Company;
 import com.example.bookitnowbackend.service.CompanyAuthenticationService;
 import com.example.bookitnowbackend.service.CompanyService;
@@ -48,7 +49,7 @@ public class CompanyControllerTests {
     @BeforeEach
     public void init() {
         company = new Company(0, "test", "test", "test", "test",
-                new Timestamp(System.currentTimeMillis()), new ArrayList<>(), new HashSet<>());
+                new Timestamp(System.currentTimeMillis()), new AppService(), new HashSet<>());
     }
 
     @Test

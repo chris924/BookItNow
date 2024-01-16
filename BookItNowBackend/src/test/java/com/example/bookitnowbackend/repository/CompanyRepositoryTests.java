@@ -1,5 +1,6 @@
 package com.example.bookitnowbackend.repository;
 
+import com.example.bookitnowbackend.entity.AppService;
 import com.example.bookitnowbackend.entity.Company;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -23,7 +24,7 @@ public class CompanyRepositoryTests {
     private ICompanyRepository companyRepository;
 
     private final Company testCompany = new Company(1, "test", "test", "test",
-            "test", new Timestamp(System.currentTimeMillis()), new ArrayList<>(), new HashSet<>());
+            "test", new Timestamp(System.currentTimeMillis()), new AppService(), new HashSet<>());
 
     @Test
     public void CompanyRepository_GetCompanyByEmail_ReturnCompany()

@@ -1,5 +1,6 @@
 package com.example.bookitnowbackend.service;
 
+import com.example.bookitnowbackend.entity.AppService;
 import com.example.bookitnowbackend.entity.Company;
 import com.example.bookitnowbackend.repository.ICompanyRepository;
 import org.junit.jupiter.api.Assertions;
@@ -32,7 +33,7 @@ public class CompanyServiceTests {
     public void CompanyService_SaveCompany_ReturnCompany()
     {
         Company testCompany = new Company(0, "test", "test", "test", "test",
-                new Timestamp(System.currentTimeMillis()), new ArrayList<>(), new HashSet<>());
+                new Timestamp(System.currentTimeMillis()), new AppService(), new HashSet<>());
 
         when(companyRepository.save(Mockito.any(Company.class))).thenReturn(testCompany);
 
