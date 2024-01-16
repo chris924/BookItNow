@@ -46,3 +46,23 @@ success: boolean;
 data?: CompanyDataResponse;
 errorMessage?: string;
 }
+
+export interface CompanyRegisterResponse {
+    success: boolean;
+    companyName?: string;
+    email?: string;
+    errorMessage?: string;
+}
+
+export interface CompanyRegisterFormProps{
+    onBackButtonClick: () => void;
+    onRegisterClick: (companyName: string, email:string, password:string, description:string) => void;
+    registerResult: boolean;
+}
+
+export interface CompanyDuplicateResponse {
+    duplicate: boolean;
+    companyName?: string;
+    email?: string;
+    erorrMessage?: string;
+}

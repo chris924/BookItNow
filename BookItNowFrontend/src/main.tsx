@@ -8,6 +8,7 @@ import UserLoggedInPage from './pages/UserLoggedInPage';
 import HomePage from './pages/HomePage';
 import CompanyLoginPage from './pages/CompanyLoginPage';
 import CompanyLoggedInPage from './pages/CompanyLoggedInPage';
+import CompanyRegisterPage from './pages/CompanyRegisterPage';
 
 
 
@@ -28,7 +29,7 @@ export default function App() {
       </Route>
       <Route path="company">
         <Route path="login" element={<CompanyLoginPage />} />
-
+        <Route path="register" element={<CompanyRegisterPage/>} />
         <Route path="home" element={<CompanyLoggedInPage/>}></Route>
       </Route>
     </Routes>

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { GetCookie } from "../utils/cookies/SetCookie";
-import UseNavigation from "../hooks/UseNavigation";
+
 
 function CheckForCookie() {
-  const { navigateToMainPage } = UseNavigation();
+
   const [foundCookie, setFoundCookie] = useState(false);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ function CheckForCookie() {
     };
 
     checkCookie();
-  }, []); // Make sure to add any dependencies for useEffect
+  }, []); 
 
   return foundCookie;
 }

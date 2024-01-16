@@ -1,4 +1,3 @@
-import UserLoggedInLayout from "../layouts/UserLoggedInLayout";
 import { useEffect, useState } from "react";
 import UseNavigation from "../hooks/UseNavigation";
 import CompanyDataFetch from "../services/company/CompanyDataFetch";

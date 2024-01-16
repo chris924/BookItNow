@@ -1,8 +1,6 @@
-import { useEffect, useState } from "react";
-import UserLoginForm from "../features/userAuth/UserLoginForm";
+import { useState } from "react";
 import UseNavigation from "../hooks/UseNavigation";
-import UserLoginFetch from "../services/user/UserLoginFetch";
-import { GetCookie, SetCookie } from "../utils/cookies/SetCookie";
+import { SetCookie } from "../utils/cookies/SetCookie";
 import CompanyLoginForm from "../features/companyAuth/CompanyLoginForm";
 import CompanyLoginFetch from "../services/company/CompanyLoginFetch";
 import { useCheckCookie } from "../hooks/UseEffect";

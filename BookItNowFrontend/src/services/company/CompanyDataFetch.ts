@@ -1,6 +1,5 @@
 import * as apiURL from "../../lib/constants/apiURL";
 import { CompanyDataResponse, CompanyDataResult } from "../../lib/constants/interfaces/CompanyInterfaces";
-import { UserDataResponse, UserDataResult } from "../../lib/constants/interfaces/UserInterfaces";
 import { GetCookie } from "../../utils/cookies/SetCookie";
 
 

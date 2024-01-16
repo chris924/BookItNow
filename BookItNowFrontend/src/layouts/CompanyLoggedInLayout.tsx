@@ -14,7 +14,6 @@ import {
 
 import { RemoveCookie } from '../utils/cookies/SetCookie';
 import UseNavigation from '../hooks/UseNavigation';
-import { UserLoggedInLayoutProps } from '../lib/constants/interfaces/UserInterfaces';
 import { CompanyLoggedInLayoutProps } from '../lib/constants/interfaces/CompanyInterfaces';
 
 

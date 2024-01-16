@@ -3,34 +3,32 @@ import { Input, Tooltip } from "@nextui-org/react";
 import "../../styles/userLoginForm.css"
 import { registerConfetti } from "../../components/Confetti";
 import { useState } from "react";
-import { UserRegisterFormProps } from "../../lib/constants/interfaces/UserInterfaces";
-import { useUserRegistrationValidation } from "../../hooks/UseEffect";
-import UserInputDuplicateFetch from "../../services/user/UserInputDuplicateFetch";
+import { useCompanyRegistrationValidation } from "../../hooks/UseEffect";
+import { CompanyRegisterFormProps } from "../../lib/constants/interfaces/CompanyInterfaces";
+import CompanyInputDuplicateFetch from "../../services/company/CompanyInputDuplicateFetch";
 
 
 
-
-
-export default function UserRegisterForm({ onBackButtonClick , onRegisterClick, registerResult }: UserRegisterFormProps): JSX.Element
+export default function CompanyRegisterForm({ onBackButtonClick , onRegisterClick, registerResult }: CompanyRegisterFormProps): JSX.Element
 {
-  const [name, setName] = useState("");
-  const [username, setUsername] = useState("");
+  const [companyName, setCompanyName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [description, setDescription] = useState("");
   const [rePassword, setRePassword] = useState("");
-  const [usernameInvalid, setUsernameInvalid] = useState(false);
+  const [companyNameInvalid, setCompanyNameInvalid] = useState(false);
   const [emailInvalid, setEmailInvalid] = useState(false);
   
   const [registerButtonDisabled, setRegisterButtonDisabled] = useState(true);
 
 
-  useUserRegistrationValidation(
-    name,
-    username,
+  useCompanyRegistrationValidation(
+    companyName,
     email,
     password,
+    description,
     rePassword,
-    usernameInvalid,
+    companyNameInvalid,
     emailInvalid,
     setRegisterButtonDisabled
   );
@@ -39,37 +37,36 @@ export default function UserRegisterForm({ onBackButtonClick , onRegisterClick, 
   const handleRegisterClick = () => {
     if (!registerButtonDisabled) {
       setRegisterButtonDisabled(true); 
-      onRegisterClick(name, username, email, password);
+      onRegisterClick(companyName, email, password, description);
     }
   };
 
-  const handleUsernameEmailBlur = async () => {
+  const handleCompanyNameEmailBlur = async () => {
   
-
-    const data = await UserInputDuplicateFetch(username, email);
+    const data = await CompanyInputDuplicateFetch(companyName, email);
     console.log(data);
 
-    if(data.duplicate === true && data.username !== null && data.email !== null)
+    if(data.duplicate === true && data.companyName !== null && data.email !== null)
     {
-      setUsernameInvalid(true);
+      setCompanyNameInvalid(true);
       setEmailInvalid(true);
       setRegisterButtonDisabled(true);
     }
-    else if(data.duplicate === true && data.username !== null && data.email === null)
+    else if(data.duplicate === true && data.companyName !== null && data.email === null)
     {
-      setUsernameInvalid(true);
+      setCompanyNameInvalid(true);
       setEmailInvalid(false);
       setRegisterButtonDisabled(true);
     }
-    else if(data.duplicate === true && data.email !== null && data.username === null)
+    else if(data.duplicate === true && data.email !== null && data.companyName === null)
     {
       setEmailInvalid(true);
-      setUsernameInvalid(false);
+      setCompanyNameInvalid(false);
       setRegisterButtonDisabled(true);
     }
     else
     {
-      setUsernameInvalid(false);
+      setCompanyNameInvalid(false);
       setEmailInvalid(false);
     }
 
@@ -90,21 +87,13 @@ export default function UserRegisterForm({ onBackButtonClick , onRegisterClick, 
      </>
       )}
       <div className="w-full flex flex-row flex-wrap gap-5 justify-center items-center ">
-        <Input
-          key="danger"
-          type="name"
-          color="primary"
-          label="Name"
-          placeholder="Enter your name"
-          className="max-w-[220px]"
-          onChange={(e) => setName(e.target.value)}
-        />
+
         <div className="w-full flex flex-row flex-wrap gap-5 justify-center items-center ">
         <Tooltip 
       showArrow
       placement="left"
-      content="Username already exists!"
-      isOpen={usernameInvalid}
+      content="Company name already exists!"
+      isOpen={companyNameInvalid}
       classNames={{
         base: [
           // arrow color
@@ -117,14 +106,14 @@ export default function UserRegisterForm({ onBackButtonClick , onRegisterClick, 
       }}
     >
        <Input
-          key="danger"
+          key="company name"
           type="name"
           color="primary"
-          label="Username"
-          placeholder="Enter your username"
+          label="Company name"
+          placeholder="Enter the Company name"
           className="max-w-[220px]"
-          onChange={(e) => setUsername(e.target.value)}
-          onBlur={handleUsernameEmailBlur}
+          onChange={(e) => setCompanyName(e.target.value)}
+          onBlur={handleCompanyNameEmailBlur}
         />
     </Tooltip>
         </div>
@@ -147,21 +136,34 @@ export default function UserRegisterForm({ onBackButtonClick , onRegisterClick, 
       }}
     >
          <Input
-          key="danger"
+          key="email"
           type="email"
           color="primary"
           label="Email"
           placeholder="Enter your email"
           className="max-w-[220px]"
           onChange={(e) => setEmail(e.target.value)}
-          onBlur={handleUsernameEmailBlur}
+          onBlur={handleCompanyNameEmailBlur}
         />
       </Tooltip>
         </div>
       </div>
+
+      <div className="w-full flex flex-row flex-wrap gap-5 justify-center items-center ">
+      <Input
+          key="description"
+          type="description"
+          color="primary"
+          label="Description"
+          placeholder="Enter your company description"
+          className="max-w-[220px]"
+          onChange={(e) => setDescription(e.target.value)}
+        />
+      </div>
+
       <div className="flex flex-row gap-5">
             <Input
-              key="danger"
+              key="password"
               type="password"
               color="primary"
               label="Password"
@@ -170,7 +172,7 @@ export default function UserRegisterForm({ onBackButtonClick , onRegisterClick, 
               onChange={(e) => setPassword(e.target.value)}
             />
             <Input
-              key="danger"
+              key="repassword"
               type="password"
               color="primary"
               label="Retype Password"
@@ -193,5 +195,3 @@ export default function UserRegisterForm({ onBackButtonClick , onRegisterClick, 
   </div>
     )
 }
-
-

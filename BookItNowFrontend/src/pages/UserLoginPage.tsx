@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import UserLoginForm from "../features/userAuth/UserLoginForm";
 import UseNavigation from "../hooks/UseNavigation";
 import UserLoginFetch from "../services/user/UserLoginFetch";
-import { GetCookie, SetCookie } from "../utils/cookies/SetCookie";
-import CheckForCookie from "../components/CheckForCookie";
+import { SetCookie } from "../utils/cookies/SetCookie";
 import { useCheckCookie } from "../hooks/UseEffect";
 
 export default function UserLoginPage(): JSX.Element

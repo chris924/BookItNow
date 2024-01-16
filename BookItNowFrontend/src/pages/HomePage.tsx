@@ -6,7 +6,7 @@ import LoadingCircle from "../components/LoadingCircle";
 
 export default function HomePage() {
   const [userRole, setUserRole] = useState<string | null>(null);
-  const { navigateToMainPage, navigateToUserLoggedInPage, navigateToCompanyLoggedInPage } = UseNavigation();
+  const { navigateToUserLoggedInPage, navigateToCompanyLoggedInPage } = UseNavigation();
 
   useEffect(() => {
     const fetchData = async () => {
