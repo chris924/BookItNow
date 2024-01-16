@@ -34,6 +34,8 @@ export const useCompanyRegistrationValidation = (
   companyName: string,
   email: string,
   password: string,
+  appServiceName: string,
+  appServiceDescription: string,
   description: string,
   rePassword: string,
   companyNameInvalid: boolean,
@@ -45,6 +47,8 @@ export const useCompanyRegistrationValidation = (
       password !== rePassword ||
       password.length === 0 ||
       rePassword.length === 0 ||
+      appServiceName.length === 0 ||
+      appServiceDescription.length === 0 ||
       companyName.length === 0 ||
       email.length === 0 ||
       description.length === 0 ||

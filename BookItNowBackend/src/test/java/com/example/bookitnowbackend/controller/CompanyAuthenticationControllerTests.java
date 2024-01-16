@@ -52,7 +52,7 @@ public class CompanyAuthenticationControllerTests {
     @Test
     public void CompanyAuthenticationController_RegisterCompany_ReturnOk() throws Exception {
         given(companyAuthenticationService.registerCompany(
-                ArgumentMatchers.any(), ArgumentMatchers.any(), ArgumentMatchers.any(), ArgumentMatchers.any()
+                ArgumentMatchers.any(), ArgumentMatchers.any(), ArgumentMatchers.any(), ArgumentMatchers.any(), ArgumentMatchers.any(), ArgumentMatchers.any()
         )).willReturn(companyRegistrationResponseDTO);
 
 

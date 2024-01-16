@@ -32,7 +32,7 @@ public class CompanyAuthenticationController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid register request");
         }
         try {
-           CompanyRegistrationResponseDTO responseDTO = companyAuthenticationService.registerCompany(body.getCompanyName(), body.getPassword(), body.getEmail(), body.getDescription());
+           CompanyRegistrationResponseDTO responseDTO = companyAuthenticationService.registerCompany(body.getCompanyName(), body.getPassword(), body.getEmail(), body.getAppServiceName(), body.getAppServiceDescription(), body.getDescription());
 
             return ResponseEntity.status(HttpStatus.OK).body(responseDTO);
 

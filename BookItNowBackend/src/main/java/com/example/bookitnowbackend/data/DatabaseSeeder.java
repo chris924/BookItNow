@@ -35,11 +35,11 @@ public class DatabaseSeeder implements CommandLineRunner {
 @Override
     public void run(String... args) {
 
-  /*  appointmentRepository.deleteAll(); //FOR DELETING DATABASE ON STARTUP
+    appointmentRepository.deleteAll(); //FOR DELETING DATABASE ON STARTUP
     userRepository.deleteAll();
     appServiceRepository.deleteAll();
     companyRepository.deleteAll();
-    roleRepository.deleteAll();*/
+    roleRepository.deleteAll();
 
 
     CreateAdmin();
@@ -110,7 +110,7 @@ public class DatabaseSeeder implements CommandLineRunner {
             roleRepository.save(companyRole);
             Set<Role> roles = new HashSet<>();
             roles.add(companyRole);
-            List<AppService> appServices = new ArrayList<>();
+            AppService appService = new AppService();
             Company company = new Company();
             company.setCompanyName("company");
             company.setEmail("company@company.com");
@@ -118,7 +118,7 @@ public class DatabaseSeeder implements CommandLineRunner {
             company.setAuthorities(roles);
             company.setDescription("company description");
             company.setCreatedAt(new Timestamp(System.currentTimeMillis()));
-            company.setServices(appServices);
+            company.setAppService(appService);
 
             companyRepository.save(company);
         }

@@ -1,5 +1,5 @@
 import UseNavigation from "../hooks/UseNavigation";
-import UserRegisterForm from "../features/userAuth/UserRegisterForm";
+import UserRegisterForm from "../features/user/UserRegisterForm";
 import UserRegisterFetch from "../services/user/UserRegisterFetch";
 import { useState } from "react";
 import { useCheckCookie } from "../hooks/UseEffect";

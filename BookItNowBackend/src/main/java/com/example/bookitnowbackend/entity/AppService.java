@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Timestamp;
 
@@ -12,7 +13,7 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "SERVICE_TBL")
+@Table(name = "services")
 public class AppService {
 
     @Id
@@ -23,9 +24,10 @@ public class AppService {
 
     private String description;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "company_id")
     private Company company;
 
+    @CreationTimestamp
     private Timestamp createdAt;
 }

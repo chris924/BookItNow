@@ -15,7 +15,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "COMPANY_TBL")
+@Table(name = "companies")
 public class Company implements UserDetails {
 
     @Id
@@ -33,8 +33,8 @@ public class Company implements UserDetails {
 
     private Timestamp createdAt;
 
-    @OneToMany(mappedBy= "company")
-    private List<AppService> services;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "company")
+    private AppService appService;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(

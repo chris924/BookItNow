@@ -56,7 +56,7 @@ export interface CompanyRegisterResponse {
 
 export interface CompanyRegisterFormProps{
     onBackButtonClick: () => void;
-    onRegisterClick: (companyName: string, email:string, password:string, description:string) => void;
+    onRegisterClick: (companyName: string, email:string, password:string, appServiceName:string, appServiceDescription:string, description:string) => void;
     registerResult: boolean;
 }
 

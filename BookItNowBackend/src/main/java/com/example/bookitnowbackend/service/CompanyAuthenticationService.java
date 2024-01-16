@@ -3,6 +3,7 @@ package com.example.bookitnowbackend.service;
 import com.example.bookitnowbackend.entity.*;
 import com.example.bookitnowbackend.repository.ICompanyRepository;
 import com.example.bookitnowbackend.repository.IRoleRepository;
+import com.example.bookitnowbackend.repository.IServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -27,6 +28,9 @@ public class CompanyAuthenticationService {
     private ICompanyRepository companyRepository;
 
     @Autowired
+    private IServiceRepository serviceRepository;
+
+    @Autowired
     private IRoleRepository roleRepository;
 
     @Autowired
@@ -39,22 +43,22 @@ public class CompanyAuthenticationService {
     @Autowired
     private TokenService tokenService;
 
-    public CompanyRegistrationResponseDTO registerCompany(String companyName, String password, String email, String description)
+    public CompanyRegistrationResponseDTO registerCompany(String companyName, String password, String email, String description, String appServiceName, String appServiceDescription)
     {
         try{
-            System.out.println(companyName);
-            System.out.println(password);
-            System.out.println(email);
-            System.out.println(description);
+
 
 
             String encodedPassword = passwordEncoder.encode(password);
-            System.out.println(encodedPassword);
+
             Role companyRole = roleRepository.findByAuthority("COMPANY").get();
-            System.out.println("COMPANY ROLE:" + companyRole);
+
 
             Set<Role> authorities = new HashSet<>();
-            List<AppService> appServices = new ArrayList<>();
+            AppService appService = new AppService();
+
+            appService.setName(appServiceName);
+            appService.setDescription(appServiceDescription);
 
             authorities.add(companyRole);
 
@@ -63,14 +67,15 @@ public class CompanyAuthenticationService {
             newCompany.setPassword(encodedPassword);
             newCompany.setDescription(description);
             newCompany.setEmail(email);
-            newCompany.setServices(appServices);
+            newCompany.setAppService(appService);
             newCompany.setAuthorities(authorities);
             newCompany.setCreatedAt(new Timestamp(System.currentTimeMillis()));
-            for(Integer x = 0; x < 20; x++)
-            {
-                System.out.println("COMPANY AUTHENTICATION SERVICE");
-            }
+
+            appService.setCompany(newCompany);
+
+
             companyRepository.save(newCompany);
+            serviceRepository.save(appService);
 
             return new CompanyRegistrationResponseDTO(companyName, email);
 

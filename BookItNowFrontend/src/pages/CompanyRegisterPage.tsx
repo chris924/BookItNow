@@ -2,7 +2,7 @@ import UseNavigation from "../hooks/UseNavigation";
 import { useState } from "react";
 import { useCheckCookie } from "../hooks/UseEffect";
 import CompanyRegisterFetch from "../services/company/CompanyRegisterFetch";
-import CompanyRegisterForm from "../features/companyAuth/CompanyRegisterForm";
+import CompanyRegisterForm from "../features/company/CompanyRegisterForm";
 
 
 export default function CompanyRegisterPage(): JSX.Element
@@ -13,10 +13,10 @@ export default function CompanyRegisterPage(): JSX.Element
 
         const [registerResult, setRegisterResult] = useState(false);
 
-        const handleRegister = async (companyName: string, email: string, password: string, description: string) =>
+        const handleRegister = async (companyName: string, email: string, password: string, appServiceName:string, appServiceDescription:string, description: string) =>
         {
 
-            const result = await CompanyRegisterFetch(companyName, email, password, description);
+            const result = await CompanyRegisterFetch(companyName, email, password, appServiceName, appServiceDescription, description);
 
             if (result.success === true) {
                 setTimeout(() => {

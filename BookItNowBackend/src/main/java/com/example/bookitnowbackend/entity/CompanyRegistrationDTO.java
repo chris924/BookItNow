@@ -16,6 +16,10 @@ public class CompanyRegistrationDTO {
 
     private String password;
 
+    private String appServiceName;
+
+    private String appServiceDescription;
+
     private String  description;
 
 }

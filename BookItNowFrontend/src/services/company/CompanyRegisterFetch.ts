@@ -5,12 +5,14 @@ import { CompanyRegisterResponse } from "../../lib/constants/interfaces/CompanyI
 
 
 
-export default async function CompanyRegisterFetch(companyName: string, email: string, password: string, description: string): Promise<CompanyRegisterResponse>
+export default async function CompanyRegisterFetch(companyName: string, email: string, password: string, appServiceName:string, appServiceDescription:string, description: string): Promise<CompanyRegisterResponse>
 {
     const RegisterData = {
         companyName: companyName,
         email: email,
         password: password,
+        appServiceName: appServiceName,
+        appServiceDescription: appServiceDescription,
         description: description,
     };
 

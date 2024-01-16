@@ -14,6 +14,8 @@ export default function CompanyRegisterForm({ onBackButtonClick , onRegisterClic
   const [companyName, setCompanyName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [appServiceName, setAppServiceName] = useState("");
+  const [appServiceDescription, setAppServiceDescription] = useState("");
   const [description, setDescription] = useState("");
   const [rePassword, setRePassword] = useState("");
   const [companyNameInvalid, setCompanyNameInvalid] = useState(false);
@@ -26,6 +28,8 @@ export default function CompanyRegisterForm({ onBackButtonClick , onRegisterClic
     companyName,
     email,
     password,
+    appServiceName,
+    appServiceDescription,
     description,
     rePassword,
     companyNameInvalid,
@@ -37,7 +41,7 @@ export default function CompanyRegisterForm({ onBackButtonClick , onRegisterClic
   const handleRegisterClick = () => {
     if (!registerButtonDisabled) {
       setRegisterButtonDisabled(true); 
-      onRegisterClick(companyName, email, password, description);
+      onRegisterClick(companyName, email, password, appServiceName, appServiceDescription, description);
     }
   };
 
@@ -162,6 +166,31 @@ export default function CompanyRegisterForm({ onBackButtonClick , onRegisterClic
             placeholder="Enter your company description"
             className="max-w-[220px]"
             onChange={(e) => setDescription(e.target.value)}
+          />
+        </div>
+
+        <div className="w-full flex flex-row flex-wrap gap-5 justify-center items-center">
+          <Input
+            key="appServiceName"
+            type="name"
+            color="warning"
+            label="Service name"
+            placeholder="Enter your service name"
+            className="max-w-[220px]"
+            onChange={(e) => setAppServiceName(e.target.value)}
+          />
+        </div>
+
+
+        <div className="w-full flex flex-row flex-wrap gap-5 justify-center items-center">
+          <Input
+            key="appServiceDescription"
+            type="description"
+            color="warning"
+            label="Service description"
+            placeholder="Enter your service description"
+            className="max-w-[220px]"
+            onChange={(e) => setAppServiceDescription(e.target.value)}
           />
         </div>
   
