@@ -22,6 +22,7 @@ export default function App() {
   <main className="purple-dark bg-gradient-to-r from-gray-700 via-gray-900 to-black">
     <Routes>
       <Route path="/" element={<HomePage />} />
+      <Route path="/faq" element={<HomePage/>}/>
       <Route path="user">
         <Route path="login" element={<UserLoginPage />} />
         <Route path="register" element={<UserRegisterPage />} />

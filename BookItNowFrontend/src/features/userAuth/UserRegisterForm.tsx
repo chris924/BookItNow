@@ -182,10 +182,10 @@ export default function UserRegisterForm({ onBackButtonClick , onRegisterClick, 
         
      
       <div className="flex justify-center gap-8 items-center">
-      <Button color="danger" onClick={() => onBackButtonClick()}>
+      <Button color="danger" className="animate__animated animate__bounceInLeft" onClick={() => onBackButtonClick()}>
        Go Back
       </Button>
-      <Button isDisabled={registerButtonDisabled} color="secondary" onClick={() => handleRegisterClick()}>
+      <Button isDisabled={registerButtonDisabled} className="animate__animated animate__bounceInRight" color="secondary" onClick={() => handleRegisterClick()}>
        Register
       </Button>
       </div>

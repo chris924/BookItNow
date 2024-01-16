@@ -75,123 +75,131 @@ export default function CompanyRegisterForm({ onBackButtonClick , onRegisterClic
 
 
 
-    return (
-        <div className="flex justify-center items-center h-screen">
-    <div className="w-full max-w-[450px] space-y-4">
-    <div className="flex justify-center text-xl font-semibold text-blue-600/75 dark:text-blue-500/75 animate__animated animate__bounceInLeft">Register</div>
-      {registerResult && (<>
-      <div className="flex justify-center">
-      <Button color="success">Succesfully Registered</Button>
-      {registerConfetti()}
-     </div>
-     </>
-      )}
-      <div className="w-full flex flex-row flex-wrap gap-5 justify-center items-center ">
-
-        <div className="w-full flex flex-row flex-wrap gap-5 justify-center items-center ">
-        <Tooltip 
-      showArrow
-      placement="left"
-      content="Company name already exists!"
-      isOpen={companyNameInvalid}
-      classNames={{
-        base: [
-          // arrow color
-          "before:bg-neutral-400 dark:before:bg-white",
-        ],
-        content: [
-          "py-2 px-4 shadow-xl",
-          "text-black bg-gradient-to-br from-white to-neutral-400",
-        ],
-      }}
-    >
-       <Input
-          key="company name"
-          type="name"
-          color="primary"
-          label="Company name"
-          placeholder="Enter the Company name"
-          className="max-w-[220px]"
-          onChange={(e) => setCompanyName(e.target.value)}
-          onBlur={handleCompanyNameEmailBlur}
-        />
-    </Tooltip>
+  return (
+    <div className="flex justify-center items-center h-screen">
+      <div className="w-full max-w-[450px] space-y-4">
+        <div className="flex justify-center text-xl font-semibold text-blue-600/75 dark:text-blue-500/75 animate__animated animate__bounceInLeft">
+          Register
         </div>
-
-        <div className="w-full flex flex-row flex-wrap gap-5 justify-center items-center ">
-        <Tooltip 
-      showArrow
-      placement="left"
-      content="Email already exists!"
-      isOpen={emailInvalid}
-      classNames={{
-        base: [
-          // arrow color
-          "before:bg-neutral-400 dark:before:bg-white",
-        ],
-        content: [
-          "py-2 px-4 shadow-xl",
-          "text-black bg-gradient-to-br from-white to-neutral-400",
-        ],
-      }}
-    >
-         <Input
-          key="email"
-          type="email"
-          color="primary"
-          label="Email"
-          placeholder="Enter your email"
-          className="max-w-[220px]"
-          onChange={(e) => setEmail(e.target.value)}
-          onBlur={handleCompanyNameEmailBlur}
-        />
-      </Tooltip>
-        </div>
-      </div>
-
-      <div className="w-full flex flex-row flex-wrap gap-5 justify-center items-center ">
-      <Input
-          key="description"
-          type="description"
-          color="primary"
-          label="Description"
-          placeholder="Enter your company description"
-          className="max-w-[220px]"
-          onChange={(e) => setDescription(e.target.value)}
-        />
-      </div>
-
-      <div className="flex flex-row gap-5">
-            <Input
-              key="password"
-              type="password"
-              color="primary"
-              label="Password"
-              placeholder="Enter your password"
-              className="max-w-[220px]"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <Input
-              key="repassword"
-              type="password"
-              color="primary"
-              label="Retype Password"
-              placeholder="Retype your password"
-              className="max-w-[280px]"
-              onChange={(e) => setRePassword(e.target.value)}
-            />
+  
+        {registerResult && (
+          <>
+            <div className="flex justify-center">
+              <Button color="success">Successfully Registered</Button>
+              {registerConfetti()}
+            </div>
+          </>
+        )}
+  
+        <div className="w-full flex flex-row flex-wrap gap-5 justify-center items-center">
+          
+            <Tooltip
+              showArrow
+              placement="left"
+              content="Company name already exists!"
+              isOpen={companyNameInvalid}
+              classNames={{
+                base: [
+                  // arrow color
+                  "before:bg-neutral-400 dark:before:bg-white",
+                ],
+                content: [
+                  "py-2 px-4 shadow-xl",
+                  "text-black bg-gradient-to-br from-white to-neutral-400",
+                ],
+              }}
+            >
+              <Input
+                key="company name"
+                type="name"
+                color="primary"
+                label="Company name"
+                placeholder="Enter the Company name"
+                className="max-w-[220px]"
+                onChange={(e) => setCompanyName(e.target.value)}
+                onBlur={handleCompanyNameEmailBlur}
+              />
+            </Tooltip>
+          </div>
+  
+          <div className="w-full flex flex-row flex-wrap gap-5 justify-center items-center">
+            <Tooltip
+              showArrow
+              placement="left"
+              content="Email already exists!"
+              isOpen={emailInvalid}
+              classNames={{
+                base: [
+                  // arrow color
+                  "before:bg-neutral-400 dark:before:bg-white",
+                ],
+                content: [
+                  "py-2 px-4 shadow-xl",
+                  "text-black bg-gradient-to-br from-white to-neutral-400",
+                ],
+              }}
+            >
+              <Input
+                key="email"
+                type="email"
+                color="primary"
+                label="Email"
+                placeholder="Enter your email"
+                className="max-w-[220px]"
+                onChange={(e) => setEmail(e.target.value)}
+                onBlur={handleCompanyNameEmailBlur}
+              />
+            </Tooltip>
           </div>
         
-     
-      <div className="flex justify-center gap-8 items-center">
-      <Button color="danger" onClick={() => onBackButtonClick()}>
-       Go Back
-      </Button>
-      <Button isDisabled={registerButtonDisabled} color="secondary" onClick={() => handleRegisterClick()}>
-       Register
-      </Button>
+  
+        <div className="w-full flex flex-row flex-wrap gap-5 justify-center items-center">
+          <Input
+            key="description"
+            type="description"
+            color="primary"
+            label="Description"
+            placeholder="Enter your company description"
+            className="max-w-[220px]"
+            onChange={(e) => setDescription(e.target.value)}
+          />
+        </div>
+  
+        <div className="flex flex-row gap-5">
+          <Input
+            key="password"
+            type="password"
+            color="primary"
+            label="Password"
+            placeholder="Enter your password"
+            className="max-w-[220px]"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <Input
+            key="repassword"
+            type="password"
+            color="primary"
+            label="Retype Password"
+            placeholder="Retype your password"
+            className="max-w-[280px]"
+            onChange={(e) => setRePassword(e.target.value)}
+          />
+        </div>
+  
+        <div className="flex justify-center gap-8 items-center">
+          <Button color="danger" className="animate__animated animate__bounceInLeft" onClick={() => onBackButtonClick()}>
+            Go Back
+          </Button>
+          <Button
+            isDisabled={registerButtonDisabled}
+            color="secondary"
+            onClick={() => handleRegisterClick()}
+            className="animate__animated animate__bounceInRight"
+          >
+            Register
+          </Button>
+        </div>
       </div>
     </div>
-  </div>
-    )
+  );
 }

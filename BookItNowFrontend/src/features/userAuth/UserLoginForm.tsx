@@ -17,7 +17,7 @@ export default function UserLoginForm({ onBackButtonClick, onLoginClick, onWrong
     return (
         <div className="flex justify-center items-center h-screen">
     <div className="w-full max-w-[200px] space-y-4">
-    <div className="flex justify-center text-xl font-semibold text-blue-600/75 dark:text-blue-500/75 animate__animated animate__bounceInLeft">Login</div>
+    <div className="flex justify-center text-xl font-semibold text-blue-600/75 dark:text-blue-500/75 animate__animated animate__backInDown">Login</div>
     {onWrongCredentials && (
       <div className="flex justify-center">
       <BadCredentials/>
@@ -45,10 +45,10 @@ export default function UserLoginForm({ onBackButtonClick, onLoginClick, onWrong
       </div>
       
       <div className="flex justify-center gap-8 items-center">
-      <Button color="danger" onClick={() => onBackButtonClick()}>
+      <Button color="danger" className="animate__animated animate__backInLeft" onClick={() => onBackButtonClick()} >
        Go Back
       </Button>
-      <Button color="secondary" onClick={() => onLoginClick(email, password)}>
+      <Button color="secondary" className="animate__animated animate__backInRight" onClick={() => onLoginClick(email, password)}>
        Log In
       </Button >
       </div>

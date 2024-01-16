@@ -35,6 +35,18 @@ export default function UseNavigation()
         navigate('/company/home')
     }
 
+    function navigateToCompanyRegisterPage()
+    {
+        navigate('/company/register')
+    }
+
+    function navigateToFAQPage()
+    {
+        navigate('/faq')
+    }
+
+    
+
 
     return{
         navigateToMainPage,
@@ -42,7 +54,9 @@ export default function UseNavigation()
         navigateToUserLoginPage,
         navigateToUserRegisterPage,
         navigateToCompanyLoginPage,
-        navigateToCompanyLoggedInPage
+        navigateToCompanyLoggedInPage,
+        navigateToCompanyRegisterPage,
+        navigateToFAQPage
     }
 
     

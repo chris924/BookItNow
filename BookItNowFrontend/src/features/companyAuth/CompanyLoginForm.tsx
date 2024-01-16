@@ -1,10 +1,10 @@
 import { useState } from "react";
 import {Button} from "@nextui-org/button";
-import { Input } from "@nextui-org/react";
+import { Input, Link, Popover, PopoverContent, PopoverTrigger, Textarea } from "@nextui-org/react";
 import "../../styles/userLoginForm.css"
 import BadCredentials from "../../components/BadCredentials";
 import { CompanyLoginFormProps } from "../../lib/constants/interfaces/CompanyInterfaces";
-
+import UseNavigation from "../../hooks/UseNavigation";
 
 export default function CompanyLoginForm({ onBackButtonClick, onLoginClick, onWrongCredentials}: CompanyLoginFormProps): JSX.Element
 {
@@ -12,10 +12,25 @@ export default function CompanyLoginForm({ onBackButtonClick, onLoginClick, onWr
   const [password, setPassword] = useState("");
 
 
+  const {navigateToFAQPage, navigateToCompanyRegisterPage} = UseNavigation();
+
+
+  const handleFAQClick = () => {
+
+    navigateToFAQPage();
+  }
+
+  const handleSignUpClick = () => {
+
+    navigateToCompanyRegisterPage();
+  }
+
+
+
     return (
         <div className="flex justify-center items-center h-screen">
     <div className="w-full max-w-[200px] space-y-4">
-    <div className="flex justify-center text-xl font-semibold text-blue-600/75 dark:text-blue-500/75">Login</div>
+    <div className="flex justify-center text-xl font-semibold text-blue-600/75 dark:text-blue-500/75 animate__animated animate__backInDown">Login</div>
     {onWrongCredentials && (
       <div className="flex justify-center">
       <BadCredentials/>
@@ -43,12 +58,34 @@ export default function CompanyLoginForm({ onBackButtonClick, onLoginClick, onWr
       </div>
       
       <div className="flex justify-center gap-8 items-center">
-      <Button color="danger" onClick={() => onBackButtonClick()}>
+      <Button color="danger" className="animate__animated animate__backInLeft" onClick={() => onBackButtonClick()}>
        Go Back
       </Button>
-      <Button color="secondary" onClick={() => onLoginClick(email, password)}>
+      <Button color="secondary" className="animate__animated animate__backInRight" onClick={() => onLoginClick(email, password)}>
        Log In
       </Button >
+      
+      </div>
+      <div className="w-full flex flex-row justify-center gap-5 animate__animated animate__backInUp">
+      <Popover
+          key="as"
+          showArrow
+          offset={10}
+          placement="bottom"
+          backdrop="opaque"
+        >
+          <PopoverTrigger>
+            <Button color="success" variant="flat" className="capitalize">
+              Sign up Company
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent>
+        <div className="px-1 py-2 ">
+          <div className="">Make sure to read the  <Link href="#" color="primary" onClick={handleFAQClick}>FAQ</Link> and click  <Link href="#" onClick={handleSignUpClick} color="primary">here to sign up!</Link></div>
+        </div>
+      </PopoverContent>
+        </Popover>
+
       </div>
     </div>
   </div>
