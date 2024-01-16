@@ -1,6 +1,7 @@
 package com.example.bookitnowbackend.controller;
 
 import com.example.bookitnowbackend.entity.*;
+import com.example.bookitnowbackend.repository.ICompanyRepository;
 import com.example.bookitnowbackend.service.CompanyAuthenticationService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -31,6 +32,9 @@ public class CompanyAuthenticationControllerTests {
 
     @MockBean
     private CompanyAuthenticationService companyAuthenticationService;
+
+    @MockBean
+    private ICompanyRepository companyRepository;
 
     @Autowired
     private ObjectMapper objectMapper;
