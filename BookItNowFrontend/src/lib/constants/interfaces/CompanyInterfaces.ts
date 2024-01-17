@@ -26,18 +26,19 @@ export interface CompanyDataResponse {
     email: string;
     description: string;
     createdAt: Date;
-    services: any[];
+    serviceName: string;
+    serviceDescription: string;
     authorities: {
         id: number;
         authority: string;
         roleId: number;
     }[];
+    enabled: boolean;
     username: string;
-    userId: number;
-    accountNonExpired: boolean;
     accountNonLocked: boolean;
     credentialsNonExpired: boolean;
-    enabled: boolean;
+    accountNonExpired: boolean;
+    
 
 }
 

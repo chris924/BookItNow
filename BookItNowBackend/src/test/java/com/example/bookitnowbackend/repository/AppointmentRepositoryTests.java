@@ -1,8 +1,8 @@
 package com.example.bookitnowbackend.repository;
 
 
-import com.example.bookitnowbackend.entity.AppService;
 import com.example.bookitnowbackend.entity.Appointment;
+import com.example.bookitnowbackend.entity.Company;
 import com.example.bookitnowbackend.entity.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -24,15 +24,17 @@ public class AppointmentRepositoryTests {
     private IAppointmentRepository appointmentRepository;
 
     @Autowired
-    private IServiceRepository serviceRepository;
+    private ICompanyRepository companyRepository;
 
     @Autowired
     private IUserRepository userRepository;
 
     private final User testUser = new User();
-    private final AppService testService = new AppService();
 
-    private final Appointment testAppointment = new Appointment(0, testUser, testService, new Timestamp(System.currentTimeMillis()));
+    private final Company testCompany = new Company();
+
+
+    private final Appointment testAppointment = new Appointment(0, testUser, testCompany, new Timestamp(System.currentTimeMillis()));
 
     @Test
     public void AppointmentRepository_GetAppointmentById_ReturnAppointment()
@@ -61,8 +63,8 @@ public class AppointmentRepositoryTests {
     public void AppointmentRepository_ExistsById_ReturnTrue()
     {
         userRepository.save(testUser);
-        serviceRepository.save(testService);
         appointmentRepository.save(testAppointment);
+        companyRepository.save(testCompany);
 
       boolean appointmentExists =  appointmentRepository.existsById(testAppointment.getId());
 

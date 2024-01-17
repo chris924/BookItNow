@@ -3,22 +3,26 @@ import {Table,TableHeader,TableColumn,TableBody,TableRow,TableCell,Input,Button,
 } from "@nextui-org/react";
 import { VerticalDotsIcon } from "./VerticalDotsIcon";
 import { SearchIcon } from "./SearchIcon";
-import { columns, users } from "./data";
+import { columns, companyData } from "./data";
 
 
-const INITIAL_VISIBLE_COLUMNS = ["name", "service", "sdescription", "email", "actions"];
+const INITIAL_VISIBLE_COLUMNS = ["companyName", "serviceName", "serviceDescription", "email", "actions"];
 
-type User = typeof users[0];
+type User = typeof companyData[0];
 
-export default function App() {
+export default function App({ companyData}: any) {
+
+ 
+
+
   const [filterValue, setFilterValue] = React.useState("");
   const [selectedKeys, setSelectedKeys] = React.useState<Selection>(new Set([]));
   const [visibleColumns, setVisibleColumns] = React.useState<Selection>(new Set(INITIAL_VISIBLE_COLUMNS));
 
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10); // was 5
   const [page, setPage] = React.useState(1);
 
-  const pages = Math.ceil(users.length / rowsPerPage);
+  const pages = Math.ceil(companyData.length / rowsPerPage);
 
   const hasSearchFilter = Boolean(filterValue);
 
@@ -29,16 +33,16 @@ export default function App() {
   }, [visibleColumns]);
 
   const filteredItems = React.useMemo(() => {
-    let filteredUsers = [...users];
+    let filteredUsers = [...companyData];
 
     if (hasSearchFilter) {
       filteredUsers = filteredUsers.filter((user) =>
-        user.name.toLowerCase().includes(filterValue.toLowerCase()),
+        user.companyName.toLowerCase().includes(filterValue.toLowerCase()),
       );
     }
 
     return filteredUsers;
-  }, [users, filterValue]);
+  }, [companyData, filterValue]);
 
   const items = React.useMemo(() => {
     const start = (page - 1) * rowsPerPage;
@@ -49,9 +53,9 @@ export default function App() {
 
   const renderCell = React.useCallback((user: User, columnKey: React.Key) => {
     const cellValue = user[columnKey as keyof User];
-
+    console.log("columnKey:", columnKey, "cellValue:", cellValue);
     switch (columnKey) {
-      case "name":
+      case "companyName":
         return (
           <User
             avatarProps={{ radius: "full", size: "sm", src: user.avatar }}
@@ -64,6 +68,18 @@ export default function App() {
             {user.email}
           </User>
         );
+
+        case "serviceName":
+          return(
+            <div>{cellValue}</div>
+          )
+
+        case "serviceDescription":
+         return(
+          <div>{cellValue}</div>
+         )
+
+
       case "actions":
         return (
           <div className="relative flex justify-start items-center gap-2">
@@ -116,7 +132,7 @@ export default function App() {
         </div>
       </div>
     );
-  }, [filterValue, visibleColumns, onSearchChange, users.length, hasSearchFilter]);
+  }, [filterValue, visibleColumns, onSearchChange, companyData.length, hasSearchFilter]);
 
   const bottomContent = React.useMemo(() => {                           // BOTTOM CONTENT FOR PAGINATION
     return (

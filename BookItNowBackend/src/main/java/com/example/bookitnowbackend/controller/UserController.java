@@ -1,7 +1,11 @@
 package com.example.bookitnowbackend.controller;
 
+import com.example.bookitnowbackend.entity.Company;
 import com.example.bookitnowbackend.entity.User;
+import com.example.bookitnowbackend.repository.ICompanyRepository;
 import com.example.bookitnowbackend.repository.IUserRepository;
+import com.example.bookitnowbackend.service.CompanyAuthenticationService;
+import com.example.bookitnowbackend.service.CompanyService;
 import com.example.bookitnowbackend.service.UserAuthenticationService;
 import com.example.bookitnowbackend.service.UserService;
 import jakarta.validation.Valid;
@@ -21,6 +25,10 @@ public class UserController {
 
     @Autowired
     private UserAuthenticationService userAuthenticationService;
+
+    @Autowired
+    private ICompanyRepository companyRepository;
+
 
     @Autowired
     private UserService userService;
@@ -45,6 +53,18 @@ public class UserController {
 
        return ResponseEntity.status(HttpStatus.OK).body(user);
    }
+
+    @GetMapping("/getAllCompanies")
+    public ResponseEntity<?> GetAllCompanies()
+    {
+        try {
+            List<Company> companies = companyRepository.findAll();
+            System.out.println(companies);
+            return ResponseEntity.status(HttpStatus.OK).body(companies);
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error getting companies");
+        }
+    }
 
 
 }

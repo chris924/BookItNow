@@ -3,7 +3,6 @@ package com.example.bookitnowbackend.service;
 import com.example.bookitnowbackend.entity.*;
 import com.example.bookitnowbackend.repository.ICompanyRepository;
 import com.example.bookitnowbackend.repository.IRoleRepository;
-import com.example.bookitnowbackend.repository.IServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,9 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Service
@@ -26,9 +23,6 @@ public class CompanyAuthenticationService {
 
     @Autowired
     private ICompanyRepository companyRepository;
-
-    @Autowired
-    private IServiceRepository serviceRepository;
 
     @Autowired
     private IRoleRepository roleRepository;
@@ -55,10 +49,7 @@ public class CompanyAuthenticationService {
 
 
             Set<Role> authorities = new HashSet<>();
-            AppService appService = new AppService();
 
-            appService.setName(appServiceName);
-            appService.setDescription(appServiceDescription);
 
             authorities.add(companyRole);
 
@@ -67,15 +58,15 @@ public class CompanyAuthenticationService {
             newCompany.setPassword(encodedPassword);
             newCompany.setDescription(description);
             newCompany.setEmail(email);
-            newCompany.setAppService(appService);
             newCompany.setAuthorities(authorities);
             newCompany.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+            newCompany.setServiceName(appServiceName);
+            newCompany.setServiceDescription(appServiceDescription);
 
-            appService.setCompany(newCompany);
 
 
             companyRepository.save(newCompany);
-            serviceRepository.save(appService);
+
 
             return new CompanyRegistrationResponseDTO(companyName, email);
 

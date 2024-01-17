@@ -4,7 +4,7 @@ import CompanyDataFetch from "../services/company/CompanyDataFetch";
 import LoadingCircle from "../components/LoadingCircle";
 import { CompanyDataResult } from "../lib/constants/interfaces/CompanyInterfaces";
 import CompanyLoggedInLayout from "../layouts/CompanyLoggedInLayout";
-import UserTable from "../features/user/table/UserTable";
+import { COMPANY_DATA_ENDPOINT } from "../lib/constants/apiURL";
 
 export default function CompanyLoggedInPage(): JSX.Element
 {
@@ -19,8 +19,10 @@ export default function CompanyLoggedInPage(): JSX.Element
     const fetchData = async () => { 
       try {
         await new Promise(resolve => setTimeout(resolve, 1000));
-        const result = await CompanyDataFetch();
+        const result = await CompanyDataFetch(COMPANY_DATA_ENDPOINT);
           setCompanyData(result);
+
+       
         
       } catch (error) {
         console.error("Error fetching user data", error);

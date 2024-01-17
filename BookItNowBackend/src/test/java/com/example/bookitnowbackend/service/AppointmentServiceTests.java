@@ -1,10 +1,9 @@
 package com.example.bookitnowbackend.service;
 
-import com.example.bookitnowbackend.entity.AppService;
 import com.example.bookitnowbackend.entity.Appointment;
+import com.example.bookitnowbackend.entity.Company;
 import com.example.bookitnowbackend.entity.User;
 import com.example.bookitnowbackend.repository.IAppointmentRepository;
-import jakarta.persistence.ManyToMany;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,7 +15,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import static org.mockito.Mockito.when;
 
@@ -34,7 +32,7 @@ public class AppointmentServiceTests {
     @Test
     public void AppointmentService_CreateAppointment_ReturnAppointment()
     {
-        Appointment testAppointment = new Appointment(0, new User(), new AppService(), new Timestamp(System.currentTimeMillis()));
+        Appointment testAppointment = new Appointment(0, new User(), new Company(), new Timestamp(System.currentTimeMillis()));
 
         when(appointmentRepository.save(Mockito.any(Appointment.class))).thenReturn(testAppointment);
 
@@ -47,7 +45,7 @@ public class AppointmentServiceTests {
     @Test
     public void AppointmentService_GetAllAppointment_ReturnAppointments()
     {
-        Appointment testAppointment = new Appointment(8, new User(), new AppService(), new Timestamp(System.currentTimeMillis()));
+        Appointment testAppointment = new Appointment(8, new User(), new Company(), new Timestamp(System.currentTimeMillis()));
 
         List<Appointment> testAppointmentList = new ArrayList<>();
 

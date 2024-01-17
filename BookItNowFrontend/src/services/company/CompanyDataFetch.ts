@@ -4,7 +4,7 @@ import { GetCookie } from "../../utils/cookies/SetCookie";
 
 
 
-export default async function CompanyDataFetch(): Promise<CompanyDataResult> {
+export default async function CompanyDataFetch(endpoint: string): Promise<CompanyDataResult> {
 
     const authToken  = await GetCookie("authToken");
     console.log("AUTH TOKEN IN COMPANY DATA FETCH", authToken);
@@ -14,7 +14,7 @@ export default async function CompanyDataFetch(): Promise<CompanyDataResult> {
     });
 
     try {
-        const response = await fetch(`${apiURL.BASE_URL}${apiURL.COMPANY_DATA_ENDPOINT}`, {
+        const response = await fetch(`${apiURL.BASE_URL}${endpoint}`, {
             method: "GET",
             headers: headers,
         });
@@ -24,10 +24,10 @@ export default async function CompanyDataFetch(): Promise<CompanyDataResult> {
             console.log("DATA IN COMPANY DATA FETCH:", data);
             return { success: true, data };
         } else {
-            return { success: false, errorMessage: "Failed to fetch user data." };
+            return { success: false, errorMessage: "Failed to fetch company data." };
         }
     } catch (err) {
         console.error(err);
-        return { success: false, errorMessage: "An error occurred while fetching user data." };
+        return { success: false, errorMessage: "An error occurred while fetching company data." };
     }
 }

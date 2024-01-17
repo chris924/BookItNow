@@ -71,7 +71,6 @@ public class SecurityConfiguration {
                     auth.requestMatchers("/admin/**").hasRole("ADMIN");
                     auth.requestMatchers("/user/**").hasAnyRole("ADMIN", "USER");
                     auth.requestMatchers("/company/**").hasAnyRole("ADMIN", "COMPANY");
-                    auth.requestMatchers("/company/getAllCompanies").hasAnyRole("ADMIN", "COMPANY", "USER");
                     auth.anyRequest().authenticated();
                 })
                 .oauth2ResourceServer(oauth2 -> oauth2

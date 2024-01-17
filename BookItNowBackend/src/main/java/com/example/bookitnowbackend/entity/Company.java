@@ -1,6 +1,7 @@
 package com.example.bookitnowbackend.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,8 +34,10 @@ public class Company implements UserDetails {
 
     private Timestamp createdAt;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "company")
-    private AppService appService;
+    private String serviceName;
+
+    private String serviceDescription;
+
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -67,5 +70,17 @@ public class Company implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Company{" +
+                "id=" + id +
+                ", companyName='" + companyName + '\'' +
+                ", email='" + email + '\'' +
+                ", description='" + description + '\'' +
+                ", createdAt=" + createdAt +
+                '}';
     }
 }

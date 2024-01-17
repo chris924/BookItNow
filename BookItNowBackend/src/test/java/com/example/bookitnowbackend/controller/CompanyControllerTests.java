@@ -1,6 +1,5 @@
 package com.example.bookitnowbackend.controller;
 
-import com.example.bookitnowbackend.entity.AppService;
 import com.example.bookitnowbackend.entity.Company;
 import com.example.bookitnowbackend.service.CompanyAuthenticationService;
 import com.example.bookitnowbackend.service.CompanyService;
@@ -22,7 +21,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 
@@ -48,8 +46,7 @@ public class CompanyControllerTests {
 
     @BeforeEach
     public void init() {
-        company = new Company(0, "test", "test", "test", "test",
-                new Timestamp(System.currentTimeMillis()), new AppService(), new HashSet<>());
+        company = new Company(0, "test", "test", "test", "test", new Timestamp(System.currentTimeMillis()), "test", "test", new HashSet<>());
     }
 
     @Test

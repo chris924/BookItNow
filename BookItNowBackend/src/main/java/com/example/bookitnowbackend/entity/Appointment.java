@@ -22,9 +22,9 @@ public class Appointment {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "service_id")
-    private AppService appService;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "company_id")
+    private Company company;
 
     private Timestamp dateAndTime;
 

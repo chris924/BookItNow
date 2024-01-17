@@ -16,17 +16,17 @@ import java.util.Set;
 public class DatabaseSeeder implements CommandLineRunner {
 
     private final IUserRepository userRepository;
-    private final IServiceRepository appServiceRepository;
+
     private final ICompanyRepository companyRepository;
     private final IAppointmentRepository appointmentRepository;
 
     private final IRoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public DatabaseSeeder(IAppointmentRepository appointmentRepository, ICompanyRepository companyRepository, IRoleRepository roleRepository, IServiceRepository appServiceRepository, IUserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public DatabaseSeeder(IAppointmentRepository appointmentRepository, ICompanyRepository companyRepository, IRoleRepository roleRepository, IUserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.appointmentRepository = appointmentRepository;
         this.companyRepository = companyRepository;
-        this.appServiceRepository = appServiceRepository;
+
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
@@ -37,7 +37,6 @@ public class DatabaseSeeder implements CommandLineRunner {
 
     appointmentRepository.deleteAll(); //FOR DELETING DATABASE ON STARTUP
     userRepository.deleteAll();
-    appServiceRepository.deleteAll();
     companyRepository.deleteAll();
     roleRepository.deleteAll();
 
@@ -110,7 +109,7 @@ public class DatabaseSeeder implements CommandLineRunner {
             roleRepository.save(companyRole);
             Set<Role> roles = new HashSet<>();
             roles.add(companyRole);
-            AppService appService = new AppService();
+
             Company company = new Company();
             company.setCompanyName("company");
             company.setEmail("company@company.com");
@@ -118,7 +117,8 @@ public class DatabaseSeeder implements CommandLineRunner {
             company.setAuthorities(roles);
             company.setDescription("company description");
             company.setCreatedAt(new Timestamp(System.currentTimeMillis()));
-            company.setAppService(appService);
+            company.setServiceName("Detailing");
+            company.setServiceDescription("Car detailing");
 
             companyRepository.save(company);
         }

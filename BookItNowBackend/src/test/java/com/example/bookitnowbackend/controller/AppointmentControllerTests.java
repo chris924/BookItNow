@@ -1,7 +1,7 @@
 package com.example.bookitnowbackend.controller;
 
-import com.example.bookitnowbackend.entity.AppService;
 import com.example.bookitnowbackend.entity.Appointment;
+import com.example.bookitnowbackend.entity.Company;
 import com.example.bookitnowbackend.entity.User;
 import com.example.bookitnowbackend.service.AppointmentService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -43,7 +43,7 @@ public class AppointmentControllerTests {
 
     @BeforeEach
     public void init() {
-        appointment = new Appointment(0, new User(), new AppService(), new Timestamp(System.currentTimeMillis()));
+        appointment = new Appointment(0, new User(), new Company(), new Timestamp(System.currentTimeMillis()));
     }
 
     @Test

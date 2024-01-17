@@ -67,7 +67,6 @@ public class AppointmentService {
             {
                 throw  new IllegalArgumentException("Appointment with ID " + appointment.getId() + " not found");
             }
-            existingAppointment.setAppService(appointment.getAppService());
             existingAppointment.setUser(appointment.getUser());
             existingAppointment.setDateAndTime(appointment.getDateAndTime());
 
