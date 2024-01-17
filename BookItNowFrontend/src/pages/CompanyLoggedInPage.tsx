@@ -4,6 +4,7 @@ import CompanyDataFetch from "../services/company/CompanyDataFetch";
 import LoadingCircle from "../components/LoadingCircle";
 import { CompanyDataResult } from "../lib/constants/interfaces/CompanyInterfaces";
 import CompanyLoggedInLayout from "../layouts/CompanyLoggedInLayout";
+import UserTable from "../features/user/table/UserTable";
 
 export default function CompanyLoggedInPage(): JSX.Element
 {
@@ -42,8 +43,10 @@ export default function CompanyLoggedInPage(): JSX.Element
   
     return (
       <>
-        <CompanyLoggedInLayout  CompanyData={companyData.data}/>
-       
+     
+      <CompanyLoggedInLayout  CompanyData={companyData.data}/>
+      
+        
       </>
     );
 }

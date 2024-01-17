@@ -4,6 +4,7 @@ import UseNavigation from "../hooks/UseNavigation";
 import UserDataFetch from '../services/user/UserDataFetch';
 import LoadingCircle from "../components/LoadingCircle";
 import { UserDataResult } from "../lib/constants/interfaces/UserInterfaces";
+import UserTable from "../features/user/table/UserTable";
 
 export default function UserLoggedInPage(): JSX.Element
 {
@@ -43,7 +44,7 @@ export default function UserLoggedInPage(): JSX.Element
     return (
       <>
         <UserLoggedInLayout  UserData={userData.data}/>
-       
+        <UserTable/>
       </>
     );
 }
