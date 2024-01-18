@@ -7,7 +7,7 @@ import { GetCookie } from "../../utils/cookies/SetCookie";
 export default async function CompanyDataFetch(endpoint: string): Promise<CompanyDataResult> {
 
     const authToken  = await GetCookie("authToken");
-    console.log("AUTH TOKEN IN COMPANY DATA FETCH", authToken);
+    
     const headers = new Headers({
         "Authorization": `Bearer ${authToken.jwt}`,
         "Content-Type": "application/json",

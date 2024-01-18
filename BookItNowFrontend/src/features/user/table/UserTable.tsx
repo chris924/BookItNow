@@ -53,7 +53,7 @@ export default function App({ companyData}: any) {
 
   const renderCell = React.useCallback((user: User, columnKey: React.Key) => {
     const cellValue = user[columnKey as keyof User];
-    console.log("columnKey:", columnKey, "cellValue:", cellValue);
+    
     switch (columnKey) {
       case "companyName":
         return (
@@ -123,7 +123,7 @@ export default function App({ companyData}: any) {
             }}
             placeholder="Search by name..."
             size="sm"
-            startContent={<SearchIcon className="text-default-300" />}
+            startContent={<SearchIcon className="text-default-400" />}
             value={filterValue}
             variant="bordered"
             onClear={() => setFilterValue("")}
@@ -146,7 +146,7 @@ export default function App({ companyData}: any) {
           isDisabled={hasSearchFilter}
           page={page}
           total={pages}
-          variant="light"
+          variant="flat"
           onChange={setPage}
         />
       </div>

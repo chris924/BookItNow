@@ -9,6 +9,7 @@ import HomePage from './pages/HomePage';
 import CompanyLoginPage from './pages/CompanyLoginPage';
 import CompanyLoggedInPage from './pages/CompanyLoggedInPage';
 import CompanyRegisterPage from './pages/CompanyRegisterPage';
+import CompanyCreateAppointmentPage from './pages/CompanyCreateAppointmentPage';
 
 
 
@@ -32,6 +33,7 @@ export default function App() {
         <Route path="login" element={<CompanyLoginPage />} />
         <Route path="register" element={<CompanyRegisterPage/>} />
         <Route path="home" element={<CompanyLoggedInPage/>}></Route>
+        <Route path="create-appointment" element={<CompanyCreateAppointmentPage/>}></Route>
       </Route>
     </Routes>
   </main>

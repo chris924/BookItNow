@@ -20,13 +20,18 @@ import { CompanyLoggedInLayoutProps } from '../lib/constants/interfaces/CompanyI
 const CompanyLoggedInLayout: React.FC<CompanyLoggedInLayoutProps> = ({ CompanyData }) => {
 
 
-  const {navigateToMainPage} = UseNavigation();
+  const {navigateToMainPage, navigateToCreateAppointment} = UseNavigation();
 
     async function handleLogout()
     {
      await RemoveCookie("authToken");
       navigateToMainPage();
       
+    }
+
+    function handleCreateAppointment()
+    {
+      navigateToCreateAppointment();
     }
 
     return (
@@ -74,7 +79,8 @@ const CompanyLoggedInLayout: React.FC<CompanyLoggedInLayoutProps> = ({ CompanyDa
                     <p className="font-semibold">{CompanyData['email']}</p>
                   </DropdownItem>
                   <DropdownItem key="settings">My Settings</DropdownItem>
-                  <DropdownItem key="appointments">My Appointments</DropdownItem>
+                  <DropdownItem key="listappointments">My Appointments</DropdownItem>
+                  <DropdownItem key="createappointments" onClick={() => handleCreateAppointment()}>Create Appointments</DropdownItem>
                   <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
                   <DropdownItem key="logout" color="danger" onClick={() => handleLogout()}>
                     Log Out
