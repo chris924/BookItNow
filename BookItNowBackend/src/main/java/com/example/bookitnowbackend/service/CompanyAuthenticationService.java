@@ -37,7 +37,7 @@ public class CompanyAuthenticationService {
     @Autowired
     private TokenService tokenService;
 
-    public CompanyRegistrationResponseDTO registerCompany(String companyName, String password, String email, String description, String appServiceName, String appServiceDescription)
+    public CompanyRegistrationResponseDTO registerCompany(String companyName, String password, String email, String appServiceName, String appServiceDescription, String description)
     {
         try{
 

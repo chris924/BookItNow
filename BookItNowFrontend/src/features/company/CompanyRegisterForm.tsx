@@ -185,7 +185,7 @@ export default function CompanyRegisterForm({ onBackButtonClick , onRegisterClic
         <div className="w-full flex flex-row flex-wrap gap-5 justify-center items-center">
           <Input
             key="appServiceDescription"
-            type="description"
+            type="servicedescription"
             color="warning"
             label="Service description"
             placeholder="Enter your service description"

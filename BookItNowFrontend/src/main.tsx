@@ -21,21 +21,22 @@ export default function App() {
  return (
   <NextUIProvider>
   <main className="purple-dark bg-gradient-to-r from-gray-700 via-gray-900 to-black min-width: 980px">
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/faq" element={<HomePage/>}/>
-      <Route path="user">
-        <Route path="login" element={<UserLoginPage />} />
-        <Route path="register" element={<UserRegisterPage />} />
-        <Route path="home" element={<UserLoggedInPage />} />
-      </Route>
-      <Route path="company">
-        <Route path="login" element={<CompanyLoginPage />} />
-        <Route path="register" element={<CompanyRegisterPage/>} />
-        <Route path="home" element={<CompanyLoggedInPage/>}></Route>
-        <Route path="create-appointment" element={<CompanyCreateAppointmentPage/>}></Route>
-      </Route>
-    </Routes>
+  <Routes>
+  <Route path="/" element={<HomePage />} />
+  <Route path="/faq" element={<HomePage />} />
+  <Route path="user">
+    <Route path="login" element={<UserLoginPage />} />
+    <Route path="register" element={<UserRegisterPage />} />
+    <Route path="home" element={<UserLoggedInPage />} />
+  </Route>
+  <Route path="company">
+    
+    <Route path="login" element={<CompanyLoginPage />} />
+    <Route path="register" element={<CompanyRegisterPage />} />
+    <Route path="home" element={<CompanyLoggedInPage/>}></Route>
+    <Route path="create-appointment" element={<CompanyCreateAppointmentPage />} />
+  </Route>
+</Routes>
   </main>
 </NextUIProvider>
 );
