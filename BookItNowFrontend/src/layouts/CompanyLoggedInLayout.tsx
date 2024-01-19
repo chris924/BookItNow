@@ -15,6 +15,8 @@ import {
 import { RemoveCookie } from '../utils/cookies/SetCookie';
 import UseNavigation from '../hooks/UseNavigation';
 import { CompanyLoggedInLayoutProps } from '../lib/constants/interfaces/CompanyInterfaces';
+import CompanyCreateAppointmentForm from '../features/company/CompanyCreateAppointmentForm';
+import CompanyCreateAppointmentPage from '../pages/CompanyCreateAppointmentPage';
 
 
 const CompanyLoggedInLayout: React.FC<CompanyLoggedInLayoutProps> = ({ CompanyData }) => {
@@ -32,6 +34,7 @@ const CompanyLoggedInLayout: React.FC<CompanyLoggedInLayoutProps> = ({ CompanyDa
     function handleCreateAppointment()
     {
       navigateToCreateAppointment();
+    
     }
 
     return (

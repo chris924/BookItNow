@@ -1,6 +1,9 @@
 package com.example.bookitnowbackend.controller;
 
 import com.example.bookitnowbackend.entity.Appointment;
+import com.example.bookitnowbackend.entity.AppointmentByCompanyIDResponseDTO;
+import com.example.bookitnowbackend.entity.AppointmentSaveDTO;
+import com.example.bookitnowbackend.entity.AppointmentSaveResponseDTO;
 import com.example.bookitnowbackend.service.AppointmentService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,26 +20,45 @@ import java.util.concurrent.ExecutionException;
 
 @Validated
 @RestController
+@RequestMapping("/company")
+@CrossOrigin("*")
 public class AppointmentController {
 
     @Autowired
     private AppointmentService appointmentService;
 
     @PostMapping("/addAppointment")
-    public ResponseEntity<?> AddAppointment(@Valid @RequestBody Appointment appointment, BindingResult bindingResult)
+    public ResponseEntity<?> AddAppointment(@Valid @RequestBody AppointmentSaveDTO appointment, BindingResult bindingResult)
     {
         if(bindingResult.hasErrors())
         {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid request");
         }
+
         try {
-            Appointment savedAppointment = appointmentService.saveAppointment(appointment);
-            return ResponseEntity.status(HttpStatus.OK).body(savedAppointment);
+            Appointment createdAppointment = appointmentService.createAppointment(appointment.getCompanyId(), appointment.getDateAndTime());
+            Appointment savedAppointment = appointmentService.saveAppointment(createdAppointment);
+            AppointmentSaveResponseDTO appointmentSaveResponseDTO = new AppointmentSaveResponseDTO(savedAppointment.getId(), savedAppointment.getDateAndTime());
+            return ResponseEntity.status(HttpStatus.OK).body(appointmentSaveResponseDTO);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error adding appointment");
         }
 
     }
+
+    @GetMapping("/getAppointmentsByCompanyId/{id}")
+    public ResponseEntity<?> getAppointmentsByCompanyId(@PathVariable Integer id)
+    {
+
+        try{
+            List<AppointmentByCompanyIDResponseDTO> appointmentsByCompany = appointmentService.getAppointmentsByCompanyId(id);
+
+            return ResponseEntity.status(HttpStatus.OK).body(appointmentsByCompany);
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error getting appointments by company id");
+        }
+    }
+
 
     @GetMapping("/getAllAppointments")
     public ResponseEntity<?> GetAllAppointments()

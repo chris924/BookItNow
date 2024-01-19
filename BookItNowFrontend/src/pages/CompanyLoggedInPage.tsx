@@ -10,6 +10,8 @@ export default function CompanyLoggedInPage(): JSX.Element
 {
   const [companyData, setCompanyData] = useState<CompanyDataResult>();
   const [loading, setLoading] = useState(false);
+
+  
   
   const {navigateToMainPage} = UseNavigation();
 
@@ -44,11 +46,8 @@ export default function CompanyLoggedInPage(): JSX.Element
   }
   
     return (
-      <>
-     
-      <CompanyLoggedInLayout  CompanyData={companyData.data}/>
-      
-        
+      <>    
+      <CompanyLoggedInLayout  CompanyData={companyData.data}/>   
       </>
     );
 }

@@ -15,13 +15,19 @@ export interface CompanyLoginFormProps{
 
 export interface CompanyLoggedInLayoutProps {
     CompanyData: CompanyDataResult['data'];
+    
+  }
+
+  export interface CompanyAppointmentCreateProps {
+    CompanyData: CompanyDataResult['data'];
+    CompanyAppointments: CompanyAppointmentFetchResponse['data'];
   }
 
 
 
 export interface CompanyDataResponse {
     
-    id: bigint;
+    id: number;
     companyName: string;
     email: string;
     description: string;
@@ -67,3 +73,28 @@ export interface CompanyDuplicateResponse {
     email?: string;
     erorrMessage?: string;
 }
+
+
+export interface CompanyCreateAppointmentResponseData {
+    appointmentId: number;
+    dateAndTime: Date;
+}
+
+
+export interface CompanyCreateAppointmentResponse {
+    success: boolean,
+    data?: CompanyCreateAppointmentResponseData
+    errorMessage?: string;
+}
+
+export interface CompanyAppointmentData {
+    appointmentId: number;
+    companyId: number;
+    dateAndTime: Date;
+  }
+  
+  export interface CompanyAppointmentFetchResponse {
+    success: boolean;
+    data?: CompanyAppointmentData[];
+    errorMessage?: string;
+  }

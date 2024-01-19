@@ -18,6 +18,7 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -27,5 +28,6 @@ public class Appointment {
     private Company company;
 
     private Timestamp dateAndTime;
+
 
 }
