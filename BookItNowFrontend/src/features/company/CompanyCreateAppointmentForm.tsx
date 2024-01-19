@@ -35,16 +35,29 @@ export default function CompanyCreateAppointmentForm() {
 
         const selectedAppointmentsStartTimestamps = selectedAppointments.map(({ dayIndex, timeIndex }, index) => {
           
+          console.log("DAYINDEX:", dayIndex);
+          console.log("TIMEINDEX:", timeIndex);
+
+
+
           let today = new Date();
+
+          if(today.getDay() === 5)
+          {
+            today.setDate(today.getDate() + 2);
+          }
+
       
           let todayDay = today.getDay();
-      
+        
           
           let appointmentDay = (todayDay + dayIndex + 1) % 7; // Use modulo to ensure it stays in the range [0, 6]
       
-         
+          
+
           today.setDate(today.getDate() + (appointmentDay + 7 - todayDay) % 7);
       
+         
          
           let timeStampTimeStart = today.setHours(timeIndex + 10 - 2, 0, 0, 0);
       
@@ -63,7 +76,18 @@ export default function CompanyCreateAppointmentForm() {
       
   
       const today = new Date();
-      const currentDay = today.getDay(); // 0 for Sunday, 1 for Monday, ..., 6 for Saturday
+
+      if(today.getDay() === 5)
+          {
+            today.setDate(today.getDate() + 2);
+          }
+
+
+      let currentDay = today.getDay(); // 0 for Sunday, 1 for Monday, ..., 6 for Saturday
+
+      
+    
+
       const daysLeft = 5 - currentDay; // Assuming a standard workweek (Monday to Friday)
   
       const remainingWeekdays = weekdays.slice(currentDay + 1, currentDay + 1 + daysLeft);
