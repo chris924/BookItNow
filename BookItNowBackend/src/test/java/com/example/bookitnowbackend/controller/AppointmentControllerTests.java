@@ -41,8 +41,9 @@ public class AppointmentControllerTests {
 
     private Appointment appointment;
 
-    @BeforeEach
-    public void init() {
+    private
+
+    @BeforeEach void init() {
         appointment = new Appointment(0, new User(), new Company(), new Timestamp(System.currentTimeMillis()));
     }
 
@@ -50,7 +51,7 @@ public class AppointmentControllerTests {
     public void AppointmentController_AddAppointment_ReturnOk() throws Exception {
         BDDMockito.given(appointmentService.saveAppointment(ArgumentMatchers.any())).willReturn(appointment);
 
-        ResultActions response = mockMvc.perform(MockMvcRequestBuilders.post("/addAppointment")
+        ResultActions response = mockMvc.perform(MockMvcRequestBuilders.post("/company/addAppointment")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(appointment)));
 
@@ -61,7 +62,7 @@ public class AppointmentControllerTests {
     public void AppointmentController_GetAllAppointments_ReturnOk() throws Exception {
         BDDMockito.given(appointmentService.getAppointments()).willReturn(Collections.singletonList(appointment));
 
-        ResultActions response = mockMvc.perform(MockMvcRequestBuilders.get("/getAllAppointments")
+        ResultActions response = mockMvc.perform(MockMvcRequestBuilders.get("/company/getAllAppointments")
                 .contentType(MediaType.APPLICATION_JSON));
 
         response.andExpect(MockMvcResultMatchers.status().isOk());
@@ -71,7 +72,7 @@ public class AppointmentControllerTests {
     public void AppointmentController_GetAppointmentById_ReturnOk() throws Exception {
         BDDMockito.given(appointmentService.getAppointmentById(ArgumentMatchers.anyInt())).willReturn(appointment);
 
-        ResultActions response = mockMvc.perform(MockMvcRequestBuilders.get("/getAppointmentById/1")
+        ResultActions response = mockMvc.perform(MockMvcRequestBuilders.get("/company/getAppointmentById/1")
                 .contentType(MediaType.APPLICATION_JSON));
 
         response.andExpect(MockMvcResultMatchers.status().isOk());
