@@ -78,6 +78,10 @@ export default function CompanyCreateAppointmentForm({CompanyData, CompanyAppoin
           {
             today.setDate(today.getDate() + 2);
           }
+      else if(today.getDay() === 6)
+      {
+        today.setDate(today.getDate() + 1);
+      }
 
 
       let currentDay = today.getDay(); // 0 for Sunday, 1 for Monday, ..., 6 for Saturday
@@ -117,6 +121,10 @@ export default function CompanyCreateAppointmentForm({CompanyData, CompanyAppoin
       if (today.getDay() === 5) {
         today.setDate(today.getDate() + 2);
       }
+      else if(today.getDay() === 6)
+      {
+        today.setDate(today.getDate() + 1);
+      }
     
       let todayDay = today.getDay();
       let appointmentDay = (todayDay + dayIndex + 1) % 7;
@@ -137,8 +145,8 @@ export default function CompanyCreateAppointmentForm({CompanyData, CompanyAppoin
     
     return (
       <>
-        <div className="">
-          <Table aria-label="Example static collection table">
+        <div className="animate__animated animate__backInUp">
+          <Table aria-label="Table">
             <TableHeader>
               {calculateWeekdaysLeft().names.map((weekday, index) => (
                 <TableColumn key={index}>
