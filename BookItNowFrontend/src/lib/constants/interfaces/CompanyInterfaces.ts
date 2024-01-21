@@ -98,3 +98,8 @@ export interface CompanyAppointmentData {
     data?: CompanyAppointmentData[];
     errorMessage?: string;
   }
+
+  export interface CompanyAppointmentDeleteFetchResult {
+    success: boolean;
+    errorMessage?: string;
+  }

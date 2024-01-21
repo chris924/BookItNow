@@ -104,8 +104,8 @@ public class AppointmentController {
     public ResponseEntity<?> DeleteAppointment(@PathVariable Integer id)
     {
         try {
-            String deletedAppointment = appointmentService.deleteAppointment(id);
-            return ResponseEntity.status(HttpStatus.OK).body(deletedAppointment);
+            appointmentService.deleteAppointment(id);
+            return ResponseEntity.status(HttpStatus.OK).body("Deleted appointment ID " + id);
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error deleting appointment");
         }
