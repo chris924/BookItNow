@@ -204,7 +204,6 @@ export default function CompanyCreateAppointmentForm({
   );
 };
 
-console.log('loading:', loading);
 
   return (
     <>

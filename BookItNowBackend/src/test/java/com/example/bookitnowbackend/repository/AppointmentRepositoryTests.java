@@ -63,8 +63,9 @@ public class AppointmentRepositoryTests {
     public void AppointmentRepository_ExistsById_ReturnTrue()
     {
         userRepository.save(testUser);
-        appointmentRepository.save(testAppointment);
         companyRepository.save(testCompany);
+        appointmentRepository.save(testAppointment);
+
 
       boolean appointmentExists =  appointmentRepository.existsById(testAppointment.getId());
 
