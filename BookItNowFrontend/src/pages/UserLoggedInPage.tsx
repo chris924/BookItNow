@@ -29,22 +29,19 @@ export default function UserLoggedInPage(): JSX.Element
         const result = await UserDataFetch();
           setUserData(result);
           
-        console.log("USER DATA:", result);
-
-
-       // const companyResult = await CompanyDataFetch(USER_COMPANY_DATA_ENDPOINT);
+        
 
        const companyResult = await CompanyGetAllCompanyDataFetch();
         
           setCompanyData(companyResult);
         
-          console.log("COMPANIES:", companyResult);
+          
       
         if(companyResult.data !== undefined)
         {
           const companyApps = await CompanyAppointmentDataFetch(companyResult.data['0'].id);
           setCompanyAppointments(companyApps);
-          console.log("COMPANY APPOINTMENTS:", companyApps); 
+         
         }
         
         

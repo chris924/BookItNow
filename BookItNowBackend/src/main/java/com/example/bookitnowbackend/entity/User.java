@@ -1,6 +1,7 @@
 package com.example.bookitnowbackend.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -39,6 +40,7 @@ public class User implements UserDetails {
 
     private Timestamp createdAt;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "user")
     private List<Appointment> appointments;
 

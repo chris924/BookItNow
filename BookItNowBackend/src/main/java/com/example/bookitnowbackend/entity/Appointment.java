@@ -1,6 +1,7 @@
 package com.example.bookitnowbackend.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,7 +21,7 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;

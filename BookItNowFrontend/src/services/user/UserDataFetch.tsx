@@ -21,7 +21,6 @@ export default async function UserDataFetch(): Promise<UserDataResult> {
 
         if (response.ok) {
             const data: UserDataResponse = await response.json();
-            console.log("XDDDDDDDDDDDDDDD:", data);
             return { success: true, data };
         } else {
             return { success: false, errorMessage: "Failed to fetch user data." };

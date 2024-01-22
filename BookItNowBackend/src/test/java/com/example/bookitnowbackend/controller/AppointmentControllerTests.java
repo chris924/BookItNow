@@ -3,6 +3,7 @@ package com.example.bookitnowbackend.controller;
 import com.example.bookitnowbackend.entity.Appointment;
 import com.example.bookitnowbackend.entity.Company;
 import com.example.bookitnowbackend.entity.User;
+import com.example.bookitnowbackend.repository.IUserRepository;
 import com.example.bookitnowbackend.service.AppointmentService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -35,6 +36,9 @@ public class AppointmentControllerTests {
 
     @MockBean
     private AppointmentService appointmentService;
+
+    @MockBean
+    private IUserRepository userRepository;
 
     @Autowired
     private ObjectMapper objectMapper;
