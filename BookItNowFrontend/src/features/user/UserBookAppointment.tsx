@@ -4,10 +4,14 @@ import React from "react";
 import { useState } from "react";
 import AppointmentAddUserFetch from "../../services/appointment/AppointmentAddUserFetch";
 import { UserDataResult } from "../../lib/constants/interfaces/UserInterfaces";
+import UseNavigation from "../../hooks/UseNavigation";
+
+
 
 interface CompanyAppointment {
   dateAndTime: string; // Change the type accordingly
   appointmentId: number;
+  userId: number;
   // Add other properties if there are any
 }
 
@@ -22,7 +26,10 @@ export default function UserBookAppointment({ onClose, isOpen, companyAppointmen
 
   const [value, setValue] = React.useState<string>("");
 
-  
+  const {navigateToMyUserAppointments} = UseNavigation();
+
+
+
   const formatDateTime = (dateTimeString: string): string => {
     const options: Intl.DateTimeFormatOptions = {
       weekday: 'long',
@@ -36,26 +43,24 @@ export default function UserBookAppointment({ onClose, isOpen, companyAppointmen
   };
 
   const sortAppointments = (appointments: CompanyAppointment[]): CompanyAppointment[] => {
-    return appointments.sort((a, b) => new Date(a.dateAndTime).getTime() - new Date(b.dateAndTime).getTime());
+    return appointments.filter((x) => x.userId === null).sort((a, b) => new Date(a.dateAndTime).getTime() - new Date(b.dateAndTime).getTime());
   };
 
 
   const handleBookClick =  async () => {
 
-    console.log("HANDLE BOOK CLICK");
-    console.log(userData);
-
+    
     if(userData.data !== undefined)
     {
       await AppointmentAddUserFetch(Number(value), userData.data?.id)
+
+      navigateToMyUserAppointments();
     }
     
 
   }
 
   const handleSelectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    console.log(e.target.value);
-    console.log(userData.data?.id)
     setValue(e.target.value);
   };
 

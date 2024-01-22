@@ -145,6 +145,10 @@ public class AppointmentService {
     private AppointmentByCompanyIDResponseDTO mapAppointmentToDTO(Appointment appointment) {
         AppointmentByCompanyIDResponseDTO dto = new AppointmentByCompanyIDResponseDTO();
         dto.setAppointmentId(appointment.getId());
+        if(appointment.getUser() != null)
+        {
+            dto.setUserId(appointment.getUser().getUserId());
+        }
         dto.setCompanyId(appointment.getCompany().getId());
         dto.setDateAndTime(appointment.getDateAndTime());
         return dto;

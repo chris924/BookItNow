@@ -1,5 +1,6 @@
 package com.example.bookitnowbackend.entity;
 
+import jakarta.annotation.Nullable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,6 +16,9 @@ import java.sql.Timestamp;
 public class AppointmentByCompanyIDResponseDTO {
 
     private Integer appointmentId;
+
+    @Nullable
+    private Integer userId;
 
     private Integer companyId;
 

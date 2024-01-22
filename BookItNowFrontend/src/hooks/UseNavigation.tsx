@@ -50,6 +50,11 @@ export default function UseNavigation()
         navigate('/company/create-appointment')
     }
 
+    function navigateToMyUserAppointments()
+    {
+        navigate('/user/my-appointments')
+    }
+
     
 
 
@@ -63,6 +68,7 @@ export default function UseNavigation()
         navigateToCompanyRegisterPage,
         navigateToFAQPage,
         navigateToCreateAppointment,
+        navigateToMyUserAppointments
     }
 
     
