@@ -51,7 +51,7 @@ public class AppointmentControllerTests {
     public void AppointmentController_AddAppointment_ReturnOk() throws Exception {
         BDDMockito.given(appointmentService.saveAppointment(ArgumentMatchers.any())).willReturn(appointment);
 
-        ResultActions response = mockMvc.perform(MockMvcRequestBuilders.post("/company/addAppointment")
+        ResultActions response = mockMvc.perform(MockMvcRequestBuilders.post("/appointment/addAppointment")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(appointment)));
 
@@ -62,7 +62,7 @@ public class AppointmentControllerTests {
     public void AppointmentController_GetAllAppointments_ReturnOk() throws Exception {
         BDDMockito.given(appointmentService.getAppointments()).willReturn(Collections.singletonList(appointment));
 
-        ResultActions response = mockMvc.perform(MockMvcRequestBuilders.get("/company/getAllAppointments")
+        ResultActions response = mockMvc.perform(MockMvcRequestBuilders.get("/appointment/getAllAppointments")
                 .contentType(MediaType.APPLICATION_JSON));
 
         response.andExpect(MockMvcResultMatchers.status().isOk());
@@ -72,7 +72,7 @@ public class AppointmentControllerTests {
     public void AppointmentController_GetAppointmentById_ReturnOk() throws Exception {
         BDDMockito.given(appointmentService.getAppointmentById(ArgumentMatchers.anyInt())).willReturn(appointment);
 
-        ResultActions response = mockMvc.perform(MockMvcRequestBuilders.get("/company/getAppointmentById/1")
+        ResultActions response = mockMvc.perform(MockMvcRequestBuilders.get("/appointment/getAppointmentById/1")
                 .contentType(MediaType.APPLICATION_JSON));
 
         response.andExpect(MockMvcResultMatchers.status().isOk());

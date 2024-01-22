@@ -31,13 +31,12 @@ export default function CompanyCreateAppointmentPage()
   
        setCompanyData(result);
   
-            if(result.data !== undefined)
-            {
-                const appointmentResult = await CompanyAppointmentDataFetch(result.data?.id);
-                setCompanyAppointments(appointmentResult);
-               
-            }   
-        
+       if (result.data ) {
+        const appointmentResult = await CompanyAppointmentDataFetch(result.data.id);
+        setCompanyAppointments(appointmentResult); 
+        console.log("XDDDDDDDDD:", appointmentResult);
+       }
+
       } catch (error) {
         console.error("Error fetching user data", error);
       } finally {

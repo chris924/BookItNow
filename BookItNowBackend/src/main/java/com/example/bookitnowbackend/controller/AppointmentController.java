@@ -1,9 +1,7 @@
 package com.example.bookitnowbackend.controller;
 
-import com.example.bookitnowbackend.entity.Appointment;
-import com.example.bookitnowbackend.entity.AppointmentByCompanyIDResponseDTO;
-import com.example.bookitnowbackend.entity.AppointmentSaveDTO;
-import com.example.bookitnowbackend.entity.AppointmentSaveResponseDTO;
+import com.example.bookitnowbackend.entity.*;
+import com.example.bookitnowbackend.repository.IUserRepository;
 import com.example.bookitnowbackend.service.AppointmentService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,16 +14,20 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.validation.BindingResult;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 
 @Validated
 @RestController
-@RequestMapping("/company")
+@RequestMapping("/appointment")
 @CrossOrigin("*")
 public class AppointmentController {
 
     @Autowired
     private AppointmentService appointmentService;
+
+    @Autowired
+    private IUserRepository userRepository;
 
     @PostMapping("/addAppointment")
     public ResponseEntity<?> AddAppointment(@Valid @RequestBody AppointmentSaveDTO appointment, BindingResult bindingResult)
@@ -86,15 +88,15 @@ public class AppointmentController {
     }
 
     @PutMapping("/updateAppointment")
-    public ResponseEntity<?> UpdateAppointment(@Valid @RequestBody Appointment appointment, BindingResult bindingResult)
+    public ResponseEntity<?> UpdateAppointment(@Valid @RequestBody AppointmentUpdateDTO appointment, BindingResult bindingResult)
     {
         if(bindingResult.hasErrors())
         {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid request");
         }
         try {
-            Appointment updatedAppointment = appointmentService.updateAppointment(appointment);
-            return ResponseEntity.status(HttpStatus.OK).body(updatedAppointment);
+            Appointment updatedAppointment = appointmentService.updateAppointment(appointment.getAppointmentId(), appointment.getUserId());
+            return ResponseEntity.status(HttpStatus.OK).body("User added to appointment successfully");
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error updating appointment");
         }

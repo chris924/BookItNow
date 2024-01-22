@@ -1,15 +1,14 @@
 package com.example.bookitnowbackend.service;
 
-import com.example.bookitnowbackend.entity.Appointment;
-import com.example.bookitnowbackend.entity.AppointmentByCompanyIDResponseDTO;
-import com.example.bookitnowbackend.entity.AppointmentSaveResponseDTO;
-import com.example.bookitnowbackend.entity.Company;
+import com.example.bookitnowbackend.entity.*;
 import com.example.bookitnowbackend.repository.IAppointmentRepository;
 import com.example.bookitnowbackend.repository.ICompanyRepository;
+import com.example.bookitnowbackend.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -22,6 +21,13 @@ public class AppointmentService {
 
     @Autowired
     private ICompanyRepository companyRepository;
+
+    @Autowired
+    private IUserRepository userRepository;
+
+    @Autowired
+    private UserService userService;
+
 
     public Appointment saveAppointment(Appointment appointment)
     {
@@ -104,18 +110,28 @@ public class AppointmentService {
 
     }
 
-    public Appointment updateAppointment(Appointment appointment)
+    public Appointment updateAppointment(Integer appointmentId, Integer userId)
     {
 
         try{
-            Appointment existingAppointment = appointmentRepository.findById(appointment.getId()).orElse(null);
-            if(existingAppointment == null)
-            {
-                throw  new IllegalArgumentException("Appointment with ID " + appointment.getId() + " not found");
-            }
-            existingAppointment.setUser(appointment.getUser());
-            existingAppointment.setDateAndTime(appointment.getDateAndTime());
 
+            System.out.println("Appointment id:" + appointmentId);
+            System.out.println("User id:" + userId);
+
+            Appointment existingAppointment = appointmentRepository.findById(appointmentId).orElse(null);
+            User existingUser = userRepository.findById(userId).orElse(null);
+
+            assert existingUser != null;
+            List<Appointment> userAppointments = existingUser.getAppointments();
+            userAppointments.add(existingAppointment);
+
+            if(existingAppointment == null || existingUser == null)
+            {
+                throw  new IllegalArgumentException("Appointment or User not found");
+            }
+            existingAppointment.setUser(existingUser);
+            existingUser.setAppointments(userAppointments);
+            userRepository.save(existingUser);
             return appointmentRepository.save(existingAppointment);
         }catch (Exception e){
 

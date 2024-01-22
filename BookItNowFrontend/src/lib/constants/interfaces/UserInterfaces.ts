@@ -34,7 +34,7 @@ export interface UserRegisterResponse {
 
 export interface UserDataResponse {
     
-    id: bigint;
+    id: number;
     name: string;
     username: string;
     email: string;

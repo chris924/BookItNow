@@ -88,9 +88,9 @@ export default function CompanyCreateAppointmentForm({
       } else {
         const finalDate = timeStampGenerator(dayIndex, timeIndex);
 
-        if (CompanyData?.id) {
-          await CompanyCreateAppointmentFetch(CompanyData.id, finalDate);
-                
+        if (CompanyData) {
+          const companyId = CompanyData.id;
+          await CompanyCreateAppointmentFetch(companyId, finalDate);
         }
       }
     }catch(e)
@@ -146,7 +146,7 @@ export default function CompanyCreateAppointmentForm({
 
     today.setDate(today.getDate() + (appointmentDay + 7 - todayDay) % 7);
 
-    let timeStampTimeStart = today.setHours(timeIndex + 10 - 2, 0, 0, 0);
+    let timeStampTimeStart = today.setUTCHours(timeIndex + 10 - 3, 0, 0, 0);
 
     return new Date(timeStampTimeStart);
   };
@@ -254,7 +254,7 @@ export default function CompanyCreateAppointmentForm({
         
       <PopoverContent className="">
         <div className="">
-        <CircularProgress aria-label="Loading..."/>
+        
         </div>
       </PopoverContent>
        

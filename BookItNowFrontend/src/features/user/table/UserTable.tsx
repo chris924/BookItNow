@@ -4,13 +4,14 @@ import {Table,TableHeader,TableColumn,TableBody,TableRow,TableCell,Input,Button,
 import { VerticalDotsIcon } from "./VerticalDotsIcon";
 import { SearchIcon } from "./SearchIcon";
 import { columns, companyData } from "./data";
+import UserBookAppointment from "../UserBookAppointment";
 
 
 const INITIAL_VISIBLE_COLUMNS = ["companyName", "serviceName", "serviceDescription", "email", "actions"];
 
 type User = typeof companyData[0];
 
-export default function App({ companyData}: any) {
+export default function App({ companyData, companyAppointments, userData}: any) {
 
  
 
@@ -22,9 +23,22 @@ export default function App({ companyData}: any) {
   const [rowsPerPage, setRowsPerPage] = React.useState(10); // was 5
   const [page, setPage] = React.useState(1);
 
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+
   const pages = Math.ceil(companyData.length / rowsPerPage);
 
   const hasSearchFilter = Boolean(filterValue);
+
+  const handleBookButtonClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
+
+ 
+
 
   const headerColumns = React.useMemo(() => {
     if (visibleColumns === "all") return columns;
@@ -89,9 +103,8 @@ export default function App({ companyData}: any) {
                   <VerticalDotsIcon />
                 </Button>
               </DropdownTrigger>
-              <DropdownMenu>
-                <DropdownItem>View</DropdownItem>
-                <DropdownItem>Book</DropdownItem>
+              <DropdownMenu onAction={(key) => handleBookButtonClick()}>
+                <DropdownItem >Book</DropdownItem>
               </DropdownMenu>
             </Dropdown>
           </div>
@@ -172,8 +185,15 @@ export default function App({ companyData}: any) {
     [],
   );
 
+
+
+
   return (
     <div className="overflow-x-auto overflow-y-hidden animate__animated animate__backInUp">
+      
+    {isModalOpen && (
+        <UserBookAppointment isOpen={isModalOpen} onClose={handleModalClose} companyAppointments={companyAppointments.data} userData={userData} />
+      )}
 <Table
       isCompact
       removeWrapper
@@ -201,7 +221,7 @@ export default function App({ companyData}: any) {
           </TableColumn>
         )}
       </TableHeader>
-      <TableBody emptyContent={"No users found"} items={items}>
+      <TableBody emptyContent={"No companies found"} items={items}>
         {(item) => (
           <TableRow key={item.id}>
             {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
@@ -209,6 +229,8 @@ export default function App({ companyData}: any) {
         )}
       </TableBody>
     </Table>
+
+
     </div>
     
   );
