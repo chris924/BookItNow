@@ -43,7 +43,11 @@ export default function UserBookAppointment({ onClose, isOpen, companyAppointmen
   };
 
   const sortAppointments = (appointments: CompanyAppointment[]): CompanyAppointment[] => {
-    return appointments.filter((x) => x.userId === null).sort((a, b) => new Date(a.dateAndTime).getTime() - new Date(b.dateAndTime).getTime());
+    
+    const currentDate = new Date();
+    
+
+    return appointments.filter((x) => x.userId === null && new Date(x.dateAndTime) >= currentDate).sort((a, b) => new Date(a.dateAndTime).getTime() - new Date(b.dateAndTime).getTime());
   };
 
 

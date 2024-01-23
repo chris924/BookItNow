@@ -13,13 +13,14 @@ export default function UserMyAppointmentsPage(): JSX.Element
 
     const [userData, setUserData] = useState<UserDataResult>();
     const [loading, setLoading] = useState(false);
+    const [cancelClickFlag, setCancelClickFlag] = useState(false);
 
 
     useEffect(() => {
 
         const fetchData = async () => {
             setLoading(true);
-
+            await new Promise(resolve => setTimeout(resolve, 1000));
             const userDataResponse = await UserDataFetch();
             if(userDataResponse.success)
             {
@@ -30,7 +31,7 @@ export default function UserMyAppointmentsPage(): JSX.Element
         
         fetchData();
 
-    }, [])
+    }, [cancelClickFlag])
 
     
        
@@ -43,7 +44,7 @@ export default function UserMyAppointmentsPage(): JSX.Element
     return(
         <>
         <UserLoggedInLayout  UserData={userData.data}/>
-        <UserMyAppointmentsForm userData={userData.data}/>
+        <UserMyAppointmentsForm userData={userData.data}  onAppointmentCancel={() => setCancelClickFlag((prevFlag) => !prevFlag)}/>
         </>
     )
 }
