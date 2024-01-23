@@ -115,9 +115,6 @@ public class AppointmentService {
 
         try{
 
-            System.out.println("Appointment id:" + appointmentId);
-            System.out.println("User id:" + userId);
-
             Appointment existingAppointment = appointmentRepository.findById(appointmentId).orElse(null);
             User existingUser = userRepository.findById(userId).orElse(null);
 
@@ -138,9 +135,39 @@ public class AppointmentService {
             throw new RuntimeException("Error updating appointment", e);
         }
 
-
-
     }
+
+    public void deleteUserFromAppointment(Integer appointmentId)
+    {
+
+        try{
+            Appointment existingAppointment = appointmentRepository.findById(appointmentId).orElse(null);
+
+            if(existingAppointment == null)
+            {
+                throw  new IllegalArgumentException("Appointment not found");
+            }
+
+            User existingUser = existingAppointment.getUser();
+            if (existingUser != null) {
+                existingUser.getAppointments().remove(existingAppointment);
+                userRepository.save(existingUser);
+            }
+
+
+            existingAppointment.setUser(null);
+
+
+            appointmentRepository.save(existingAppointment);
+
+
+        }catch (Exception e)
+        {
+            throw new RuntimeException("Error deleting user from appointment", e);
+        }
+    }
+
+
 
     private AppointmentByCompanyIDResponseDTO mapAppointmentToDTO(Appointment appointment) {
         AppointmentByCompanyIDResponseDTO dto = new AppointmentByCompanyIDResponseDTO();

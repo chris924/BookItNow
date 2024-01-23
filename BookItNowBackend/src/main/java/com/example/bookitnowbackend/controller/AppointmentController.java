@@ -102,6 +102,19 @@ public class AppointmentController {
         }
     }
 
+    @PutMapping("/deleteUserFromAppointment/{appointmentId}")
+    public ResponseEntity<?> DeleteUserFromAppointment(@PathVariable Integer appointmentId)
+    {
+        try {
+                appointmentService.deleteUserFromAppointment(appointmentId);
+                return ResponseEntity.status(HttpStatus.OK).body("User deleted from appointment successfully");
+        }catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error deleting user from appointment");
+        }
+
+    }
+
+
     @DeleteMapping("/deleteAppointment/{id}")
     public ResponseEntity<?> DeleteAppointment(@PathVariable Integer id)
     {

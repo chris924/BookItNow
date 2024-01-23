@@ -1,5 +1,6 @@
 import { Card, CardHeader, CardBody, Image, Button } from "@nextui-org/react";
 import { UserDataResult } from "../../lib/constants/interfaces/UserInterfaces";
+import AppointmentDeleteuserFetch from "../../services/appointment/AppointmentDeleteUserFetch";
 
 
 export interface UserMyAppointmentsFormProps
@@ -26,8 +27,13 @@ export default function UserMyAppointmentsForm({userData}: UserMyAppointmentsFor
 
 
 
-      const handleCancelClick = () => {
-        
+      const handleCancelClick = async (appointmentId: number) => {
+
+        console.log("APPOINTMENT ID:", appointmentId);
+
+        const response = await AppointmentDeleteuserFetch(appointmentId);
+
+
       }
 
    
@@ -53,7 +59,7 @@ export default function UserMyAppointmentsForm({userData}: UserMyAppointmentsFor
                 src="/images/hero-card-complete.jpeg"
                 width={270}
               />
-              <Button color="danger" onClick={() => handleCancelClick()}>Cancel</Button>
+              <Button color="danger" onClick={() => handleCancelClick(appointment.id)}>Cancel</Button>
             </CardBody>
           </Card>
           </div>
