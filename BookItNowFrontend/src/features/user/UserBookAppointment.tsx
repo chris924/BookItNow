@@ -8,27 +8,30 @@ import UseNavigation from "../../hooks/UseNavigation";
 
 
 
-interface CompanyAppointment {
+export interface CompanyAppointment {
   dateAndTime: string; 
   appointmentId: number;
   userId: number;
+  company: {
+    companyName: string;
+    serviceName: string;
+  };
+  id:number;
   
 }
 
-interface UserBookAppointmentProps {
+export interface UserBookAppointmentProps {
   onClose: () => void;
   isOpen: boolean;
   companyAppointments: CompanyAppointment[];
   userData: UserDataResult;
 }
 
-export default function UserBookAppointment({ onClose, isOpen, companyAppointments, userData }: any) {
+export default function UserBookAppointment({ onClose, isOpen, companyAppointments, userData }: UserBookAppointmentProps) {
 
   const [value, setValue] = React.useState<string>("");
 
   const {navigateToMyUserAppointments} = UseNavigation();
-
-  const [isAppointmentBooked, setIsAppointmentBooked] = useState(false);
 
   const [addUserFetchResponse, setAddUserFetchResponse] = useState<AppointmentUpdate>();
 
@@ -46,11 +49,11 @@ export default function UserBookAppointment({ onClose, isOpen, companyAppointmen
     return new Date(dateTimeString).toLocaleString(undefined, options);
   };
 
-  const sortAppointments = (appointments: any) => {
+  const sortAppointments = (appointments: CompanyAppointment[]) => {
     
     const currentDate = new Date();
 
-    const filtered = appointments.filter((x: any) => x.userId === null && new Date(x.dateAndTime) >= currentDate).sort((a: any, b: any) => new Date(a.dateAndTime).getTime() - new Date(b.dateAndTime).getTime());
+    const filtered = appointments.filter((x: CompanyAppointment) => x.userId === null && new Date(x.dateAndTime) >= currentDate).sort((a: CompanyAppointment, b: CompanyAppointment) => new Date(a.dateAndTime).getTime() - new Date(b.dateAndTime).getTime());
    
     return filtered;
   };
@@ -107,7 +110,7 @@ export default function UserBookAppointment({ onClose, isOpen, companyAppointmen
                 selectedKeys={[value]}
                 onChange={handleSelectionChange}
               >
-                {sortedAppointments.map((date: CompanyAppointment): any => (
+                {sortedAppointments.map((date: CompanyAppointment): React.ReactElement => (
                   <SelectItem key={date.appointmentId} value={date.appointmentId}>
                     {formatDateTime(date.dateAndTime)}
                   </SelectItem>

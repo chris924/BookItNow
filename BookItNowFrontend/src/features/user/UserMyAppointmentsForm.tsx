@@ -2,6 +2,7 @@ import { Card, CardHeader, CardBody, Image, Button, ScrollShadow, Popover, Popov
 import { UserDataResult } from "../../lib/constants/interfaces/UserInterfaces";
 import AppointmentDeleteuserFetch from "../../services/appointment/AppointmentDeleteUserFetch";
 import 'animate.css';
+import { CompanyAppointment } from "./UserBookAppointment";
 
 export interface UserMyAppointmentsFormProps
 {
@@ -37,23 +38,23 @@ export default function UserMyAppointmentsForm({ userData, onAppointmentCancel }
     }
   };
 
-  const sortAppointments = (appointments: any) => {
-    return appointments.sort((a: any, b: any) => new Date(a.dateAndTime).getTime() - new Date(b.dateAndTime).getTime());
+  const sortAppointments = (appointments: CompanyAppointment[]) => {
+    return appointments.sort((a: CompanyAppointment, b: CompanyAppointment) => new Date(a.dateAndTime).getTime() - new Date(b.dateAndTime).getTime());
   };
 
   const appointmentsWithCancel = sortAppointments(userData.appointments).filter(
-    (appointment: any) => new Date(appointment.dateAndTime) > currentDate
+    (appointment: CompanyAppointment) => new Date(appointment.dateAndTime) > currentDate
   );
 
   const appointmentsWithoutCancel = sortAppointments(userData.appointments).filter(
-    (appointment: any) => new Date(appointment.dateAndTime) <= currentDate
+    (appointment: CompanyAppointment) => new Date(appointment.dateAndTime) <= currentDate
   );
 
   return (
     <>
     <ScrollShadow hideScrollBar className="max-h-screen">
     <div className="mb-12 p-8 space-y-6" >
-      {appointmentsWithCancel.map((appointment: any, index: any) => {
+      {appointmentsWithCancel.map((appointment: CompanyAppointment, index: number) => {
         const animationClass = index % 2 === 0 ? 'animate__animated animate__backInLeft' : 'animate__animated animate__backInRight';
 
         return (
@@ -87,7 +88,7 @@ export default function UserMyAppointmentsForm({ userData, onAppointmentCancel }
         );
       })}
 
-      {appointmentsWithoutCancel.map((appointment: any, index: any) => {
+      {appointmentsWithoutCancel.map((appointment: CompanyAppointment, index: number) => {
         const animationClass = (index + appointmentsWithCancel.length) % 2 === 0 ? 'animate__animated animate__backInLeft' : 'animate__animated animate__backInRight';
 
         return (

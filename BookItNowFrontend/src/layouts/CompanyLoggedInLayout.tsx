@@ -22,7 +22,9 @@ import CompanyCreateAppointmentPage from '../pages/CompanyCreateAppointmentPage'
 const CompanyLoggedInLayout: React.FC<CompanyLoggedInLayoutProps> = ({ CompanyData }) => {
 
 
-  const {navigateToMainPage, navigateToCreateAppointment} = UseNavigation();
+  const {navigateToMainPage, navigateToCreateAppointment, navigateToCompanyMyAppointmentsPage} = UseNavigation();
+
+
 
     async function handleLogout()
     {
@@ -81,10 +83,10 @@ const CompanyLoggedInLayout: React.FC<CompanyLoggedInLayoutProps> = ({ CompanyDa
                     <p className="font-semibold">Signed in as</p>
                     <p className="font-semibold">{CompanyData['email']}</p>
                   </DropdownItem>
-                  <DropdownItem key="settings">My Settings</DropdownItem>
-                  <DropdownItem key="listappointments">My Appointments</DropdownItem>
+                  <DropdownItem key="listappointments" onClick={() => navigateToCompanyMyAppointmentsPage()}>My Appointments </DropdownItem>
                   <DropdownItem key="createappointments" onClick={() => handleCreateAppointment()}>Create Appointments</DropdownItem>
                   <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
+                  <DropdownItem key="settings">My Settings</DropdownItem>
                   <DropdownItem key="logout" color="danger" onClick={() => handleLogout()}>
                     Log Out
                   </DropdownItem>
