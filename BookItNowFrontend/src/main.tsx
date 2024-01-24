@@ -13,6 +13,7 @@ import CompanyCreateAppointmentPage from './pages/CompanyCreateAppointmentPage';
 import UserMyAppointmentsPage from './pages/UserMyAppointmentsPage';
 import CompanyMyBookedAppointmentsPage from './pages/CompanyMyBookedAppointmentsPage';
 import CompanyAppointmentHistoryPage from './pages/CompanyAppointmentHistoryPage';
+import FAQPage from './pages/FAQPage';
 
 
 
@@ -26,7 +27,7 @@ export default function App() {
   <main className="purple-dark bg-gradient-to-r from-gray-700 via-gray-900 to-black min-width: 980px">
   <Routes>
   <Route path="/" element={<HomePage />} />
-  <Route path="/faq" element={<HomePage />} />
+  <Route path="/faq" element={<FAQPage />} />
   <Route path="user">
     <Route path="login" element={<UserLoginPage />} />
     <Route path="register" element={<UserRegisterPage />} />

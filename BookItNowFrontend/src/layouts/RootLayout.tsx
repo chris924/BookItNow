@@ -4,7 +4,7 @@ import UseNavigation from "../hooks/UseNavigation";
 
 export default function App() {
 
-  const {navigateToUserLoginPage, navigateToUserRegisterPage, navigateToCompanyLoginPage} = UseNavigation();
+  const {navigateToUserLoginPage, navigateToUserRegisterPage, navigateToCompanyLoginPage, navigateToFAQPage} = UseNavigation();
  
 
 
@@ -39,7 +39,7 @@ export default function App() {
           </Link>
         </NavbarItem>
         <NavbarItem isActive>
-          <Link href="#" aria-current="page">
+          <Link href="#" aria-current="page" onClick={() => navigateToFAQPage()}>
             FAQ
           </Link>
         </NavbarItem>

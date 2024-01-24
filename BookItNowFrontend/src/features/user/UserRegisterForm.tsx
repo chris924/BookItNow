@@ -2,10 +2,11 @@ import {Button} from "@nextui-org/button";
 import { Input, Tooltip } from "@nextui-org/react";
 import "../../styles/userLoginForm.css"
 import { registerConfetti } from "../../components/Confetti";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { UserRegisterFormProps } from "../../lib/constants/interfaces/UserInterfaces";
 import { useUserRegistrationValidation } from "../../hooks/UseEffect";
 import UserInputDuplicateFetch from "../../services/user/UserInputDuplicateFetch";
+import UseNavigation from "../../hooks/UseNavigation";
 
 
 
@@ -22,6 +23,28 @@ export default function UserRegisterForm({ onBackButtonClick , onRegisterClick, 
   const [emailInvalid, setEmailInvalid] = useState(false);
   
   const [registerButtonDisabled, setRegisterButtonDisabled] = useState(true);
+
+
+
+  const [isSmallDevice, setIsSmallDevice] = useState(false);
+
+
+  const {navigateToCompanyRegisterPage} = UseNavigation();
+
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallDevice(window.innerWidth < 768); 
+    };
+
+    handleResize(); 
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
 
 
   useUserRegistrationValidation(
@@ -79,8 +102,8 @@ export default function UserRegisterForm({ onBackButtonClick , onRegisterClick, 
 
 
     return (
-        <div className="flex justify-center items-center h-screen">
-    <div className="w-full max-w-[450px] space-y-4">
+        <div className="flex justify-center items-center h-screen overflow-hidden">
+    <div className="w-full max-w-[450px] space-y-4 overflow-hidden">
     <div className="flex justify-center text-xl font-semibold text-blue-600/75 dark:text-blue-500/75 animate__animated animate__bounceInLeft">Register</div>
       {registerResult && (<>
       <div className="flex justify-center">
@@ -189,7 +212,15 @@ export default function UserRegisterForm({ onBackButtonClick , onRegisterClick, 
        Register
       </Button>
       </div>
+      <div className="flex justify-center">
+      {isSmallDevice && (
+            <Button color="secondary" onClick={() => navigateToCompanyRegisterPage()}>
+              Company Register
+            </Button>
+          )}
+      </div>
     </div>
+    
   </div>
     )
 }
