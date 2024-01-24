@@ -15,14 +15,12 @@ import {
 import { RemoveCookie } from '../utils/cookies/SetCookie';
 import UseNavigation from '../hooks/UseNavigation';
 import { CompanyLoggedInLayoutProps } from '../lib/constants/interfaces/CompanyInterfaces';
-import CompanyCreateAppointmentForm from '../features/company/CompanyCreateAppointmentForm';
-import CompanyCreateAppointmentPage from '../pages/CompanyCreateAppointmentPage';
 
 
 const CompanyLoggedInLayout: React.FC<CompanyLoggedInLayoutProps> = ({ CompanyData }) => {
 
 
-  const {navigateToMainPage, navigateToCreateAppointment, navigateToCompanyMyAppointmentsPage} = UseNavigation();
+  const {navigateToMainPage, navigateToCreateAppointment, navigateToCompanyMyBookedAppointmentsPage, navigateToCompanyAppointmentsHistoryPage} = UseNavigation();
 
 
 
@@ -31,13 +29,7 @@ const CompanyLoggedInLayout: React.FC<CompanyLoggedInLayoutProps> = ({ CompanyDa
      await RemoveCookie("authToken");
       navigateToMainPage();
       
-    }
-
-    function handleCreateAppointment()
-    {
-      navigateToCreateAppointment();
-    
-    }
+    }  
 
     return (
       <>
@@ -83,9 +75,9 @@ const CompanyLoggedInLayout: React.FC<CompanyLoggedInLayoutProps> = ({ CompanyDa
                     <p className="font-semibold">Signed in as</p>
                     <p className="font-semibold">{CompanyData['email']}</p>
                   </DropdownItem>
-                  <DropdownItem key="listbookedappointments" onClick={() => navigateToCompanyMyAppointmentsPage()}>My Booked Appointments </DropdownItem>
-                  <DropdownItem key="listhistory">My Appointments History</DropdownItem>
-                  <DropdownItem key="createappointments" onClick={() => handleCreateAppointment()}>Create Appointments</DropdownItem>
+                  <DropdownItem key="listbookedappointments" onClick={() => navigateToCompanyMyBookedAppointmentsPage()}>My Booked Appointments </DropdownItem>
+                  <DropdownItem key="listhistory" onClick={() => navigateToCompanyAppointmentsHistoryPage()}>My Appointments History</DropdownItem>
+                  <DropdownItem key="createappointments" onClick={() => navigateToCreateAppointment()}>Create Appointments</DropdownItem>
                   <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
                   <DropdownItem key="settings">My Settings</DropdownItem>
                   <DropdownItem key="logout" color="danger" onClick={() => handleLogout()}>

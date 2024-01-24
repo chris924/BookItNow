@@ -60,9 +60,14 @@ export default function UseNavigation()
         navigate('/user/my-appointments')
     }
 
-    function navigateToCompanyMyAppointmentsPage()
+    function navigateToCompanyMyBookedAppointmentsPage()
     {
-        navigate('/company/my-appointments')
+        navigate('/company/my-booked-appointments')
+    }
+
+    function navigateToCompanyAppointmentsHistoryPage()
+    {
+        navigate('/company/appointment-history');
     }
 
     
@@ -80,7 +85,8 @@ export default function UseNavigation()
         navigateToFAQPage,
         navigateToCreateAppointment,
         navigateToMyUserAppointments,
-        navigateToCompanyMyAppointmentsPage
+        navigateToCompanyMyBookedAppointmentsPage,
+        navigateToCompanyAppointmentsHistoryPage
     }
 
     
