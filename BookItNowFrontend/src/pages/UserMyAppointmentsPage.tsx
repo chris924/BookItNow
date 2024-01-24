@@ -4,6 +4,8 @@ import { UserDataResult } from "../lib/constants/interfaces/UserInterfaces";
 import UserDataFetch from "../services/user/UserDataFetch";
 import LoadingCircle from "../components/LoadingCircle";
 import UserLoggedInLayout from "../layouts/UserLoggedInLayout";
+import { GetCookie } from "../utils/cookies/SetCookie";
+import UseNavigation from "../hooks/UseNavigation";
 
 
 
@@ -15,18 +17,19 @@ export default function UserMyAppointmentsPage(): JSX.Element
     const [loading, setLoading] = useState(false);
     const [cancelClickFlag, setCancelClickFlag] = useState(false);
 
+    const {navigateToMainPage} = UseNavigation();
 
     useEffect(() => {
 
         const fetchData = async () => {
+
             setLoading(true);
             await new Promise(resolve => setTimeout(resolve, 1000));
             const userDataResponse = await UserDataFetch();
-            if(userDataResponse.success)
-            {
+            
                 setUserData(userDataResponse);
                 setLoading(false);
-            }
+            
         }
         
         fetchData();
@@ -40,6 +43,12 @@ export default function UserMyAppointmentsPage(): JSX.Element
            return <LoadingCircle/>
         }
 
+
+        if (userData?.success === false) {
+
+            return navigateToMainPage();
+          }
+          
 
     return(
         <>

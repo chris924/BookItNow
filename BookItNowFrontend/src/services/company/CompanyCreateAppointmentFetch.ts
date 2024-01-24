@@ -28,7 +28,7 @@ export default async function CompanyCreateAppointmentFetch(id: number, dateAndT
 
         if (response.ok) {
             const data: CompanyCreateAppointmentResponseData = await response.json();
-            console.log("DATA IN COMPANY CREATE APPOINTMENT FETCH:", data);
+            
             return { success: true, data };
         } else {
             return { success: false, errorMessage: "Failed to fetch company data." };

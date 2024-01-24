@@ -10,6 +10,11 @@ export default function UseNavigation()
         return <div>Redirecting to the main page...</div>;
     }
 
+    function navigateToHomePage()
+    {
+        navigate('/');
+    }
+
     function navigateToUserLoggedInPage()
     {
         navigate('/user/home');
@@ -60,6 +65,7 @@ export default function UseNavigation()
 
     return{
         navigateToMainPage,
+        navigateToHomePage,
         navigateToUserLoggedInPage,
         navigateToUserLoginPage,
         navigateToUserRegisterPage,

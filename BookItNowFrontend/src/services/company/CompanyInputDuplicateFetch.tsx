@@ -10,7 +10,7 @@ export default async function CompanyInputDuplicateFetch(companyName?: string, e
     }
 
         try{
-                console.log("SENDING", duplicateData);
+                
             const response = await fetch(`${BASE_URL}${COMPANY_INPUT_DUPLICATE_ENDPOINT}`,{
                 method: "POST",
                 headers: {

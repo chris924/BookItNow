@@ -27,12 +27,11 @@ export default async function CompanyLoginFetch(email:string, password:string): 
             
                 const data: CompanyLoginResponse = await response.json();
                     const token = data.jwt;
-                    console.log("Successfully logged in!");
-                    console.log(data);
+                    
                     return {success: true, jwt: token};
                
         }else {
-        console.log("Bad Credentials");
+        
         return {success: false, errorMessage: "Failed to fetch company login."};
         }
 

@@ -34,7 +34,7 @@ export default function CompanyCreateAppointmentPage()
        if (result.data ) {
         const appointmentResult = await CompanyAppointmentDataFetch(result.data.id);
         setCompanyAppointments(appointmentResult); 
-        console.log("XDDDDDDDDD:", appointmentResult);
+       
        }
 
       } catch (error) {

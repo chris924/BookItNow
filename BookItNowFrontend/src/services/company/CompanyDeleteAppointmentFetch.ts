@@ -22,7 +22,7 @@ export default async function CompanyDeleteAppointmentFetch(id: number): Promise
         });
 
         if (response.ok) {
-            console.log("COMPANY APPOINTMENT DELETED ID:", id);
+            
             return { success: true };
         } else {
             return { success: false, errorMessage: "Failed to fetch company data." };

@@ -10,21 +10,33 @@ import CompanyDataFetch from "../services/company/CompanyDataFetch";
 import { CompanyAppointmentFetchResponse, CompanyDataResult } from "../lib/constants/interfaces/CompanyInterfaces";
 import CompanyAppointmentDataFetch from "../services/company/CompanyAppointmentDataFetch";
 import CompanyGetAllCompanyDataFetch, { CompanyAllDataResult } from "../services/company/CompanyGetAllCompanyDataFetch";
+import { GetCookie, SetCookie } from "../utils/cookies/SetCookie";
+import AppointmentGetAllFetch, { AppointmentGetAllResult } from "../services/appointment/AppointmentGetAllFetch";
 
 export default function UserLoggedInPage(): JSX.Element
 {
   const [userData, setUserData] = useState<UserDataResult>();
   const [loading, setLoading] = useState(false);
   const [companyData, setCompanyData] = useState<CompanyAllDataResult>();
-  const [companyAppointments, setCompanyAppointments] = useState<CompanyAppointmentFetchResponse>();
+  const [companyAppointments, setCompanyAppointments] = useState<AppointmentGetAllResult>();
   
   const {navigateToMainPage} = UseNavigation();
 
 
   useEffect(() => {
 
+    
+
+
     const fetchData = async () => { 
       try {
+
+        const cookie = await GetCookie("authToken");
+        if(cookie.success === false)
+        {
+          navigateToMainPage();
+        }
+
         await new Promise(resolve => setTimeout(resolve, 1000));
         const result = await UserDataFetch();
           setUserData(result);
@@ -35,13 +47,15 @@ export default function UserLoggedInPage(): JSX.Element
         
           setCompanyData(companyResult);
         
-          
+         
       
         if(companyResult.data !== undefined)
         {
-          const companyApps = await CompanyAppointmentDataFetch(companyResult.data['0'].id);
-          setCompanyAppointments(companyApps);
          
+
+        const appointments = await AppointmentGetAllFetch();
+        setCompanyAppointments(appointments);
+ 
         }
         
         

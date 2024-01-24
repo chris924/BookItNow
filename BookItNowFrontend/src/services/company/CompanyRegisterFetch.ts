@@ -28,7 +28,7 @@ export default async function CompanyRegisterFetch(companyName: string, email: s
 
         if(response.ok)
         {
-            console.log("Successfully registered");
+          
 
 
             const data: CompanyRegisterResponse = await response.json();

@@ -21,7 +21,7 @@ export default async function CompanyAppointmentDataFetch(id: number): Promise<C
 
         if (response.ok) {
             const data: CompanyAppointmentData[] = await response.json();
-            console.log("DATA IN COMPANY APPOINTMENTS DATA a FETCH:", data);
+            
             return { success: true, data };
         } else {
             return { success: false, errorMessage: "Failed to fetch company data." };

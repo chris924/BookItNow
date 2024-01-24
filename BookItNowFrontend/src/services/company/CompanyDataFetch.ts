@@ -21,7 +21,7 @@ export default async function CompanyDataFetch(endpoint: string): Promise<Compan
 
         if (response.ok) {
             const data: CompanyDataResponse = await response.json();
-            console.log("DATA IN COMPANY DATA FETCH:", data);
+            
             return { success: true, data };
         } else {
             return { success: false, errorMessage: "Failed to fetch company data." };

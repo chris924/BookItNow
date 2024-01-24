@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import {Table,TableHeader,TableColumn,TableBody,TableRow,TableCell,Input,Button,DropdownTrigger,Dropdown,DropdownMenu,DropdownItem,User,Pagination,Selection
 } from "@nextui-org/react";
 import { VerticalDotsIcon } from "./VerticalDotsIcon";
 import { SearchIcon } from "./SearchIcon";
 import { columns, companyData } from "./data";
 import UserBookAppointment from "../UserBookAppointment";
+import { AppointmentGetAllResult } from "../../../services/appointment/AppointmentGetAllFetch";
+import { CompanyAppointmentData, CompanyDataResponse } from "../../../lib/constants/interfaces/CompanyInterfaces";
+import CompanyAppointmentDataFetch from "../../../services/company/CompanyAppointmentDataFetch";
+
+
 
 
 const INITIAL_VISIBLE_COLUMNS = ["companyName", "serviceName", "serviceDescription", "email", "actions"];
@@ -13,7 +18,7 @@ type User = typeof companyData[0];
 
 export default function App({ companyData, companyAppointments, userData}: any) {
 
- 
+ const [filteredAppointments, setFilteredAppointments] = useState<CompanyAppointmentData[]>();
 
 
   const [filterValue, setFilterValue] = React.useState("");
@@ -29,7 +34,17 @@ export default function App({ companyData, companyAppointments, userData}: any) 
 
   const hasSearchFilter = Boolean(filterValue);
 
-  const handleBookButtonClick = () => {
+  const handleBookButtonClick = async (companyId: any) => {
+
+  const response = await CompanyAppointmentDataFetch(Number(companyId));    
+    
+
+    if(response.success === true)
+    {
+      setFilteredAppointments(response.data);
+    }
+    
+
     setIsModalOpen(true);
   };
 
@@ -38,8 +53,6 @@ export default function App({ companyData, companyAppointments, userData}: any) 
   };
 
  
-
-
   const headerColumns = React.useMemo(() => {
     if (visibleColumns === "all") return columns;
 
@@ -103,8 +116,8 @@ export default function App({ companyData, companyAppointments, userData}: any) 
                   <VerticalDotsIcon />
                 </Button>
               </DropdownTrigger>
-              <DropdownMenu onAction={(key) => handleBookButtonClick()}>
-                <DropdownItem >Book</DropdownItem>
+              <DropdownMenu onAction={(e) => handleBookButtonClick(e)}>
+                <DropdownItem key={user.id}>Book</DropdownItem>
               </DropdownMenu>
             </Dropdown>
           </div>
@@ -192,7 +205,7 @@ export default function App({ companyData, companyAppointments, userData}: any) 
     <div className="overflow-x-auto overflow-y-hidden animate__animated animate__backInUp">
       
     {isModalOpen && (
-        <UserBookAppointment isOpen={isModalOpen} onClose={handleModalClose} companyAppointments={companyAppointments.data} userData={userData} />
+        <UserBookAppointment isOpen={isModalOpen} onClose={handleModalClose} companyAppointments={filteredAppointments} userData={userData} />
       )}
 <Table
       isCompact
