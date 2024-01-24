@@ -6,10 +6,11 @@ import LoadingCircle from "../components/LoadingCircle";
 import { CompanyAppointmentFetchResponse, CompanyDataResult } from "../lib/constants/interfaces/CompanyInterfaces";
 import CompanyLoggedInLayout from "../layouts/CompanyLoggedInLayout";
 import { COMPANY_DATA_ENDPOINT } from "../lib/constants/apiURL";
-import CompanyMyAppointmentsForm from "../features/company/CompanyMyAppointmentsForm";
+import CompanyMyAppointmentsForm from "../features/company/CompanyMyBookedAppointmentsForm";
 import CompanyAppointmentDataFetch from "../services/company/CompanyAppointmentDataFetch";
+import CompanyMyBookedAppointmentsForm from "../features/company/CompanyMyBookedAppointmentsForm";
 
-export default function CompanyMyAppointmentsPage(): JSX.Element
+export default function CompanyMyBookedAppointmentsPage(): JSX.Element
 {
   const [companyData, setCompanyData] = useState<CompanyDataResult>();
   const [companyAppointments, setCompanyAppointments] = useState<CompanyAppointmentFetchResponse>();
@@ -61,7 +62,7 @@ export default function CompanyMyAppointmentsPage(): JSX.Element
     return (
       <>    
       <CompanyLoggedInLayout  CompanyData={companyData.data}/>
-      <CompanyMyAppointmentsForm companyAppointments={companyAppointments.data} onAppointmentCancel={() => setCancelClickFlag((prevFlag) => !prevFlag)} />   
+      <CompanyMyBookedAppointmentsForm companyAppointments={companyAppointments.data} onAppointmentCancel={() => setCancelClickFlag((prevFlag) => !prevFlag)} />   
       </>
     );
 }

@@ -9,7 +9,7 @@ export interface CompanyMyAppointmentsFormProps {
     onAppointmentCancel: () => void;
 }
 
-export default function CompanyMyAppointmentsForm({companyAppointments, onAppointmentCancel}: CompanyMyAppointmentsFormProps)
+export default function CompanyMyBookedAppointmentsForm({companyAppointments, onAppointmentCancel}: CompanyMyAppointmentsFormProps)
 {
 
     console.log("COMPANY APPOINTMENTS:", companyAppointments);

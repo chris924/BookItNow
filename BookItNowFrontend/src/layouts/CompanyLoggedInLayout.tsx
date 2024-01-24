@@ -83,7 +83,8 @@ const CompanyLoggedInLayout: React.FC<CompanyLoggedInLayoutProps> = ({ CompanyDa
                     <p className="font-semibold">Signed in as</p>
                     <p className="font-semibold">{CompanyData['email']}</p>
                   </DropdownItem>
-                  <DropdownItem key="listappointments" onClick={() => navigateToCompanyMyAppointmentsPage()}>My Booked Appointments </DropdownItem>
+                  <DropdownItem key="listbookedappointments" onClick={() => navigateToCompanyMyAppointmentsPage()}>My Booked Appointments </DropdownItem>
+                  <DropdownItem key="listhistory">My Appointments History</DropdownItem>
                   <DropdownItem key="createappointments" onClick={() => handleCreateAppointment()}>Create Appointments</DropdownItem>
                   <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
                   <DropdownItem key="settings">My Settings</DropdownItem>
