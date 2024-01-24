@@ -6,7 +6,7 @@ export default function FAQ()
 {
     return(
         <div className="flex flex-wrap">
-      <h1>Frequently Asked Questions</h1>
+      <h1 className="text-4xl font-bold mb-8">Frequently Asked Questions</h1>
 
       {/* User FAQs */}
       <Accordion title="User" variant="shadow">

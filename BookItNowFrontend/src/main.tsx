@@ -14,6 +14,7 @@ import UserMyAppointmentsPage from './pages/UserMyAppointmentsPage';
 import CompanyMyBookedAppointmentsPage from './pages/CompanyMyBookedAppointmentsPage';
 import CompanyAppointmentHistoryPage from './pages/CompanyAppointmentHistoryPage';
 import FAQPage from './pages/FAQPage';
+import FeaturesPage from './pages/FeaturesPage';
 
 
 
@@ -28,11 +29,13 @@ export default function App() {
   <Routes>
   <Route path="/" element={<HomePage />} />
   <Route path="/faq" element={<FAQPage />} />
+  <Route path="features" element={<FeaturesPage/>}/>
   <Route path="user">
     <Route path="login" element={<UserLoginPage />} />
     <Route path="register" element={<UserRegisterPage />} />
     <Route path="home" element={<UserLoggedInPage />} />
     <Route path="my-appointments" element={<UserMyAppointmentsPage />} />
+    
   </Route>
   <Route path="company">
     <Route path="login" element={<CompanyLoginPage />} />
