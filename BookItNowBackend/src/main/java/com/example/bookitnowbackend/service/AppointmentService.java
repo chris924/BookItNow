@@ -175,6 +175,8 @@ public class AppointmentService {
         if(appointment.getUser() != null)
         {
             dto.setUserId(appointment.getUser().getUserId());
+            dto.setUserName(appointment.getUser().getName());
+            dto.setUserEmail(appointment.getUser().getEmail());
         }
         dto.setCompanyId(appointment.getCompany().getId());
         dto.setDateAndTime(appointment.getDateAndTime());

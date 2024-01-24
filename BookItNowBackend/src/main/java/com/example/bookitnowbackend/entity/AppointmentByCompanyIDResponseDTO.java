@@ -20,6 +20,12 @@ public class AppointmentByCompanyIDResponseDTO {
     @Nullable
     private Integer userId;
 
+    @Nullable
+    private String userName;
+
+    @Nullable
+    private String userEmail;
+
     private Integer companyId;
 
     private Timestamp dateAndTime;

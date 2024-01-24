@@ -90,6 +90,9 @@ export interface CompanyCreateAppointmentResponse {
 export interface CompanyAppointmentData {
     appointmentId: number;
     companyId: number;
+    userId: number;
+    userName: string;
+    userEmail: string;
     dateAndTime: Date;
   }
   
