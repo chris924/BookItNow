@@ -80,6 +80,10 @@ export default function UseNavigation()
         navigate('/user/settings');
     }
 
+    function navigateToCompanySettings()
+    {
+        navigate('/company/settings');
+    }
     
 
     
@@ -100,7 +104,8 @@ export default function UseNavigation()
         navigateToCompanyMyBookedAppointmentsPage,
         navigateToCompanyAppointmentsHistoryPage,
         navigateToFeaturesPage,
-        navigateToUserSettings
+        navigateToUserSettings,
+        navigateToCompanySettings
     }
 
     

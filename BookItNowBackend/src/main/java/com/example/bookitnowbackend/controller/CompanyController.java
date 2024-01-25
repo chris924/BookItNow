@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -115,6 +116,20 @@ public class CompanyController {
         return ResponseEntity.status(HttpStatus.OK).body(company);
     }
 
+
+    @PostMapping("/updateCompanyAvatar/{companyId}")
+    public ResponseEntity<?> UpdateUserAvatar(
+            @RequestParam("avatar") MultipartFile avatar,
+            @PathVariable Integer companyId) {
+
+        try {
+            companyService.UpdateCompanyAvatar(companyId, avatar.getBytes());
+            return ResponseEntity.status(HttpStatus.OK).body("Avatar updated successfully");
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error updating avatar");
+        }
+    }
 
 
 

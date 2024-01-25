@@ -34,6 +34,7 @@ export interface CompanyDataResponse {
     createdAt: Date;
     serviceName: string;
     serviceDescription: string;
+    avatarUrl: string;
     authorities: {
         id: number;
         authority: string;

@@ -16,6 +16,7 @@ import CompanyAppointmentHistoryPage from './pages/CompanyAppointmentHistoryPage
 import FAQPage from './pages/FAQPage';
 import FeaturesPage from './pages/FeaturesPage';
 import UserSettingsPage from './pages/UserSettingsPage';
+import CompanySettingsPage from './pages/CompanySettingsPage';
 
 
 
@@ -46,6 +47,7 @@ export default function App() {
     <Route path="create-appointment" element={<CompanyCreateAppointmentPage />} />
     <Route path="my-booked-appointments" element={<CompanyMyBookedAppointmentsPage />}></Route>
     <Route path="appointment-history" element={<CompanyAppointmentHistoryPage/>}></Route>
+    <Route path="settings" element={<CompanySettingsPage/>}></Route>
   </Route>
 </Routes>
   </main>

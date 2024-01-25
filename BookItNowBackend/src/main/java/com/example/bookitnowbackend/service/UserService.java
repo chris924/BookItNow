@@ -63,7 +63,7 @@ public class UserService {
                 throw new RuntimeException("User not found!");
             }
 
-            Path directoryPath = Paths.get("C:\\Users\\Krisz\\Desktop\\CC\\Pet Project\\BookItNow\\BookItNowBackend\\UserAvatars");
+            Path directoryPath = Paths.get("C:\\Users\\Krisz\\Desktop\\CC\\Pet Project\\BookItNow\\BookItNowBackend\\Avatars");
             String fileName = UUID.randomUUID().toString() + "_avatar.jpg";
             Path filePath = directoryPath.resolve(fileName);
 

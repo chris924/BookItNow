@@ -1,12 +1,18 @@
 package com.example.bookitnowbackend.service;
 
 import com.example.bookitnowbackend.entity.Company;
+import com.example.bookitnowbackend.entity.User;
 import com.example.bookitnowbackend.repository.ICompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class CompanyService {
@@ -70,6 +76,32 @@ public class CompanyService {
         }
 
 
+    }
+
+    public void UpdateCompanyAvatar(Integer id, byte[] avatar) {
+        try {
+            Company optionalCompany = companyRepository.findById(id).orElse(null);
+
+            if (optionalCompany == null) {
+                throw new RuntimeException("User not found!");
+            }
+
+            Path directoryPath = Paths.get("C:\\Users\\Krisz\\Desktop\\CC\\Pet Project\\BookItNow\\BookItNowBackend\\Avatars");
+            String fileName = UUID.randomUUID().toString() + "_avatar.jpg";
+            Path filePath = directoryPath.resolve(fileName);
+
+            Files.write(filePath, avatar, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+
+
+            String avatarUrl = "/uploads/avatars/" + fileName;
+
+            optionalCompany.setAvatar(avatar);
+            optionalCompany.setAvatarUrl(avatarUrl);
+            companyRepository.save(optionalCompany);
+
+        } catch (Exception e) {
+            throw new RuntimeException("Error updating company avatar", e);
+        }
     }
 
 }

@@ -20,7 +20,7 @@ import { CompanyLoggedInLayoutProps } from '../lib/constants/interfaces/CompanyI
 const CompanyLoggedInLayout: React.FC<CompanyLoggedInLayoutProps> = ({ CompanyData }) => {
 
 
-  const {navigateToMainPage, navigateToCreateAppointment, navigateToCompanyMyBookedAppointmentsPage, navigateToCompanyAppointmentsHistoryPage} = UseNavigation();
+  const {navigateToMainPage, navigateToCreateAppointment, navigateToCompanyMyBookedAppointmentsPage, navigateToCompanyAppointmentsHistoryPage, navigateToCompanySettings} = UseNavigation();
 
 
 
@@ -52,7 +52,7 @@ const CompanyLoggedInLayout: React.FC<CompanyLoggedInLayoutProps> = ({ CompanyDa
                     color="secondary"
                     name="Jason Hughes"
                     size="sm"
-                    src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+                    src={`http://localhost:8080${CompanyData.avatarUrl}`}
                   />
                 </DropdownTrigger>
                 <DropdownMenu aria-label="Profile Actions" variant="flat">
@@ -64,7 +64,7 @@ const CompanyLoggedInLayout: React.FC<CompanyLoggedInLayoutProps> = ({ CompanyDa
                   <DropdownItem key="listhistory" onClick={() => navigateToCompanyAppointmentsHistoryPage()}>My Appointments History</DropdownItem>
                   <DropdownItem key="createappointments" onClick={() => navigateToCreateAppointment()}>Create Appointments</DropdownItem>
                   <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
-                  <DropdownItem key="settings">My Settings</DropdownItem>
+                  <DropdownItem key="settings" onClick={() => navigateToCompanySettings()}>My Settings</DropdownItem>
                   <DropdownItem key="logout" color="danger" onClick={() => handleLogout()}>
                     Log Out
                   </DropdownItem>
