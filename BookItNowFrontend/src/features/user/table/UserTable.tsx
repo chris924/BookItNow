@@ -16,9 +16,9 @@ const INITIAL_VISIBLE_COLUMNS = ["companyName", "serviceName", "serviceDescripti
 
 type User = typeof companyData[0];
 
-export default function App({ companyData, companyAppointments, userData}: any) {
+export default function App({ companyData, companyAppointments, userData}: any) { //HERE companyAppointments still AppointmentGetAllResult
 
- const [filteredAppointments, setFilteredAppointments] = useState<CompanyAppointmentData[]>();
+ const [filteredAppointments, setFilteredAppointments] = useState<CompanyAppointmentData[]>([]);
 
 
   const [filterValue, setFilterValue] = React.useState("");
@@ -41,8 +41,9 @@ export default function App({ companyData, companyAppointments, userData}: any) 
 
     if(response.success === true)
     {
-      setFilteredAppointments(response.data);
+      setFilteredAppointments(response.data || []);
     }
+   
     
 
     setIsModalOpen(true);
@@ -199,7 +200,7 @@ export default function App({ companyData, companyAppointments, userData}: any) 
   );
 
 
-
+  
 
   return (
     <div className="overflow-x-auto overflow-y-hidden animate__animated animate__backInUp">

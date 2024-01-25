@@ -5,25 +5,15 @@ import { useState } from "react";
 import AppointmentAddUserFetch, { AppointmentUpdate } from "../../services/appointment/AppointmentAddUserFetch";
 import { UserDataResult } from "../../lib/constants/interfaces/UserInterfaces";
 import UseNavigation from "../../hooks/UseNavigation";
+import { CompanyAppointmentData } from "../../lib/constants/interfaces/CompanyInterfaces";
 
 
 
-export interface CompanyAppointment {
-  dateAndTime: string; 
-  appointmentId: number;
-  userId: number;
-  company: {
-    companyName: string;
-    serviceName: string;
-  };
-  id:number;
-  
-}
 
 export interface UserBookAppointmentProps {
   onClose: () => void;
   isOpen: boolean;
-  companyAppointments: CompanyAppointment[];
+  companyAppointments: CompanyAppointmentData[];
   userData: UserDataResult;
 }
 
@@ -37,7 +27,7 @@ export default function UserBookAppointment({ onClose, isOpen, companyAppointmen
 
 
 
-  const formatDateTime = (dateTimeString: string): string => {
+  const formatDateTime = (dateTimeString: Date): string => {
     const options: Intl.DateTimeFormatOptions = {
       weekday: 'long',
       year: 'numeric',
@@ -49,11 +39,11 @@ export default function UserBookAppointment({ onClose, isOpen, companyAppointmen
     return new Date(dateTimeString).toLocaleString(undefined, options);
   };
 
-  const sortAppointments = (appointments: CompanyAppointment[]) => {
+  const sortAppointments = (appointments: CompanyAppointmentData[]) => {
     
     const currentDate = new Date();
 
-    const filtered = appointments.filter((x: CompanyAppointment) => x.userId === null && new Date(x.dateAndTime) >= currentDate).sort((a: CompanyAppointment, b: CompanyAppointment) => new Date(a.dateAndTime).getTime() - new Date(b.dateAndTime).getTime());
+    const filtered = appointments.filter((x: CompanyAppointmentData) => x.userId === null && new Date(x.dateAndTime) >= currentDate).sort((a: CompanyAppointmentData, b: CompanyAppointmentData) => new Date(a.dateAndTime).getTime() - new Date(b.dateAndTime).getTime());
    
     return filtered;
   };
@@ -87,7 +77,7 @@ export default function UserBookAppointment({ onClose, isOpen, companyAppointmen
   
   const sortedAppointments = sortAppointments(companyAppointments);
 
-  
+  console.log("COMPANY APPOINTMENTS IN BOOKAPPOINTMENT:", companyAppointments);
 
   return (
     <div className="z-50">
@@ -110,7 +100,7 @@ export default function UserBookAppointment({ onClose, isOpen, companyAppointmen
                 selectedKeys={[value]}
                 onChange={handleSelectionChange}
               >
-                {sortedAppointments.map((date: CompanyAppointment): React.ReactElement => (
+                {sortedAppointments.map((date: CompanyAppointmentData): React.ReactElement => (
                   <SelectItem key={date.appointmentId} value={date.appointmentId}>
                     {formatDateTime(date.dateAndTime)}
                   </SelectItem>

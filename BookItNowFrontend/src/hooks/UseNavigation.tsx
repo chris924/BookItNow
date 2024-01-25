@@ -75,6 +75,11 @@ export default function UseNavigation()
         navigate('/company/appointment-history');
     }
 
+    function navigateToUserSettings()
+    {
+        navigate('/user/settings');
+    }
+
     
 
     
@@ -94,7 +99,8 @@ export default function UseNavigation()
         navigateToMyUserAppointments,
         navigateToCompanyMyBookedAppointmentsPage,
         navigateToCompanyAppointmentsHistoryPage,
-        navigateToFeaturesPage
+        navigateToFeaturesPage,
+        navigateToUserSettings
     }
 
     

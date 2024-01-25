@@ -3,10 +3,7 @@ package com.example.bookitnowbackend.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -19,6 +16,8 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Setter
+@Getter
 @Entity
 @Builder
 @Table(name = "users")
@@ -34,6 +33,15 @@ public class User implements UserDetails {
     private String username;
 
     private String email;
+
+    @Lob
+    @Column(name = "avatar", columnDefinition = "BLOB")
+    @JsonIgnore
+    private byte[] avatar;
+
+    @Column(name = "avatar_url")
+    private String avatarUrl;
+
 
     @JsonIgnore
     private String password;

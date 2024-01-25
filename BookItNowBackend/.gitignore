@@ -14,6 +14,8 @@ src/main/resources/secrets.properties
 .springBeans
 .sts4-cache
 
+UserAvatars
+
 ### IntelliJ IDEA ###
 .idea
 *.iws

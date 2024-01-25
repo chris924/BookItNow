@@ -96,6 +96,8 @@ export interface CompanyAppointmentData {
     dateAndTime: Date;
   }
   
+  
+
   export interface CompanyAppointmentFetchResponse {
     success: boolean;
     data?: CompanyAppointmentData[];

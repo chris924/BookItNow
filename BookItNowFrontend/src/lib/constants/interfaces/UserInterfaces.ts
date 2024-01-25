@@ -39,6 +39,7 @@ export interface UserDataResponse {
     username: string;
     email: string;
     createdAt: Date;
+    avatarUrl: string;
     appointments: any[];
     authorities: {
         id: number;
