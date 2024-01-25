@@ -46,7 +46,7 @@ public class CompanyControllerTests {
 
     @BeforeEach
     public void init() {
-        company = new Company(0, "test", "test", "test", "test", new Timestamp(System.currentTimeMillis()), "test", "test", new HashSet<>());
+        company = new Company(0, "test", "test", "test", "test", new Timestamp(System.currentTimeMillis()), "test", "test", new byte[]{1}, "test", new HashSet<>());
     }
 
     @Test
