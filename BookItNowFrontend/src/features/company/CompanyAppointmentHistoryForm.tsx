@@ -1,7 +1,5 @@
-import { Button } from "@nextui-org/button";
-import { ScrollShadow, Card, CardHeader, CardBody, Popover, PopoverTrigger, PopoverContent, Image } from "@nextui-org/react";
-import { CompanyAppointmentData, CompanyDataResult } from "../../lib/constants/interfaces/CompanyInterfaces";
-import AppointmentDeleteuserFetch from "../../services/appointment/AppointmentDeleteUserFetch";
+import { ScrollShadow, Card, CardHeader, CardBody, Image } from "@nextui-org/react";
+import { CompanyAppointmentData} from "../../lib/constants/interfaces/CompanyInterfaces";
 
 
 export interface CompanyMyAppointmentsFormProps {

@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 import LoadingCircle from "../components/LoadingCircle";
-import { companyData } from "../features/user/table/data";
 import UserLoggedInLayout from "../layouts/UserLoggedInLayout";
-import AppointmentGetAllFetch from "../services/appointment/AppointmentGetAllFetch";
-import CompanyGetAllCompanyDataFetch from "../services/company/CompanyGetAllCompanyDataFetch";
 import UserDataFetch from "../services/user/UserDataFetch";
 import { GetCookie } from "../utils/cookies/SetCookie";
 import UseNavigation from "../hooks/UseNavigation";

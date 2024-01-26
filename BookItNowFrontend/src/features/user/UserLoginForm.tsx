@@ -52,6 +52,7 @@ export default function UserLoginForm({ onBackButtonClick, onLoginClick, onWrong
           placeholder="Enter your email"
           className="max-w-[220px]"
           onChange={(e) => setEmail(e.target.value)}
+          maxLength={30}
         />
          <Input
           key="passwordInput"
@@ -61,6 +62,7 @@ export default function UserLoginForm({ onBackButtonClick, onLoginClick, onWrong
           placeholder="Enter your password"
           className="max-w-[220px]"
           onChange={(e) => setPassword(e.target.value)}
+          maxLength={30}
         />
       </div>
       

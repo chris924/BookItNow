@@ -45,6 +45,7 @@ export default function CompanyLoginForm({ onBackButtonClick, onLoginClick, onWr
           placeholder="Enter your email"
           className="max-w-[220px]"
           onChange={(e) => setEmail(e.target.value)}
+          maxLength={30}
         />
          <Input
           key="danger"
@@ -54,6 +55,7 @@ export default function CompanyLoginForm({ onBackButtonClick, onLoginClick, onWr
           placeholder="Enter your password"
           className="max-w-[220px]"
           onChange={(e) => setPassword(e.target.value)}
+          maxLength={30}
         />
       </div>
       

@@ -211,7 +211,7 @@ export default function App({ companyData, companyAppointments, userData}: any) 
 <Table
       isCompact
       removeWrapper
-      aria-label="Example table with custom cells, pagination and sorting"
+      aria-label="Example table "
       bottomContent={bottomContent}
       bottomContentPlacement="outside"
       checkboxesProps={{

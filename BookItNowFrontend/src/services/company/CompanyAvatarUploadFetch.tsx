@@ -1,5 +1,4 @@
-import { user } from "@nextui-org/theme";
-import { BASE_URL, COMPANY_UPDATE_AVATAR_ENDPOINT, USER_UPDATE_AVATAR_ENDPOINT } from "../../lib/constants/apiURL";
+import { BASE_URL, COMPANY_UPDATE_AVATAR_ENDPOINT } from "../../lib/constants/apiURL";
 import { GetCookie } from "../../utils/cookies/SetCookie";
 
 export interface CompanyAvatarInterface{

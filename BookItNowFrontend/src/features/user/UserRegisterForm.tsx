@@ -121,6 +121,7 @@ export default function UserRegisterForm({ onBackButtonClick , onRegisterClick, 
           placeholder="Enter your name"
           className="max-w-[220px]"
           onChange={(e) => setName(e.target.value)}
+          maxLength={30}
         />
         <div className="w-full flex flex-row flex-wrap gap-5 justify-center items-center ">
         <Tooltip 
@@ -148,6 +149,7 @@ export default function UserRegisterForm({ onBackButtonClick , onRegisterClick, 
           className="max-w-[220px]"
           onChange={(e) => setUsername(e.target.value)}
           onBlur={handleUsernameEmailBlur}
+          maxLength={30}
         />
     </Tooltip>
         </div>
@@ -178,6 +180,7 @@ export default function UserRegisterForm({ onBackButtonClick , onRegisterClick, 
           className="max-w-[220px]"
           onChange={(e) => setEmail(e.target.value)}
           onBlur={handleUsernameEmailBlur}
+          maxLength={30}
         />
       </Tooltip>
         </div>
@@ -191,6 +194,7 @@ export default function UserRegisterForm({ onBackButtonClick , onRegisterClick, 
               placeholder="Enter your password"
               className="max-w-[220px]"
               onChange={(e) => setPassword(e.target.value)}
+              maxLength={30}
             />
             <Input
               key="danger"
@@ -200,6 +204,7 @@ export default function UserRegisterForm({ onBackButtonClick , onRegisterClick, 
               placeholder="Retype your password"
               className="max-w-[280px]"
               onChange={(e) => setRePassword(e.target.value)}
+              maxLength={30}
             />
           </div>
         

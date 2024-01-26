@@ -50,8 +50,8 @@ const CompanyLoggedInLayout: React.FC<CompanyLoggedInLayoutProps> = ({ CompanyDa
                     as="button"
                     className="transition-transform"
                     color="secondary"
-                    name="Jason Hughes"
-                    size="sm"
+                    name=""
+                    size="md"
                     src={`http://localhost:8080${CompanyData.avatarUrl}`}
                   />
                 </DropdownTrigger>

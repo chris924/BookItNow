@@ -51,7 +51,7 @@ const UserLoggedInLayout: React.FC<UserLoggedInLayoutProps> = ({ UserData }) => 
                     as="button"
                     className="transition-transform"
                     color="secondary"
-                    name="Jason Hughes"
+                    name=""
                     size="md"
                     src={`http://localhost:8080${UserData.avatarUrl}`}
                   />

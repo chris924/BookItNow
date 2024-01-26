@@ -1,5 +1,5 @@
 import {Button} from "@nextui-org/button";
-import { Input, Tooltip } from "@nextui-org/react";
+import { Input, Textarea, Tooltip } from "@nextui-org/react";
 import "../../styles/userLoginForm.css"
 import { registerConfetti } from "../../components/Confetti";
 import { useState } from "react";
@@ -122,6 +122,7 @@ export default function CompanyRegisterForm({ onBackButtonClick , onRegisterClic
                 className="max-w-[220px]"
                 onChange={(e) => setCompanyName(e.target.value)}
                 onBlur={handleCompanyNameEmailBlur}
+                maxLength={30}
               />
             </Tooltip>
           </div>
@@ -152,21 +153,21 @@ export default function CompanyRegisterForm({ onBackButtonClick , onRegisterClic
                 className="max-w-[220px]"
                 onChange={(e) => setEmail(e.target.value)}
                 onBlur={handleCompanyNameEmailBlur}
+                maxLength={30}
               />
             </Tooltip>
           </div>
         
   
         <div className="w-full flex flex-row flex-wrap gap-5 justify-center items-center">
-          <Input
-            key="description"
-            type="description"
-            color="primary"
-            label="Description"
-            placeholder="Enter your company description"
-            className="max-w-[220px]"
-            onChange={(e) => setDescription(e.target.value)}
-          />
+          <Textarea
+      label="Company Description"
+      placeholder="Enter some basic information about your Company"
+      className="max-w-xs"
+      color="warning"
+      maxLength={100}
+      onChange={(e) => setAppServiceDescription(e.target.value)}
+    />
         </div>
 
         <div className="w-full flex flex-row flex-wrap gap-5 justify-center items-center">
@@ -177,22 +178,23 @@ export default function CompanyRegisterForm({ onBackButtonClick , onRegisterClic
             label="Service name"
             placeholder="Enter your service name"
             className="max-w-[220px]"
+            maxLength={30}
             onChange={(e) => setAppServiceName(e.target.value)}
           />
         </div>
 
 
         <div className="w-full flex flex-row flex-wrap gap-5 justify-center items-center">
-          <Input
-            key="appServiceDescription"
-            type="servicedescription"
-            color="warning"
-            label="Service description"
-            placeholder="Enter your service description"
-            className="max-w-[220px]"
-            onChange={(e) => setAppServiceDescription(e.target.value)}
-          />
+           <Textarea
+      label="Service Description"
+      placeholder="Enter your Service description"
+      className="max-w-xs"
+      color="warning"
+      maxLength={100}
+      onChange={(e) => setAppServiceDescription(e.target.value)}
+    />
         </div>
+       
   
         <div className="flex flex-row gap-5">
           <Input
@@ -203,6 +205,7 @@ export default function CompanyRegisterForm({ onBackButtonClick , onRegisterClic
             placeholder="Enter your password"
             className="max-w-[220px]"
             onChange={(e) => setPassword(e.target.value)}
+            maxLength={30}
           />
           <Input
             key="repassword"
@@ -212,6 +215,7 @@ export default function CompanyRegisterForm({ onBackButtonClick , onRegisterClic
             placeholder="Retype your password"
             className="max-w-[280px]"
             onChange={(e) => setRePassword(e.target.value)}
+            maxLength={30}
           />
         </div>
   

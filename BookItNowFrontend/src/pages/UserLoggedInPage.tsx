@@ -5,12 +5,8 @@ import UserDataFetch from '../services/user/UserDataFetch';
 import LoadingCircle from "../components/LoadingCircle";
 import { UserDataResult } from "../lib/constants/interfaces/UserInterfaces";
 import UserTable from "../features/user/table/UserTable";
-import { USER_COMPANY_DATA_ENDPOINT } from "../lib/constants/apiURL";
-import CompanyDataFetch from "../services/company/CompanyDataFetch";
-import { CompanyAppointmentFetchResponse, CompanyDataResult } from "../lib/constants/interfaces/CompanyInterfaces";
-import CompanyAppointmentDataFetch from "../services/company/CompanyAppointmentDataFetch";
 import CompanyGetAllCompanyDataFetch, { CompanyAllDataResult } from "../services/company/CompanyGetAllCompanyDataFetch";
-import { GetCookie, SetCookie } from "../utils/cookies/SetCookie";
+import { GetCookie} from "../utils/cookies/SetCookie";
 import AppointmentGetAllFetch, { AppointmentGetAllResult } from "../services/appointment/AppointmentGetAllFetch";
 
 export default function UserLoggedInPage(): JSX.Element

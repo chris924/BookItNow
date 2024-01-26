@@ -6,7 +6,6 @@ import LoadingCircle from "../components/LoadingCircle";
 import { CompanyAppointmentFetchResponse, CompanyDataResult } from "../lib/constants/interfaces/CompanyInterfaces";
 import CompanyLoggedInLayout from "../layouts/CompanyLoggedInLayout";
 import { COMPANY_DATA_ENDPOINT } from "../lib/constants/apiURL";
-import CompanyMyAppointmentsForm from "../features/company/CompanyMyBookedAppointmentsForm";
 import CompanyAppointmentDataFetch from "../services/company/CompanyAppointmentDataFetch";
 import CompanyMyBookedAppointmentsForm from "../features/company/CompanyMyBookedAppointmentsForm";
 

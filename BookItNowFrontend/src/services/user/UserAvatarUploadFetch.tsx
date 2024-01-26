@@ -1,4 +1,3 @@
-import { user } from "@nextui-org/theme";
 import { BASE_URL, USER_UPDATE_AVATAR_ENDPOINT } from "../../lib/constants/apiURL";
 import { GetCookie } from "../../utils/cookies/SetCookie";
 

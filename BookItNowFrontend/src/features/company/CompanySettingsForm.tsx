@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import { Button, Card, CardBody } from "@nextui-org/react";
-import { UserDataResult } from "../../lib/constants/interfaces/UserInterfaces";
-import UserAvatarUploadFetch from "../../services/user/UserAvatarUploadFetch";
-import UseNavigation from "../../hooks/UseNavigation";
 import { useNavigate } from "react-router-dom";
 import CompanyAvatarUploadFetch from "../../services/company/CompanyAvatarUploadFetch";
 import { CompanyDataResult } from "../../lib/constants/interfaces/CompanyInterfaces";
