@@ -1,8 +1,7 @@
 import { Card, CardHeader, CardBody, Image, Button, ScrollShadow, Popover, PopoverTrigger, PopoverContent, Pagination, PaginationItem } from "@nextui-org/react";
-import { UserDataResult } from "../../lib/constants/interfaces/UserInterfaces";
+import { User, UserDataResult } from "../../lib/constants/interfaces/UserInterfaces";
 import AppointmentDeleteuserFetch from "../../services/appointment/AppointmentDeleteUserFetch";
 import 'animate.css';
-import { CompanyAppointment } from "./UserBookAppointment";
 import { useEffect, useState } from "react";
 
 export interface UserMyAppointmentsFormProps
@@ -71,14 +70,17 @@ export default function UserMyAppointmentsForm({ userData, onAppointmentCancel }
     }
   };
 
-  const sortAppointments = (appointments: CompanyAppointment[]) => {
+  const sortAppointments = (appointments: User[]) => {
     const filtered = appointments.filter((x) => new Date(x.dateAndTime) > currentDate);
-    return filtered.sort((a: CompanyAppointment, b: CompanyAppointment) => new Date(a.dateAndTime).getTime() - new Date(b.dateAndTime).getTime());
+    return filtered.sort((a: User, b: User) => new Date(a.dateAndTime).getTime() - new Date(b.dateAndTime).getTime());
   };
 
   const startIndex = (currentPage - 1) * rowsPerPage;
   const endIndex = startIndex + rowsPerPage;
   const visibleAppointments = sortAppointments(userData.appointments).slice(startIndex, endIndex);
+
+
+  console.log("XDDD", userData.appointments);
 
 
   return (
@@ -90,7 +92,7 @@ export default function UserMyAppointmentsForm({ userData, onAppointmentCancel }
         <div>
         <ScrollShadow hideScrollBar className="max-h-screen">
           <div className=" p-4 space-y-4">
-            {visibleAppointments.map((appointment: CompanyAppointment, index: number) => {
+            {visibleAppointments.map((appointment: User, index: number) => {
               const animationClass = index % 2 === 0 ? 'animate__animated animate__backInLeft' : 'animate__animated animate__backInRight';
   
               return (
