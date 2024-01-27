@@ -77,7 +77,8 @@ export default function UserMyAppointmentsForm({ userData, onAppointmentCancel }
 
   const startIndex = (currentPage - 1) * rowsPerPage;
   const endIndex = startIndex + rowsPerPage;
-  const visibleAppointments = sortAppointments(userData.appointments).slice(startIndex, endIndex);
+  const totalAppointments = sortAppointments(userData.appointments)
+  const visibleAppointments = totalAppointments.slice(startIndex, endIndex);
 
 
 
@@ -87,7 +88,7 @@ export default function UserMyAppointmentsForm({ userData, onAppointmentCancel }
     <>
    
       {userData.appointments.length === 0 ? (
-        <div className="flex justify-center m-10 font-bold text-lg font-sans text-gray-1500">Here will be your active and booked appointments</div>
+        <div className="flex justify-center m-10 font-bold text-lg font-sans text-gray-1500">Here will be your active and booked appointments.</div>
       ) : (
         <div>
         <ScrollShadow hideScrollBar className="max-h-screen">
@@ -132,7 +133,7 @@ export default function UserMyAppointmentsForm({ userData, onAppointmentCancel }
          <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 p-4 shadow-md">
          <Pagination
            showControls
-           total={Math.ceil(userData.appointments.length / rowsPerPage)}
+           total={Math.ceil(totalAppointments.length / rowsPerPage)}
            page={currentPage}
            initialPage={currentPage}
            onChange={(page) => setCurrentPage(page)}

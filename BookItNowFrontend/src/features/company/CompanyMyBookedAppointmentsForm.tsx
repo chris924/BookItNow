@@ -80,7 +80,8 @@ export default function CompanyMyBookedAppointmentsForm({companyAppointments, on
 
       const startIndex = (currentPage - 1) * rowsPerPage;
   const endIndex = startIndex + rowsPerPage;
-  const visibleAppointments = sortAppointments(companyAppointments).slice(startIndex, endIndex);
+  const totalAppointments = sortAppointments(companyAppointments);
+  const visibleAppointments = totalAppointments.slice(startIndex, endIndex);
 
   
    
@@ -90,7 +91,7 @@ export default function CompanyMyBookedAppointmentsForm({companyAppointments, on
 
 
 {companyAppointments.length === 0 ? (
-        <div className="flex justify-center m-10 font-bold text-lg font-sans text-gray-1500">Here will be your active and booked appointments</div>
+        <div className="flex justify-center m-10 font-bold text-lg font-sans text-gray-1500">Here will be your active and booked appointments.</div>
       ) : (
         <div>
       <ScrollShadow hideScrollBar className="max-h-screen">
@@ -101,7 +102,7 @@ export default function CompanyMyBookedAppointmentsForm({companyAppointments, on
           return (
             
             <div key={appointment.appointmentId} className={` flex flex-row justify-center ${animationClass}`}>
-              <Card className=" py-4 mx-2">
+              <Card className="py-4 mx-2 w-full md:w-1/2 lg:w-1/3 xl:w-1/4">
                 <CardHeader className="pb-0 pt-2 px-4 flex-col items-start ">
                   <p className="text-tiny uppercase font-bold">{appointment.userName}</p>
                   <small className="text-default-500">{appointment.userEmail}</small>
@@ -134,7 +135,7 @@ export default function CompanyMyBookedAppointmentsForm({companyAppointments, on
         <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 p-4 shadow-md">
          <Pagination
            showControls
-           total={Math.ceil(companyAppointments.length / rowsPerPage)}
+           total={Math.ceil(totalAppointments.length / rowsPerPage)}
            page={currentPage}
            initialPage={currentPage}
            onChange={(page) => setCurrentPage(page)}
