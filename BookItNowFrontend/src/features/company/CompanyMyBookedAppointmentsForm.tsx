@@ -1,7 +1,8 @@
 import { Button } from "@nextui-org/button";
-import { ScrollShadow, Card, CardHeader, CardBody, Popover, PopoverTrigger, PopoverContent, Image } from "@nextui-org/react";
+import { ScrollShadow, Card, CardHeader, CardBody, Popover, PopoverTrigger, PopoverContent, Image, Pagination } from "@nextui-org/react";
 import { CompanyAppointmentData } from "../../lib/constants/interfaces/CompanyInterfaces";
 import AppointmentDeleteuserFetch from "../../services/appointment/AppointmentDeleteUserFetch";
+import { useEffect, useState } from "react";
 
 
 export interface CompanyMyAppointmentsFormProps {
@@ -12,7 +13,37 @@ export interface CompanyMyAppointmentsFormProps {
 export default function CompanyMyBookedAppointmentsForm({companyAppointments, onAppointmentCancel}: CompanyMyAppointmentsFormProps)
 {
 
-    console.log("COMPANY APPOINTMENTS:", companyAppointments);
+  const [currentPage, setCurrentPage] = useState(1);
+  const calculateRowsPerPage = () => {
+    const screenHeight = window.innerHeight;
+    if (screenHeight < 680) {
+      return 2; 
+    } else if (screenHeight < 900) {
+      return 3; 
+    } else if (screenHeight < 1046) {
+      return 4; 
+    } else if (screenHeight < 1229)
+      {
+      return 5; 
+    }
+    else
+    {
+      return 6;
+    }
+  };
+   
+  const [rowsPerPage, setRowsPerPage] = useState(calculateRowsPerPage);
+
+  const handleResize = () => {
+    setRowsPerPage(calculateRowsPerPage());
+  };
+  
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+
 
     const currentDate = new Date();
 
@@ -40,27 +71,35 @@ export default function CompanyMyBookedAppointmentsForm({companyAppointments, on
     };
   
     const sortAppointments = (appointments: CompanyAppointmentData[]) => {
-      return appointments.sort((a: CompanyAppointmentData, b: CompanyAppointmentData) => new Date(a.dateAndTime).getTime() - new Date(b.dateAndTime).getTime());
+      const filtered = appointments.filter((x) =>  new Date(x.dateAndTime) > currentDate && x.userId !== null)
+      
+      return filtered.sort((a: CompanyAppointmentData, b: CompanyAppointmentData) => new Date(a.dateAndTime).getTime() - new Date(b.dateAndTime).getTime());
     };
   
-    const appointmentsWithCancel = sortAppointments(companyAppointments).filter(
-        (appointment: any) => {
-         
-         const filtered =  new Date(appointment.dateAndTime) >= currentDate && appointment.userId !== null;
-       
-         return filtered;
-        }
-      );
+   
+
+      const startIndex = (currentPage - 1) * rowsPerPage;
+  const endIndex = startIndex + rowsPerPage;
+  const visibleAppointments = sortAppointments(companyAppointments).slice(startIndex, endIndex);
+
   
    
     return (
       <>
+
+
+
+{companyAppointments.length === 0 ? (
+        <div className="flex justify-center m-10 font-bold text-lg font-sans text-gray-1500">Here will be your active and booked appointments</div>
+      ) : (
+        <div>
       <ScrollShadow hideScrollBar className="max-h-screen">
-      <div className="mb-12 p-8 space-y-6" >
-        {appointmentsWithCancel.map((appointment: CompanyAppointmentData, index: number) => {
+      <div className="mb-12 p-4 space-y-4" >
+        {visibleAppointments.map((appointment: CompanyAppointmentData, index: number) => {
           const animationClass = index % 2 === 0 ? 'animate__animated animate__backInLeft' : 'animate__animated animate__backInRight';
   
           return (
+            
             <div key={appointment.appointmentId} className={` flex flex-row justify-center ${animationClass}`}>
               <Card className=" py-4 mx-2">
                 <CardHeader className="pb-0 pt-2 px-4 flex-col items-start ">
@@ -92,6 +131,22 @@ export default function CompanyMyBookedAppointmentsForm({companyAppointments, on
         })}
         </div>
         </ScrollShadow>
-      </>
+        <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 p-4 shadow-md">
+         <Pagination
+           showControls
+           total={Math.ceil(companyAppointments.length / rowsPerPage)}
+           page={currentPage}
+           initialPage={currentPage}
+           onChange={(page) => setCurrentPage(page)}
+           />
+
+        
+    
+      </div>
+      </div>
+      )}
+      </>     
     );
 }
+
+

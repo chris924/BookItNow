@@ -80,7 +80,7 @@ export default function UserMyAppointmentsForm({ userData, onAppointmentCancel }
   const visibleAppointments = sortAppointments(userData.appointments).slice(startIndex, endIndex);
 
 
-  console.log("XDDD", userData.appointments);
+
 
 
   return (
