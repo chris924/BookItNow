@@ -72,15 +72,13 @@ export default function UserMyAppointmentsForm({ userData, onAppointmentCancel }
   };
 
   const sortAppointments = (appointments: CompanyAppointment[]) => {
-    const mapped = appointments.map((x) => ({ ...x, dateAndTime: new Date(x.dateAndTime) }));
-    return mapped.sort((a: CompanyAppointment, b: CompanyAppointment) => new Date(b.dateAndTime).getTime() - new Date(a.dateAndTime).getTime());
+    const filtered = appointments.filter((x) => new Date(x.dateAndTime) > currentDate);
+    return filtered.sort((a: CompanyAppointment, b: CompanyAppointment) => new Date(a.dateAndTime).getTime() - new Date(b.dateAndTime).getTime());
   };
 
   const startIndex = (currentPage - 1) * rowsPerPage;
   const endIndex = startIndex + rowsPerPage;
   const visibleAppointments = sortAppointments(userData.appointments).slice(startIndex, endIndex);
-
-
 
 
   return (
@@ -105,7 +103,7 @@ export default function UserMyAppointmentsForm({ userData, onAppointmentCancel }
                     </CardHeader>
                     <CardBody className="overflow-visible py-2">
                       <Image alt="Card background" className="object-cover rounded-xl" src="/images/hero-card-complete.jpeg" width={270} />
-                      {appointment.dateAndTime.getTime() > currentDate.getTime() &&
+                      
                       <Popover backdrop="blur">
                         <PopoverTrigger>
                           <Button color="danger">Cancel</Button>
@@ -120,7 +118,7 @@ export default function UserMyAppointmentsForm({ userData, onAppointmentCancel }
                           </div>  
                         </PopoverContent> 
                       </Popover>
-            }
+            
                     </CardBody>
                   </Card>
                 </div>
