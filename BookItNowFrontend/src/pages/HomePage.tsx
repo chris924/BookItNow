@@ -3,6 +3,7 @@ import RootLayout from "../layouts/RootLayout";
 import { GetCookie, RemoveCookie, decodeJwt } from "../utils/cookies/SetCookie";
 import UseNavigation from "../hooks/UseNavigation";
 import LoadingCircle from "../components/LoadingCircle";
+import HomePageForm from "../components/HomePageForm";
 
 export default function HomePage() {
   const [userRole, setUserRole] = useState<string | null>(null);
@@ -61,7 +62,7 @@ export default function HomePage() {
     <>
       {userRole === "USER" && navigateToUserLoggedInPage()}
       {userRole === "COMPANY" && navigateToCompanyLoggedInPage()}
-      {userRole === "NONE" && <RootLayout />}
+      {userRole === "NONE" && <><RootLayout /> <HomePageForm/></>}
     </>
   );
 }

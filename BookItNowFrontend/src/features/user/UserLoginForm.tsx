@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import {Button} from "@nextui-org/button";
 import { Input } from "@nextui-org/react";
-import "../../styles/userLoginForm.css"
 import BadCredentials from "../../components/BadCredentials";
 import { UserLoginFormProps } from "../../lib/constants/interfaces/UserInterfaces";
 import 'animate.css';

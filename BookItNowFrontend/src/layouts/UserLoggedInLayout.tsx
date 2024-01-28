@@ -15,7 +15,7 @@ import {
 import { RemoveCookie } from '../utils/cookies/SetCookie';
 import UseNavigation from '../hooks/UseNavigation';
 import { UserLoggedInLayoutProps } from '../lib/constants/interfaces/UserInterfaces';
-
+import navbarIcon from "../styles/images/navbaricon.png";
 
 const UserLoggedInLayout: React.FC<UserLoggedInLayoutProps> = ({ UserData }) => {
 
@@ -37,6 +37,7 @@ const UserLoggedInLayout: React.FC<UserLoggedInLayoutProps> = ({ UserData }) => 
         {UserData && typeof UserData !== 'boolean' && (
           <Navbar>
             <NavbarBrand>
+            <img src={navbarIcon} alt="Navbar Icon" className=" h-12" />
             <Link href="#" onClick={() => navigateToMainPage()} className="font-bold text-inherit">
                  BookItNow
             </Link>

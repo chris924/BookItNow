@@ -1,7 +1,6 @@
 import { useState } from "react";
 import {Button} from "@nextui-org/button";
 import { Input, Link, Popover, PopoverContent, PopoverTrigger } from "@nextui-org/react";
-import "../../styles/userLoginForm.css"
 import BadCredentials from "../../components/BadCredentials";
 import { CompanyLoginFormProps } from "../../lib/constants/interfaces/CompanyInterfaces";
 import UseNavigation from "../../hooks/UseNavigation";

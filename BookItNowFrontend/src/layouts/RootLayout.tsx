@@ -1,6 +1,8 @@
 
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button} from "@nextui-org/react";
 import UseNavigation from "../hooks/UseNavigation";
+import navbarIcon from "../styles/images/navbaricon.png";
+
 
 export default function App() {
 
@@ -11,9 +13,11 @@ export default function App() {
   return (
     <Navbar>
       <NavbarBrand>
+      <img src={navbarIcon} alt="Navbar Icon" className=" h-12" />
       <Link href="#" onClick={() => navigateToHomePage()} className="font-bold text-inherit">
                  BookItNow
             </Link>
+       
       </NavbarBrand>
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarItem>

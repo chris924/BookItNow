@@ -1,6 +1,5 @@
 import {Button} from "@nextui-org/button";
 import { Input, Tooltip } from "@nextui-org/react";
-import "../../styles/userLoginForm.css"
 import { registerConfetti } from "../../components/Confetti";
 import { useEffect, useState } from "react";
 import { UserRegisterFormProps } from "../../lib/constants/interfaces/UserInterfaces";
