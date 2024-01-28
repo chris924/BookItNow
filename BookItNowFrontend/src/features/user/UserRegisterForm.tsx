@@ -104,7 +104,7 @@ export default function UserRegisterForm({ onBackButtonClick , onRegisterClick, 
     return (
         <div className="flex justify-center items-center h-screen overflow-hidden">
     <div className="w-full max-w-[450px] space-y-4 overflow-hidden">
-    <div className="flex justify-center text-xl font-semibold text-blue-600/75 dark:text-blue-500/75 animate__animated animate__bounceInLeft">Register</div>
+    <div className="flex justify-center text-xl font-semibold text-blue-600/75 dark:text-blue-500/75 animate__animated animate__bounceInLeft">User Register</div>
       {registerResult && (<>
       <div className="flex justify-center">
       <Button color="success">Succesfully Registered</Button>

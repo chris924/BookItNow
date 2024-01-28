@@ -4,33 +4,16 @@ import UseNavigation from "../hooks/UseNavigation";
 
 export default function App() {
 
-  const {navigateToUserLoginPage, navigateToUserRegisterPage, navigateToCompanyLoginPage, navigateToFAQPage, navigateToFeaturesPage} = UseNavigation();
+  const {navigateToUserLoginPage, navigateToUserRegisterPage, navigateToCompanyLoginPage, navigateToFAQPage, navigateToFeaturesPage, navigateToHomePage} = UseNavigation();
  
-
-
-  function handleLoginClick()
-  {
-    
-    navigateToUserLoginPage();
-  }
-
-  function handleRegisterClick()
-  {
-    
-    navigateToUserRegisterPage();
-  }
-
-  function handleCompaniesClick()
-  {
-    navigateToCompanyLoginPage()
-  }
-
 
 
   return (
     <Navbar>
       <NavbarBrand>
-      <a className="font-bold text-inherit">BookItNow</a>
+      <Link href="#" onClick={() => navigateToHomePage()} className="font-bold text-inherit">
+                 BookItNow
+            </Link>
       </NavbarBrand>
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarItem>
@@ -44,19 +27,19 @@ export default function App() {
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="#" onClick={() => handleCompaniesClick()}>
+          <Link color="foreground" href="#" onClick={() => navigateToCompanyLoginPage()}>
             For Companies
           </Link>
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
       <NavbarItem>
-          <Button as={Link} color="primary" variant="flat" onClick={() => handleLoginClick()}>
+          <Button as={Link} color="primary" variant="flat" onClick={() => navigateToUserLoginPage()}>
             Log in
           </Button>
         </NavbarItem>
         <NavbarItem>
-          <Button as={Link}  color="primary" variant="flat" onClick={() => handleRegisterClick()}>
+          <Button as={Link}  color="primary" variant="flat" onClick={() => navigateToUserRegisterPage()}>
             Sign Up
           </Button>
         </NavbarItem>

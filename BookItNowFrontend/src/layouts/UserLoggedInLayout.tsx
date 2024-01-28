@@ -37,7 +37,9 @@ const UserLoggedInLayout: React.FC<UserLoggedInLayoutProps> = ({ UserData }) => 
         {UserData && typeof UserData !== 'boolean' && (
           <Navbar>
             <NavbarBrand>
-              <p className="font-bold text-inherit">BookItNow</p>
+            <Link href="#" onClick={() => navigateToMainPage()} className="font-bold text-inherit">
+                 BookItNow
+            </Link>
             </NavbarBrand>
   
             <NavbarContent className="hidden sm:flex gap-4" justify="center">

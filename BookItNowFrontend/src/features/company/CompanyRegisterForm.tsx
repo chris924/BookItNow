@@ -83,7 +83,7 @@ export default function CompanyRegisterForm({ onBackButtonClick , onRegisterClic
     <div className="flex justify-center items-center h-screen">
       <div className="w-full max-w-[450px] space-y-4">
         <div className="flex justify-center text-xl font-semibold text-blue-600/75 dark:text-blue-500/75 animate__animated animate__bounceInLeft">
-          Register
+          Company Register
         </div>
   
         {registerResult && (
@@ -166,7 +166,7 @@ export default function CompanyRegisterForm({ onBackButtonClick , onRegisterClic
       className="max-w-xs"
       color="warning"
       maxLength={100}
-      onChange={(e) => setAppServiceDescription(e.target.value)}
+      onChange={(e) => setDescription(e.target.value)}
     />
         </div>
 
