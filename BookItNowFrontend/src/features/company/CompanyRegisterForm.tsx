@@ -79,7 +79,7 @@ export default function CompanyRegisterForm({ onBackButtonClick , onRegisterClic
 
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center h-screen overflow-hidden">
       <div className="w-full max-w-[450px] space-y-4">
         <div className="flex justify-center text-xl font-semibold text-blue-600/75 dark:text-blue-500/75 animate__animated animate__bounceInLeft">
           Company Register

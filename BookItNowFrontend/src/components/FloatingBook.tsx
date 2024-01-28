@@ -31,7 +31,7 @@ const FloatingBook = () => {
         <img
           src={FloatingBookImage}
           alt="Floating Book"
-          style={{ width: '35%', height: 'auto' }}
+          style={{ width: '65%', height: 'auto' }}
         />
       </motion.div>
     );
