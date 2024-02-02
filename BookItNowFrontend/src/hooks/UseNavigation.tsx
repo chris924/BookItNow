@@ -84,6 +84,11 @@ export default function UseNavigation()
     {
         navigate('/company/settings');
     }
+
+    function navigateToGitHubRepository()
+    {
+        window.open('https://github.com/chris924/BookItNow', '_blank');
+    }
     
 
     
@@ -105,7 +110,8 @@ export default function UseNavigation()
         navigateToCompanyAppointmentsHistoryPage,
         navigateToFeaturesPage,
         navigateToUserSettings,
-        navigateToCompanySettings
+        navigateToCompanySettings,
+        navigateToGitHubRepository
     }
 
     

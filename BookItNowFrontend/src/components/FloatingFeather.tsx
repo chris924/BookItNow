@@ -2,13 +2,15 @@ import { motion, useAnimation } from "framer-motion"
 import { useEffect } from "react";
 import FeatherImage from "../styles/images/feather.png"
 
+
+
 const FloatingFeather = () => {
 
     const controls = useAnimation();
 
     const animate = () => {
         controls.start({
-            y: ['0%', '20%', '0%'],
+            y: ['0%', '25%', '0%'],
             transition: {
                 y: {
                     duration: 5,
@@ -21,9 +23,12 @@ const FloatingFeather = () => {
         })
     }
 
+    
+
     useEffect(() => {
         animate()
     }, [])
+
 
 
     return(
