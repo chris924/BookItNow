@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  MySQL-DB:
+  mysql:
     image: mysql:latest
     environment:
       - MYSQL_DATABASE=${MYSQL_DATABASE}
@@ -19,9 +19,17 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - MySQL-DB
+      - mysql
     environment:
       - SPRING_DATASOURCE_URL=${SPRING_DATASOURCE_URL}
       - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
       - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
       - SPRING_JPA_HIBERNATE_DDL_AUTO=${SPRING_JPA_HIBERNATE_DDL_AUTO}
+
+  BookItNowFrontend:
+    image: bookitnowfrontend:latest
+    build:
+      context: BookItNowFrontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
