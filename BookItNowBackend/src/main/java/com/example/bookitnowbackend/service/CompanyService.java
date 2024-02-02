@@ -95,7 +95,6 @@ public class CompanyService {
 
             String avatarUrl = "/uploads/avatars/" + fileName;
 
-            optionalCompany.setAvatar(avatar);
             optionalCompany.setAvatarUrl(avatarUrl);
             companyRepository.save(optionalCompany);
 

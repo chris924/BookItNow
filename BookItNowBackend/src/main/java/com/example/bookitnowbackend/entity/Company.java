@@ -38,10 +38,6 @@ public class Company implements UserDetails {
 
     private String serviceDescription;
 
-    @Lob
-    @Column(name = "avatar", columnDefinition = "BLOB")
-    @JsonIgnore
-    private byte[] avatar;
 
     @Column(name = "avatar_url")
     private String avatarUrl;

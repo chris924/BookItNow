@@ -22,7 +22,7 @@ public class CompanyRepositoryTests {
     private ICompanyRepository companyRepository;
 
     private final Company testCompany = new Company(1, "test", "test", "test",
-            "test",  new Timestamp(System.currentTimeMillis()), "test", "test",new byte[]{1}, "test", new HashSet<>());
+            "test",  new Timestamp(System.currentTimeMillis()), "test", "test", "test", new HashSet<>());
 
     @Test
     public void CompanyRepository_GetCompanyByEmail_ReturnCompany()

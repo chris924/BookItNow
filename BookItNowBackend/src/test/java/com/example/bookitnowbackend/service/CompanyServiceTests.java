@@ -32,7 +32,7 @@ public class CompanyServiceTests {
     public void CompanyService_SaveCompany_ReturnCompany()
     {
         Company testCompany = new Company(0, "test", "test", "test", "test",
-                new Timestamp(System.currentTimeMillis()), "test", "test",new byte[]{1}, "test", new HashSet<>());
+                new Timestamp(System.currentTimeMillis()), "test", "test", "test", new HashSet<>());
 
         when(companyRepository.save(Mockito.any(Company.class))).thenReturn(testCompany);
 

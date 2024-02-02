@@ -72,7 +72,6 @@ public class UserService {
 
             String avatarUrl = "/uploads/avatars/" + fileName;
 
-            optionalUser.setAvatar(avatar);
             optionalUser.setAvatarUrl(avatarUrl);
             userRepository.save(optionalUser);
 

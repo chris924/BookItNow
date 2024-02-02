@@ -34,10 +34,6 @@ public class User implements UserDetails {
 
     private String email;
 
-    @Lob
-    @Column(name = "avatar", columnDefinition = "BLOB")
-    @JsonIgnore
-    private byte[] avatar;
 
     @Column(name = "avatar_url")
     private String avatarUrl;
