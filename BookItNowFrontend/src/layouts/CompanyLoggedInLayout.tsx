@@ -63,12 +63,12 @@ const CompanyLoggedInLayout: React.FC<CompanyLoggedInLayoutProps> = ({ CompanyDa
                     <p className="font-semibold">Signed in as</p>
                     <p className="font-semibold">{CompanyData['email']}</p>
                   </DropdownItem>
-                  <DropdownItem key="listbookedappointments" onClick={() => navigateToCompanyMyBookedAppointmentsPage()}>My Booked Appointments </DropdownItem>
-                  <DropdownItem key="listhistory" onClick={() => navigateToCompanyAppointmentsHistoryPage()}>My Appointments History</DropdownItem>
-                  <DropdownItem key="createappointments" onClick={() => navigateToCreateAppointment()}>Create Appointments</DropdownItem>
-                  <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
-                  <DropdownItem key="settings" onClick={() => navigateToCompanySettings()}>My Settings</DropdownItem>
-                  <DropdownItem key="logout" color="danger" onClick={() => handleLogout()}>
+                  <DropdownItem className="cursor-pointer" key="listbookedappointments" onClick={() => navigateToCompanyMyBookedAppointmentsPage()}>My Booked Appointments </DropdownItem>
+                  <DropdownItem className="cursor-pointer" key="listhistory" onClick={() => navigateToCompanyAppointmentsHistoryPage()}>My Appointments History</DropdownItem>
+                  <DropdownItem className="cursor-pointer" key="createappointments" onClick={() => navigateToCreateAppointment()}>Create Appointments</DropdownItem>
+                  <DropdownItem className="cursor-pointer" key="help_and_feedback">Help & Feedback</DropdownItem>
+                  <DropdownItem className="cursor-pointer" key="settings" onClick={() => navigateToCompanySettings()}>My Settings</DropdownItem>
+                  <DropdownItem className="cursor-pointer" key="logout" color="danger" onClick={() => handleLogout()}>
                     Log Out
                   </DropdownItem>
                 </DropdownMenu>

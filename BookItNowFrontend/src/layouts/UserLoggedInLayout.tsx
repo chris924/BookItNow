@@ -64,11 +64,11 @@ const UserLoggedInLayout: React.FC<UserLoggedInLayoutProps> = ({ UserData }) => 
                     <p className="font-semibold">Signed in as</p>
                     <p className="font-semibold">{UserData['name']}</p>
                   </DropdownItem>
-                  <DropdownItem key="settings" onClick={() => navigateToMainPage()}>Search Companies</DropdownItem>
-                  <DropdownItem key="appointments" onClick={() => navigateToMyUserAppointments()}>My Appointments</DropdownItem>
-                  <DropdownItem key="settings" onClick={() => navigateToUserSettings()}>My Settings</DropdownItem>
-                  <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
-                  <DropdownItem key="logout" color="danger" onClick={() => handleLogout()}>
+                  <DropdownItem className="cursor-pointer" key="settings" onClick={() => navigateToMainPage()}>Search Companies</DropdownItem>
+                  <DropdownItem className="cursor-pointer" key="appointments" onClick={() => navigateToMyUserAppointments()}>My Appointments</DropdownItem>
+                  <DropdownItem className="cursor-pointer" key="settings" onClick={() => navigateToUserSettings()}>My Settings</DropdownItem>
+                  <DropdownItem className="cursor-pointer" key="help_and_feedback">Help & Feedback</DropdownItem>
+                  <DropdownItem className="cursor-pointer" key="logout" color="danger" onClick={() => handleLogout()}>
                     Log Out
                   </DropdownItem>
                 </DropdownMenu>
