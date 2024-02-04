@@ -33,7 +33,7 @@ const CompanyLoggedInLayout: React.FC<CompanyLoggedInLayoutProps> = ({ CompanyDa
 
     return (
       <>
-      <div onClick={() => {}} /* Empty onclick to ensure a mouse event handler is set */>
+      
         {CompanyData && typeof CompanyData !== 'boolean' && (
           <Navbar>
             <NavbarBrand>
@@ -64,12 +64,12 @@ const CompanyLoggedInLayout: React.FC<CompanyLoggedInLayoutProps> = ({ CompanyDa
                     <p className="font-semibold">Signed in as</p>
                     <p className="font-semibold">{CompanyData['email']}</p>
                   </DropdownItem>
-                  <DropdownItem className="cursor-pointer" key="listbookedappointments" onClick={() => navigateToCompanyMyBookedAppointmentsPage()}>My Booked Appointments </DropdownItem>
-                  <DropdownItem className="cursor-pointer" key="listhistory" onClick={() => navigateToCompanyAppointmentsHistoryPage()}>My Appointments History</DropdownItem>
-                  <DropdownItem className="cursor-pointer" key="createappointments" onClick={() => navigateToCreateAppointment()}>Create Appointments</DropdownItem>
+                  <DropdownItem className="cursor-pointer" key="listbookedappointments" onClick={() => navigateToCompanyMyBookedAppointmentsPage()} onTouchStart={() => navigateToCompanyMyBookedAppointmentsPage()}>My Booked Appointments </DropdownItem>
+                  <DropdownItem className="cursor-pointer" key="listhistory" onClick={() => navigateToCompanyAppointmentsHistoryPage()} onTouchStart={() => navigateToCompanyAppointmentsHistoryPage()}>My Appointments History</DropdownItem>
+                  <DropdownItem className="cursor-pointer" key="createappointments" onClick={() => navigateToCreateAppointment()} onTouchStart={() => navigateToCreateAppointment()}>Create Appointments</DropdownItem>
                   <DropdownItem className="cursor-pointer" key="help_and_feedback">Help & Feedback</DropdownItem>
-                  <DropdownItem className="cursor-pointer" key="settings" onClick={() => navigateToCompanySettings()}>My Settings</DropdownItem>
-                  <DropdownItem className="cursor-pointer" key="logout" color="danger" onClick={() => handleLogout()}>
+                  <DropdownItem className="cursor-pointer" key="settings" onClick={() => navigateToCompanySettings()} onTouchStart={() => navigateToCompanySettings()}>My Settings</DropdownItem>
+                  <DropdownItem className="cursor-pointer" key="logout" color="danger" onClick={() => handleLogout()} onTouchStart={() => handleLogout()}>
                     Log Out
                   </DropdownItem>
                 </DropdownMenu>
@@ -77,7 +77,7 @@ const CompanyLoggedInLayout: React.FC<CompanyLoggedInLayoutProps> = ({ CompanyDa
             </NavbarContent>
           </Navbar>
         )}
-        </div>
+        
       </>
     );
 };

@@ -34,7 +34,6 @@ const UserLoggedInLayout: React.FC<UserLoggedInLayoutProps> = ({ UserData }) => 
 
     return (
       <>
-      <div onClick={() => {}} /* Empty onclick to ensure a mouse event handler is set */>
         {UserData && typeof UserData !== 'boolean' && (
           <Navbar>
             <NavbarBrand>
@@ -65,9 +64,9 @@ const UserLoggedInLayout: React.FC<UserLoggedInLayoutProps> = ({ UserData }) => 
                     <p className="font-semibold">Signed in as</p>
                     <p className="font-semibold">{UserData['name']}</p>
                   </DropdownItem>
-                  <DropdownItem className="cursor-pointer" key="settings" onClick={() => navigateToMainPage()}>Search Companies</DropdownItem>
-                  <DropdownItem className="cursor-pointer" key="appointments" onClick={() => navigateToMyUserAppointments()}>My Appointments</DropdownItem>
-                  <DropdownItem className="cursor-pointer" key="settings" onClick={() => navigateToUserSettings()}>My Settings</DropdownItem>
+                  <DropdownItem className="cursor-pointer" key="settings" onClick={() => navigateToMainPage()} onTouchStart={() => navigateToMainPage()}>Search Companies</DropdownItem>
+                  <DropdownItem className="cursor-pointer" key="appointments" onClick={() => navigateToMyUserAppointments()} onTouchStart={() => navigateToMyUserAppointments()}>My Appointments</DropdownItem>
+                  <DropdownItem className="cursor-pointer" key="settings" onClick={() => navigateToUserSettings()} onTouchStart={() => navigateToUserSettings()}>My Settings</DropdownItem>
                   <DropdownItem className="cursor-pointer" key="help_and_feedback">Help & Feedback</DropdownItem>
                   
                   <DropdownItem className="cursor-pointer" key="logout" color="danger" onClick={() => handleLogout()} onTouchStart={() => handleLogout()}>
@@ -79,7 +78,7 @@ const UserLoggedInLayout: React.FC<UserLoggedInLayoutProps> = ({ UserData }) => 
             </NavbarContent>
           </Navbar>
         )}
-        </div>
+        
       </>
     );
 };
