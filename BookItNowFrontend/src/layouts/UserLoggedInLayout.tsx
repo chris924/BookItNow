@@ -60,7 +60,7 @@ const UserLoggedInLayout: React.FC<UserLoggedInLayoutProps> = ({ UserData }) => 
                     src={`http://localhost:8080${UserData.avatarUrl}`}
                   />
                 </DropdownTrigger>
-                <DropdownMenu aria-label="Profile Actions" variant="flat">
+                <DropdownMenu aria-label="Profile Actions" variant="flat" className="cursor-pointer">
                   <DropdownItem key="profile" className="h-14 gap-2">
                     <p className="font-semibold">Signed in as</p>
                     <p className="font-semibold">{UserData['name']}</p>
@@ -69,11 +69,11 @@ const UserLoggedInLayout: React.FC<UserLoggedInLayoutProps> = ({ UserData }) => 
                   <DropdownItem className="cursor-pointer" key="appointments" onClick={() => navigateToMyUserAppointments()}>My Appointments</DropdownItem>
                   <DropdownItem className="cursor-pointer" key="settings" onClick={() => navigateToUserSettings()}>My Settings</DropdownItem>
                   <DropdownItem className="cursor-pointer" key="help_and_feedback">Help & Feedback</DropdownItem>
-                  <div className='cursor-pointer'>
-                  <DropdownItem className="cursor-pointer" key="logout" color="danger" onClick={() => handleLogout()}>
+                  
+                  <DropdownItem className="cursor-pointer" key="logout" color="danger" onClick={() => handleLogout()} onTouchStart={() => handleLogout()}>
                     Log Out
                   </DropdownItem>
-                  </div>
+                 
                 </DropdownMenu>
               </Dropdown>
             </NavbarContent>
