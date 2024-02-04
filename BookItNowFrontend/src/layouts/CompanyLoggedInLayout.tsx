@@ -33,6 +33,7 @@ const CompanyLoggedInLayout: React.FC<CompanyLoggedInLayoutProps> = ({ CompanyDa
 
     return (
       <>
+      <div onClick={() => {}} /* Empty onclick to ensure a mouse event handler is set */>
         {CompanyData && typeof CompanyData !== 'boolean' && (
           <Navbar>
             <NavbarBrand>
@@ -76,6 +77,7 @@ const CompanyLoggedInLayout: React.FC<CompanyLoggedInLayoutProps> = ({ CompanyDa
             </NavbarContent>
           </Navbar>
         )}
+        </div>
       </>
     );
 };

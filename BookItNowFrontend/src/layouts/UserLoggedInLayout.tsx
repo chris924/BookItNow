@@ -34,6 +34,7 @@ const UserLoggedInLayout: React.FC<UserLoggedInLayoutProps> = ({ UserData }) => 
 
     return (
       <>
+      <div onClick={() => {}} /* Empty onclick to ensure a mouse event handler is set */>
         {UserData && typeof UserData !== 'boolean' && (
           <Navbar>
             <NavbarBrand>
@@ -76,6 +77,7 @@ const UserLoggedInLayout: React.FC<UserLoggedInLayoutProps> = ({ UserData }) => 
             </NavbarContent>
           </Navbar>
         )}
+        </div>
       </>
     );
 };
