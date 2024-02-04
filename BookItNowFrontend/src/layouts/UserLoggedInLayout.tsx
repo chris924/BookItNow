@@ -69,9 +69,11 @@ const UserLoggedInLayout: React.FC<UserLoggedInLayoutProps> = ({ UserData }) => 
                   <DropdownItem className="cursor-pointer" key="appointments" onClick={() => navigateToMyUserAppointments()}>My Appointments</DropdownItem>
                   <DropdownItem className="cursor-pointer" key="settings" onClick={() => navigateToUserSettings()}>My Settings</DropdownItem>
                   <DropdownItem className="cursor-pointer" key="help_and_feedback">Help & Feedback</DropdownItem>
+                  <div className='cursor-pointer'>
                   <DropdownItem className="cursor-pointer" key="logout" color="danger" onClick={() => handleLogout()}>
                     Log Out
                   </DropdownItem>
+                  </div>
                 </DropdownMenu>
               </Dropdown>
             </NavbarContent>
