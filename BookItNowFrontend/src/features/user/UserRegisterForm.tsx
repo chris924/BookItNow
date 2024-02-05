@@ -102,8 +102,8 @@ export default function UserRegisterForm({ onBackButtonClick , onRegisterClick, 
 
     return (
         <div className="flex justify-center items-center h-screen overflow-hidden">
-    <div className="w-full max-w-[450px] space-y-4 overflow-hidden">
-    <div className="flex justify-center text-xl font-semibold text-blue-600/75 dark:text-blue-500/75 animate__animated animate__bounceInLeft">User Register</div>
+    <div className="w-full max-w-[450px] space-y-4">
+    <div className="flex justify-center text-xl font-semibold text-blue-600/75 dark:text-blue-500/75 animate__animated animate__backInDown">User Register</div>
       {registerResult && (<>
       <div className="flex justify-center">
       <Button color="success">Succesfully Registered</Button>
@@ -209,10 +209,10 @@ export default function UserRegisterForm({ onBackButtonClick , onRegisterClick, 
         
      
       <div className="flex justify-center gap-8 items-center">
-      <Button color="danger" className="animate__animated animate__bounceInLeft" onClick={() => onBackButtonClick()}>
+      <Button color="danger" className="animate__animated animate__backInLeft" onClick={() => onBackButtonClick()}>
        Go Back
       </Button>
-      <Button isDisabled={registerButtonDisabled} className="animate__animated animate__bounceInRight" color="secondary" onClick={() => handleRegisterClick()}>
+      <Button isDisabled={registerButtonDisabled} className="animate__animated animate__backInRight" color="secondary" onClick={() => handleRegisterClick()}>
        Register
       </Button>
       </div>

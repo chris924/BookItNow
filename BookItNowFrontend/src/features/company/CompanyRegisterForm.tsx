@@ -81,7 +81,7 @@ export default function CompanyRegisterForm({ onBackButtonClick , onRegisterClic
   return (
     <div className="flex justify-center items-center h-screen overflow-hidden">
       <div className="w-full max-w-[450px] space-y-4">
-        <div className="flex justify-center text-xl font-semibold text-blue-600/75 dark:text-blue-500/75 animate__animated animate__bounceInLeft">
+        <div className="flex justify-center text-xl font-semibold text-blue-600/75 dark:text-blue-500/75 animate__animated animate__backInDown">
           Company Register
         </div>
   
@@ -219,14 +219,14 @@ export default function CompanyRegisterForm({ onBackButtonClick , onRegisterClic
         </div>
   
         <div className="flex justify-center gap-8 items-center">
-          <Button color="danger" className="animate__animated animate__bounceInLeft" onClick={() => onBackButtonClick()}>
+          <Button color="danger" className="animate__animated animate__backInLeft" onClick={() => onBackButtonClick()}>
             Go Back
           </Button>
           <Button
             isDisabled={registerButtonDisabled}
             color="secondary"
             onClick={() => handleRegisterClick()}
-            className="animate__animated animate__bounceInRight"
+            className="animate__animated animate__backInRight"
           >
             Register
           </Button>
