@@ -20,6 +20,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/uploads/avatars/**")
-                .addResourceLocations("file:"+avatarDirectory);
+                .addResourceLocations("file:/var/data/");
     }
 }
