@@ -35,6 +35,7 @@ export default function UserSearchPage(): JSX.Element
 
         await new Promise(resolve => setTimeout(resolve, 1000));
         const result = await UserDataFetch();
+        console.log("USER DATA:", result);
           setUserData(result);
           
         

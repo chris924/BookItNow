@@ -16,6 +16,7 @@ import { RemoveCookie } from '../utils/cookies/SetCookie';
 import UseNavigation from '../hooks/UseNavigation';
 import { CompanyLoggedInLayoutProps } from '../lib/constants/interfaces/CompanyInterfaces';
 import navbarIcon from "../styles/images/navbaricon.png";
+import { BASE_URL } from '../lib/constants/apiURL';
 
 const CompanyLoggedInLayout: React.FC<CompanyLoggedInLayoutProps> = ({ CompanyData }) => {
 
@@ -56,7 +57,7 @@ const CompanyLoggedInLayout: React.FC<CompanyLoggedInLayoutProps> = ({ CompanyDa
                     color="secondary"
                     name=""
                     size="md"
-                    src={`http://localhost:8080${CompanyData.avatarUrl}`}
+                    src={`${BASE_URL}/${CompanyData.avatarUrl}`}
                   />
                 </DropdownTrigger>
                 <DropdownMenu aria-label="Profile Actions" variant="flat">

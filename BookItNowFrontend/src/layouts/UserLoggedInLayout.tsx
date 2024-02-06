@@ -16,6 +16,7 @@ import { RemoveCookie } from '../utils/cookies/SetCookie';
 import UseNavigation from '../hooks/UseNavigation';
 import { UserLoggedInLayoutProps } from '../lib/constants/interfaces/UserInterfaces';
 import navbarIcon from "../styles/images/navbaricon.png";
+import { BASE_URL } from '../lib/constants/apiURL';
 
 const UserLoggedInLayout: React.FC<UserLoggedInLayoutProps> = ({ UserData }) => {
 
@@ -56,7 +57,7 @@ const UserLoggedInLayout: React.FC<UserLoggedInLayoutProps> = ({ UserData }) => 
                     color="secondary"
                     name=""
                     size="md"
-                    src={`http://localhost:8080${UserData.avatarUrl}`}
+                    src={`${BASE_URL}/${UserData.avatarUrl}`}
                   />
                 </DropdownTrigger>
                 <DropdownMenu aria-label="Profile Actions" variant="flat" className="cursor-pointer">

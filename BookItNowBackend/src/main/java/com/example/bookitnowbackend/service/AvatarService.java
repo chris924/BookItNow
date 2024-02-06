@@ -30,21 +30,6 @@ public class AvatarService {
     public void UpdateAvatar(Integer id, byte[] avatar, String type) {
         try {
 
-            System.out.println("AVATAR DIRECTORY:::::::::::::::::::" + avatarDirectory);
-
-            if (Files.isDirectory(Path.of(avatarDirectory))) {
-                try (DirectoryStream<Path> directoryStream = Files.newDirectoryStream(Path.of(avatarDirectory))) {
-                    // Iterate through the contents of the folder
-                    for (Path file : directoryStream) {
-                        System.out.println("FILE:" + file.getFileName());
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            } else {
-                System.out.println("The specified path is not a directory.");
-            }
-
 
 
             if(type.equals("user"))
