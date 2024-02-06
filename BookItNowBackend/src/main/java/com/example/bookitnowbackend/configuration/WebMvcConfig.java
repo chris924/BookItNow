@@ -15,11 +15,12 @@ public class WebMvcConfig implements WebMvcConfigurer {
     private final String avatarDirectory;
     @Autowired
     public WebMvcConfig(@Value("${avatar.directory.path}") String avatarDirectory) {
-        this.avatarDirectory = avatarDirectory;
+        this.avatarDirectory = "file:" + avatarDirectory;
+        System.out.println("AVATAR DIRECTORY:" + this.avatarDirectory);
     }
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/uploads/avatars/**")
-                .addResourceLocations("file:/var/data/");
+                .addResourceLocations(avatarDirectory);
     }
 }
