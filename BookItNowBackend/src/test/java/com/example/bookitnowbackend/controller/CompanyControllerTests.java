@@ -1,6 +1,7 @@
 package com.example.bookitnowbackend.controller;
 
 import com.example.bookitnowbackend.entity.Company;
+import com.example.bookitnowbackend.service.AvatarService;
 import com.example.bookitnowbackend.service.CompanyAuthenticationService;
 import com.example.bookitnowbackend.service.CompanyService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentMatchers;
 import org.mockito.BDDMockito;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -38,6 +40,10 @@ public class CompanyControllerTests {
 
     @MockBean
     private CompanyAuthenticationService companyAuthenticationService;
+
+    @MockBean
+    private AvatarService avatarService;
+
 
     @Autowired
     private ObjectMapper objectMapper;
