@@ -5,6 +5,7 @@ import com.example.bookitnowbackend.entity.User;
 import com.example.bookitnowbackend.repository.ICompanyRepository;
 import com.example.bookitnowbackend.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.nio.file.Files;
@@ -16,16 +17,23 @@ import java.util.UUID;
 @Service
 public class AvatarService {
 
+    private final String avatarDirectory;
+
     @Autowired
     private ICompanyRepository companyRepository;
 
     @Autowired
     private IUserRepository userRepository;
 
-    private final String avatarDirectory = System.getenv("AVATAR_DIRECTORY");
+    @Autowired
+    public AvatarService(@Value("${avatar.directory.path}") String avatarDirectory) {
+        this.avatarDirectory = avatarDirectory;
+    }
 
     public void UpdateAvatar(Integer id, byte[] avatar, String type) {
         try {
+
+            System.out.println("AVATAR DIRECTORY:::::::::::::::::::" + avatarDirectory);
 
             if(type.equals("user"))
             {
