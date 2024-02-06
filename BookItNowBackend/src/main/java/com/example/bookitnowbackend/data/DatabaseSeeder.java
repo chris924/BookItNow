@@ -200,17 +200,17 @@ public class DatabaseSeeder implements CommandLineRunner {
 
     private void deleteAvatarDirectoryContents() {
         try {
-            Path avatarDirectoryPath = Paths.get(new URI(avatarDirectory));
+            Path avatarDirectoryPath = Paths.get(avatarDirectory);
             Files.list(avatarDirectoryPath)
                     .forEach(file -> {
                         try {
                             Files.delete(file);
                         } catch (IOException e) {
-                            e.printStackTrace(); // Handle the exception according to your requirements
+                            e.printStackTrace();
                         }
                     });
-        } catch (URISyntaxException | IOException e) {
-            e.printStackTrace(); // Handle the exception according to your requirements
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
