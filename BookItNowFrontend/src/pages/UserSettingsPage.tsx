@@ -20,8 +20,6 @@ export default function UserSettingsPage(): JSX.Element
 
     useEffect(() => {
 
-    
-
 
         const fetchData = async () => { 
           try {
