@@ -8,7 +8,6 @@ import UserTable from "../features/user/table/UserTable";
 import CompanyGetAllCompanyDataFetch, { CompanyAllDataResult } from "../services/company/CompanyGetAllCompanyDataFetch";
 import { GetCookie} from "../utils/cookies/SetCookie";
 import AppointmentGetAllFetch, { AppointmentGetAllResult } from "../services/appointment/AppointmentGetAllFetch";
-import UserLoggedInForm from "../features/user/UserLoggedInForm";
 
 export default function UserSearchPage(): JSX.Element
 {
@@ -77,7 +76,7 @@ export default function UserSearchPage(): JSX.Element
     return (
       <>
         <UserLoggedInLayout  UserData={userData.data}/>
-        <UserLoggedInForm UserData={userData.data}/>
+        <UserTable companyData={companyData.data} companyAppointments={companyAppointments} userData={userData}/>
       </>
     );
 }

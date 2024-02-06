@@ -4,7 +4,7 @@ import { NextUIProvider } from '@nextui-org/system'
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import UserLoginPage from './pages/UserLoginPage';
 import UserRegisterPage from './pages/UserRegisterPage';
-import UserLoggedInPage from './pages/UserLoggedInPage';
+import UserSearchPage from './pages/UserSearchPage';
 import HomePage from './pages/HomePage';
 import CompanyLoginPage from './pages/CompanyLoginPage';
 import CompanyLoggedInPage from './pages/CompanyLoggedInPage';
@@ -17,6 +17,7 @@ import FAQPage from './pages/FAQPage';
 import FeaturesPage from './pages/FeaturesPage';
 import UserSettingsPage from './pages/UserSettingsPage';
 import CompanySettingsPage from './pages/CompanySettingsPage';
+import UserLoggedInPage from './pages/UserLoggedInPage';
 
 
 
@@ -36,6 +37,7 @@ export default function App() {
     <Route path="login" element={<UserLoginPage />} />
     <Route path="register" element={<UserRegisterPage />} />
     <Route path="home" element={<UserLoggedInPage />} />
+    <Route path="search" element={<UserSearchPage/>}/>
     <Route path="my-appointments" element={<UserMyAppointmentsPage />} />
     <Route path="settings" element={<UserSettingsPage/>}/>
     

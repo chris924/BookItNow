@@ -20,7 +20,7 @@ import navbarIcon from "../styles/images/navbaricon.png";
 const UserLoggedInLayout: React.FC<UserLoggedInLayoutProps> = ({ UserData }) => {
 
 
-  const {navigateToMainPage, navigateToMyUserAppointments, navigateToUserSettings} = UseNavigation();
+  const {navigateToMainPage, navigateToMyUserAppointments, navigateToUserSettings, navigateToUserSearchPage} = UseNavigation();
   
 
   
@@ -64,7 +64,7 @@ const UserLoggedInLayout: React.FC<UserLoggedInLayoutProps> = ({ UserData }) => 
                     <p className="font-semibold">Signed in as</p>
                     <p className="font-semibold">{UserData['name']}</p>
                   </DropdownItem>
-                  <DropdownItem className="cursor-pointer" key="settings" onClick={() => navigateToMainPage()} onTouchStart={() => navigateToMainPage()}>Search Companies</DropdownItem>
+                  <DropdownItem className="cursor-pointer" key="settings" onClick={() => navigateToUserSearchPage()} onTouchStart={() => navigateToUserSearchPage()}>Search Companies</DropdownItem>
                   <DropdownItem className="cursor-pointer" key="appointments" onClick={() => navigateToMyUserAppointments()} onTouchStart={() => navigateToMyUserAppointments()}>My Appointments</DropdownItem>
                   <DropdownItem className="cursor-pointer" key="settings" onClick={() => navigateToUserSettings()} onTouchStart={() => navigateToUserSettings()}>My Settings</DropdownItem>
                   <DropdownItem className="cursor-pointer" key="help_and_feedback">Help & Feedback</DropdownItem>

@@ -20,6 +20,11 @@ export default function UseNavigation()
         navigate('/user/home');
     }
 
+    function navigateToUserSearchPage()
+    {
+        navigate('/user/search');
+    }
+
     function navigateToUserLoginPage()
     {
         navigate('/user/login');
@@ -111,7 +116,8 @@ export default function UseNavigation()
         navigateToFeaturesPage,
         navigateToUserSettings,
         navigateToCompanySettings,
-        navigateToGitHubRepository
+        navigateToGitHubRepository,
+        navigateToUserSearchPage,
     }
 
     

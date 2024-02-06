@@ -66,10 +66,10 @@ export default function UserLoginForm({ onBackButtonClick, onLoginClick, onWrong
       </div>
       
       <div className="flex justify-center gap-8 items-center">
-      <Button color="danger" className="animate__animated animate__backInLeft" onClick={() => onBackButtonClick()} >
+      <Button color="danger" className="animate__animated animate__backInLeft" onClick={() => onBackButtonClick()} onTouchStart={() => onBackButtonClick()}>
        Go Back
       </Button>
-      <Button color="secondary" className="animate__animated animate__backInRight" onClick={() => onLoginClick(email, password)}>
+      <Button color="secondary" className="animate__animated animate__backInRight" onClick={() => onLoginClick(email, password)} onTouchStart={() => onLoginClick(email, password)}>
        Log In
       </Button >
      

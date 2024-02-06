@@ -203,7 +203,7 @@ export default function App({ companyData, companyAppointments, userData}: any) 
   
 
   return (
-    <div className="overflow-x-auto overflow-y-hidden animate__animated animate__backInUp">
+    <div className="overflow-x-auto overflow-y-hidden animate__animated animate__fadeInDown">
       
     {isModalOpen && (
         <UserBookAppointment isOpen={isModalOpen} onClose={handleModalClose} companyAppointments={filteredAppointments} userData={userData} />
