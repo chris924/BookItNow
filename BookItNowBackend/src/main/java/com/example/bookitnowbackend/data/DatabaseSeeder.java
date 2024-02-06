@@ -3,11 +3,18 @@ package com.example.bookitnowbackend.data;
 import com.example.bookitnowbackend.entity.*;
 import com.example.bookitnowbackend.repository.*;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Timestamp;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
@@ -27,13 +34,16 @@ public class DatabaseSeeder implements CommandLineRunner {
     private final IRoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public DatabaseSeeder(IAppointmentRepository appointmentRepository, ICompanyRepository companyRepository, IRoleRepository roleRepository, IUserRepository userRepository, PasswordEncoder passwordEncoder) {
+    private final String avatarDirectory;
+
+    public DatabaseSeeder(IAppointmentRepository appointmentRepository, ICompanyRepository companyRepository, IRoleRepository roleRepository, IUserRepository userRepository, PasswordEncoder passwordEncoder, @Value("${avatar.directory.path}") String avatarDirectory) {
         this.appointmentRepository = appointmentRepository;
         this.companyRepository = companyRepository;
 
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
+        this.avatarDirectory = avatarDirectory;
     }
 
     @Override
@@ -55,6 +65,7 @@ public class DatabaseSeeder implements CommandLineRunner {
         userRepository.deleteAll();
         companyRepository.deleteAll();
         roleRepository.deleteAll();
+        deleteAvatarDirectoryContents();
 
         createRolesIfNotExists();
         createAdmin();
@@ -184,6 +195,22 @@ public class DatabaseSeeder implements CommandLineRunner {
         if (roleRepository.findByAuthority("ADMIN").isEmpty()) {
             Role adminRole = new Role("ADMIN");
             roleRepository.save(adminRole);
+        }
+    }
+
+    private void deleteAvatarDirectoryContents() {
+        try {
+            Path avatarDirectoryPath = Paths.get(new URI(avatarDirectory));
+            Files.list(avatarDirectoryPath)
+                    .forEach(file -> {
+                        try {
+                            Files.delete(file);
+                        } catch (IOException e) {
+                            e.printStackTrace(); // Handle the exception according to your requirements
+                        }
+                    });
+        } catch (URISyntaxException | IOException e) {
+            e.printStackTrace(); // Handle the exception according to your requirements
         }
     }
 }

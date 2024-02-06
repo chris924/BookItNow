@@ -22,7 +22,6 @@ export default function UserSearchPage(): JSX.Element
 
   useEffect(() => {
 
-    
 
     const fetchData = async () => { 
       try {

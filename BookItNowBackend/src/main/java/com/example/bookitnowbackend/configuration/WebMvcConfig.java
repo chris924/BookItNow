@@ -16,7 +16,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Autowired
     public WebMvcConfig(@Value("${avatar.directory.path}") String avatarDirectory) {
         this.avatarDirectory = "file:" + avatarDirectory;
-        System.out.println("AVATAR DIRECTORY:" + this.avatarDirectory);
+
     }
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {

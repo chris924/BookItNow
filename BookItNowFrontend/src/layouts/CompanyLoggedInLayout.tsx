@@ -52,10 +52,11 @@ const CompanyLoggedInLayout: React.FC<CompanyLoggedInLayoutProps> = ({ CompanyDa
                 <DropdownTrigger>
                   <Avatar
                     isBordered
+                    showFallback
                     as="button"
                     className="transition-transform"
                     color="secondary"
-                    name=""
+                    
                     size="md"
                     src={`${BASE_URL}${CompanyData.avatarUrl}`}
                   />

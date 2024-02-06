@@ -52,13 +52,16 @@ const UserLoggedInLayout: React.FC<UserLoggedInLayoutProps> = ({ UserData }) => 
                 <DropdownTrigger>
                   <Avatar
                     isBordered
+                    showFallback
                     as="button"
+                    
                     className="transition-transform"
                     color="secondary"
-                    name=""
                     size="md"
                     src={`${BASE_URL}${UserData.avatarUrl}`}
+                    
                   />
+                  
                 </DropdownTrigger>
                 <DropdownMenu aria-label="Profile Actions" variant="flat" className="cursor-pointer">
                   <DropdownItem key="profile" className="h-14 gap-2">
@@ -73,9 +76,9 @@ const UserLoggedInLayout: React.FC<UserLoggedInLayoutProps> = ({ UserData }) => 
                   <DropdownItem className="cursor-pointer" key="logout" color="danger" onClick={() => handleLogout()} onTouchStart={() => handleLogout()}>
                     Log Out
                   </DropdownItem>
-                 
                 </DropdownMenu>
               </Dropdown>
+            
             </NavbarContent>
           </Navbar>
         )}
