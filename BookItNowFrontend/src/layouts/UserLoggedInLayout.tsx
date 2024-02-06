@@ -57,7 +57,7 @@ const UserLoggedInLayout: React.FC<UserLoggedInLayoutProps> = ({ UserData }) => 
                     color="secondary"
                     name=""
                     size="md"
-                    src={`${BASE_URL}/${UserData.avatarUrl}`}
+                    src={`${BASE_URL}${UserData.avatarUrl}`}
                   />
                 </DropdownTrigger>
                 <DropdownMenu aria-label="Profile Actions" variant="flat" className="cursor-pointer">

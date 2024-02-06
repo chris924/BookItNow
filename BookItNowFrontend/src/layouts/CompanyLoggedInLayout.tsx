@@ -57,7 +57,7 @@ const CompanyLoggedInLayout: React.FC<CompanyLoggedInLayoutProps> = ({ CompanyDa
                     color="secondary"
                     name=""
                     size="md"
-                    src={`${BASE_URL}/${CompanyData.avatarUrl}`}
+                    src={`${BASE_URL}${CompanyData.avatarUrl}`}
                   />
                 </DropdownTrigger>
                 <DropdownMenu aria-label="Profile Actions" variant="flat">
