@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
+import java.nio.file.*;
 import java.util.UUID;
 
 @Service
@@ -34,6 +31,21 @@ public class AvatarService {
         try {
 
             System.out.println("AVATAR DIRECTORY:::::::::::::::::::" + avatarDirectory);
+
+            if (Files.isDirectory(Path.of(avatarDirectory))) {
+                try (DirectoryStream<Path> directoryStream = Files.newDirectoryStream(Path.of(avatarDirectory))) {
+                    // Iterate through the contents of the folder
+                    for (Path file : directoryStream) {
+                        System.out.println("FILE:" + file.getFileName());
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else {
+                System.out.println("The specified path is not a directory.");
+            }
+
+
 
             if(type.equals("user"))
             {
