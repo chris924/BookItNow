@@ -90,7 +90,6 @@ public class DatabaseSeeder implements CommandLineRunner {
 
 
 
-
         Set<Role> companyRoles = new HashSet<>();
         companyRoles.add(roleRepository.findByAuthority("COMPANY").orElseThrow(() -> new RuntimeException("COMPANY role not found")));
 

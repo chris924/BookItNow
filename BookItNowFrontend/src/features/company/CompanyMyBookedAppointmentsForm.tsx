@@ -119,7 +119,7 @@ export default function CompanyMyBookedAppointmentsForm({companyAppointments, on
                   <PopoverContent>
                   <div className="flex flex-col items-center px-1 py-2">
                     <h3 className="text-small font-bold mb-4">Are you sure to delete User from the appointment?</h3>
-                  <Button color="danger" onClick={() => handleCancelClick(appointment.appointmentId)}>
+                  <Button color="danger" onClick={() => handleCancelClick(appointment.appointmentId)} onTouchStart={() => handleCancelClick(appointment.appointmentId)}>
                     Delete User from Appointment
                   </Button>
                   </div>

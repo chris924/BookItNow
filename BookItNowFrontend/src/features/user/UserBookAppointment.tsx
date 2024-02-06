@@ -108,10 +108,10 @@ export default function UserBookAppointment({ onClose, isOpen, companyAppointmen
               </Select>
             </ModalBody>
             <ModalFooter>
-              <Button color="danger" variant="light" onClick={onClose}>
+              <Button color="danger" variant="light" onClick={onClose} onTouchStart={onClose}>
                 Close
               </Button>
-              <Button color="primary" onClick={() => handleBookClick()}>
+              <Button color="primary" onClick={() => handleBookClick()} onTouchStart={() => handleBookClick()}>
                 Book Appointment
               </Button>
             </ModalFooter>

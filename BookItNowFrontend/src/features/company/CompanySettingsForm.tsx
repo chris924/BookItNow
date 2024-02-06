@@ -32,7 +32,7 @@ const CompanySettingsForm: React.FC<CompanySettingsFormProps> = ({ companyData, 
       <Card>
         <CardBody>
         <input type="file" onChange={handleFileChange} accept="image/*" />
-          <Button onClick={handleUpload}>Upload Avatar</Button>
+          <Button onClick={handleUpload} onTouchStart={handleUpload}>Upload Avatar</Button>
           
         </CardBody>
       </Card>

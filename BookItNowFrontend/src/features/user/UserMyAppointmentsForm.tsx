@@ -115,7 +115,7 @@ export default function UserMyAppointmentsForm({ userData, onAppointmentCancel }
                          
                           <div className="flex flex-col items-center px-1 py-2">
                             <h3 className="text-small font-bold mb-4">Are you sure to cancel appointment?</h3>
-                            <Button color="danger" onClick={() => handleCancelClick(appointment.id)}>
+                            <Button color="danger" onClick={() => handleCancelClick(appointment.id)} onTouchStart={() => handleCancelClick(appointment.id)}>
                               Cancel Appointment 
                             </Button> 
                           </div>  

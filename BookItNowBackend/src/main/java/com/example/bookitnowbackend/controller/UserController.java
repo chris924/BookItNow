@@ -5,10 +5,7 @@ import com.example.bookitnowbackend.entity.User;
 import com.example.bookitnowbackend.entity.UserUpdateAvatarDTO;
 import com.example.bookitnowbackend.repository.ICompanyRepository;
 import com.example.bookitnowbackend.repository.IUserRepository;
-import com.example.bookitnowbackend.service.CompanyAuthenticationService;
-import com.example.bookitnowbackend.service.CompanyService;
-import com.example.bookitnowbackend.service.UserAuthenticationService;
-import com.example.bookitnowbackend.service.UserService;
+import com.example.bookitnowbackend.service.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -37,6 +34,9 @@ public class UserController {
 
     @Autowired
     private IUserRepository userRepository;
+
+    @Autowired
+    private AvatarService avatarService;
 
    @GetMapping("/")
     public String HelloUserController()
@@ -74,7 +74,7 @@ public class UserController {
             @PathVariable Integer userId) {
 
         try {
-            userService.UpdateUserAvatar(userId, avatar.getBytes());
+            avatarService.UpdateAvatar(userId, avatar.getBytes(), "user");
             return ResponseEntity.status(HttpStatus.OK).body("Avatar updated successfully");
 
         } catch (Exception e) {

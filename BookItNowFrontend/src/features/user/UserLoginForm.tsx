@@ -76,7 +76,7 @@ export default function UserLoginForm({ onBackButtonClick, onLoginClick, onWrong
       </div>
       <div className="flex justify-center">
       {isSmallDevice && (
-            <Button color="secondary" onClick={() => navigateToCompanyLoginPage()}>
+            <Button color="secondary" onClick={() => navigateToCompanyLoginPage()} onTouchStart={() => navigateToCompanyLoginPage()}>
               Company Login
             </Button>
           )}

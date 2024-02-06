@@ -209,16 +209,16 @@ export default function UserRegisterForm({ onBackButtonClick , onRegisterClick, 
         
      
       <div className="flex justify-center gap-8 items-center">
-      <Button color="danger" className="animate__animated animate__backInLeft" onClick={() => onBackButtonClick()}>
+      <Button color="danger" className="animate__animated animate__backInLeft" onClick={() => onBackButtonClick()} onTouchStart={() => onBackButtonClick()}> 
        Go Back
       </Button>
-      <Button isDisabled={registerButtonDisabled} className="animate__animated animate__backInRight" color="secondary" onClick={() => handleRegisterClick()}>
+      <Button isDisabled={registerButtonDisabled} className="animate__animated animate__backInRight" color="secondary" onClick={() => handleRegisterClick()} onTouchStart={() => handleRegisterClick()}>
        Register
       </Button>
       </div>
       <div className="flex justify-center">
       {isSmallDevice && (
-            <Button color="secondary" onClick={() => navigateToCompanyRegisterPage()}>
+            <Button color="secondary" onClick={() => navigateToCompanyRegisterPage()} onTouchStart={() => navigateToCompanyRegisterPage()}>
               Company Register
             </Button>
           )}

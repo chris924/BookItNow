@@ -3,6 +3,7 @@ package com.example.bookitnowbackend.controller;
 import com.example.bookitnowbackend.entity.Company;
 import com.example.bookitnowbackend.entity.User;
 import com.example.bookitnowbackend.repository.ICompanyRepository;
+import com.example.bookitnowbackend.service.AvatarService;
 import com.example.bookitnowbackend.service.CompanyAuthenticationService;
 import com.example.bookitnowbackend.service.CompanyService;
 import jakarta.validation.Valid;
@@ -29,6 +30,9 @@ public class CompanyController {
 
     @Autowired
     private CompanyService companyService;
+
+    @Autowired
+    private AvatarService avatarService;
 
     @GetMapping("/")
     public String HelloCompanyController()
@@ -123,7 +127,7 @@ public class CompanyController {
             @PathVariable Integer companyId) {
 
         try {
-            companyService.UpdateCompanyAvatar(companyId, avatar.getBytes());
+            avatarService.UpdateAvatar(companyId, avatar.getBytes(), "company");
             return ResponseEntity.status(HttpStatus.OK).body("Avatar updated successfully");
 
         } catch (Exception e) {

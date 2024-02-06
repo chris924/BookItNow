@@ -233,7 +233,7 @@ export default function CompanyCreateAppointmentForm({
                             ? 'bg-green-500 text-white'
                             : 'bg-red-500 text-white'
                         }`}
-                        onClick={() => handleButtonClick(timeIndex, dayIndex)}
+                        onClick={() => handleButtonClick(timeIndex, dayIndex)} onTouchStart={() => handleButtonClick(timeIndex, dayIndex)}
                       >
                         {`${timeInterval}`}
                       </Button>
