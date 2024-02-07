@@ -7,25 +7,27 @@ interface CardComponentProps{
   cardBody: string;
   cardFooter: string;
   href: string;
+  src: string;
 
 }
 
 
-export default function CardComponent({cardTitle, cardBody, cardFooter, href}: CardComponentProps) : JSX.Element 
+export default function CardComponent({cardTitle, cardBody, cardFooter, href, src}: CardComponentProps) : JSX.Element 
 {
 
     return(
+      <div className="py-5">
         <Card className="max-w-[400px]">
         <CardHeader className="flex gap-3">
           <Image
             alt="nextui logo"
-            height={40}
-            radius="sm"
-            src="https://avatars.githubusercontent.com/u/86160567?s=200&v=4"
-            width={40}
+            height={60}
+            radius="lg"
+            src={src}
+            width={60}
           />
           <div className="flex flex-col">
-            <p className="text-md">{cardTitle}</p>
+            <p className="text-lg">{cardTitle}</p>
           </div>
         </CardHeader>
         <Divider/>
@@ -43,5 +45,6 @@ export default function CardComponent({cardTitle, cardBody, cardFooter, href}: C
           </Link>
         </CardFooter>
       </Card>
+      </div>
     )
 }
