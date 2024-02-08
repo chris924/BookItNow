@@ -70,7 +70,9 @@ export default function UserLoggedInForm({ UserData }: UserLoggedInFormProps): J
       
       
       
-      {UserData?.appointments.length === 0 && <FloatingArrow arrowRight={arrowRight} arrowTop={arrowTop} arrowWidth={arrowWidth}/>}
+      {arrowTop && arrowRight && arrowWidth && UserData?.appointments.length === 0 && 
+        <FloatingArrow arrowRight={arrowRight} arrowTop={arrowTop} arrowWidth={arrowWidth} />
+      }
 
 
 

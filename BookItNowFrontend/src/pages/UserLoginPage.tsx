@@ -13,12 +13,12 @@ export default function UserLoginPage(): JSX.Element
    const {navigateToUserLoggedInPage} = UseNavigation();
 
 
-   const [loading, setLoading] = useState(false);
+
    const [showBadCredentials, setShowBadCredentials] = useState(false);
 
     const handleLogin = async (email: string, password: string) =>{
 
-      setLoading(true);
+  
 
         const result = await UserLoginFetch(email, password);
 
@@ -27,10 +27,10 @@ export default function UserLoginPage(): JSX.Element
         if (result.success === true && token !== undefined) {
             console.log("User logged in successfully!");
             SetCookie("authToken", token);
-            setLoading(false);
+          
             navigateToUserLoggedInPage();
         } else {
-          setLoading(false);
+      
            setShowBadCredentials(true);
            setTimeout(() => {
             setShowBadCredentials(false);
@@ -40,10 +40,6 @@ export default function UserLoginPage(): JSX.Element
     }
 
     useCheckCookie(navigateToMainPage);
-
-    if (loading) {
-      return <LoadingCircle/>;
-    }
 
 
 
