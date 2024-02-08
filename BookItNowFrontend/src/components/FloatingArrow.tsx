@@ -1,46 +1,56 @@
-import { delay, motion, useAnimation } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
 import rightarrow from "../styles/images/rightarrow.png";
-import React from 'react';
+import React, { CSSProperties, useEffect } from 'react';
 
-const FloatingArrow = () => {
+interface FloatingArrowProps{
+    arrowRight: string;
+    arrowTop: string;
+    arrowWidth: string;
+}
+
+const FloatingArrow = ({arrowRight, arrowTop, arrowWidth}: FloatingArrowProps) => {
   const controls = useAnimation();
 
   const animate = async () => {
-    
     await controls.start({
       y: ['0%', '40%', '0%'],
       transition: {
         y: {
           duration: 2,
-          repeat: 1,
+          repeat: 100,
           repeatType: 'reverse',
           ease: 'easeInOut',
-          
           opacity: 1,
         },
       },
     });
 
-    
     controls.start({ opacity: 0, transition: { duration: 0.5 } });
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     animate();
   }, []);
 
+  const styles: CSSProperties = {
+    position: 'fixed',
+    top: arrowTop,
+    width: arrowWidth,
+    right: arrowRight,
+  };
+
+
   return (
     <motion.div
-      className='flex justify-end items-center'
+      className='flex items-center'
       animate={controls}
+      style={styles}
     >
-      <div style={{ marginRight: '4%' }}>
-        <img
-          src={rightarrow}
-          alt="Floating Arrow"
-          style={{ width: '18%', height: 'auto' }}
-        />
-      </div>
+      <img
+        src={rightarrow}
+        alt="Floating Arrow"
+        style={{ width: '100%', height: 'auto' }}
+      />
     </motion.div>
   );
 };
