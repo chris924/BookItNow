@@ -17,7 +17,7 @@ const FloatingArrow = ({arrowRight, arrowTop, arrowWidth}: FloatingArrowProps) =
       transition: {
         y: {
           duration: 2,
-          repeat: 100,
+          repeat: 2,
           repeatType: 'reverse',
           ease: 'easeInOut',
           opacity: 1,
