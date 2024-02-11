@@ -171,37 +171,45 @@ export default function CompanyCreateAppointmentForm({   // KNOWN BUG IS ON SATU
     }
   };
 
- const isAppointmentBooked =  (
-  timeIndex: number,
-  dayIndex: number
-): boolean => {
-  const today = new Date();
-
-  if (today.getDay() === 5) {
-    today.setDate(today.getDate() + 2);
-  } else if (today.getDay() === 6) {
-    today.setDate(today.getDate() + 1);
-  }
-
-  let todayDay = today.getDay();
-  let appointmentDay = (todayDay + dayIndex + 1) % 7;
-
-  today.setDate(today.getDate() + (appointmentDay + 7 - todayDay) % 7);
-
-  let timeStampTimeStart = today.setHours(timeIndex + 10 - 2, 0, 0, 0);
-
-  const finalDate = new Date(timeStampTimeStart);
-
-  return !!(
-    CompanyAppointments &&
-    CompanyAppointments.data &&
-    CompanyAppointments.data.some(
-      (appointment: any) =>
-        appointment.dateAndTime &&
-        new Date(appointment.dateAndTime).getTime() === finalDate.getTime()
-    )
-  );
-};
+  const isAppointmentBooked = (
+    timeIndex: number,
+    dayIndex: number
+  ): boolean => {
+    const today = new Date();
+    console.log('Original Today:', today);
+  
+    let adjustedDate = today.getDate();
+    if (today.getDay() === 5) {
+      adjustedDate += 2;
+    } else if (today.getDay() === 6) {
+      adjustedDate += 1;
+    }
+  
+    let todayDay = today.getDay();
+    
+    let appointmentDay = (todayDay + dayIndex + 1) % 7;
+    
+  
+    today.setDate(adjustedDate + (appointmentDay + 7 - todayDay) % 7);
+    
+  
+    let timeStampTimeStart = today.setHours(timeIndex + 10 - 2, 0, 0, 0);
+    const finalDate = new Date(timeStampTimeStart);
+    
+  
+    const isBooked = !!(
+      CompanyAppointments &&
+      CompanyAppointments.data &&
+      CompanyAppointments.data.some(
+        (appointment: any) =>
+          appointment.dateAndTime &&
+          new Date(appointment.dateAndTime).getTime() === finalDate.getTime()
+      )
+    );
+  
+    console.log('Is Booked:', isBooked);
+    return isBooked;
+  };
 
 
   return (
