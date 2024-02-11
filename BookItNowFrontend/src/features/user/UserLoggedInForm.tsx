@@ -89,7 +89,7 @@ export default function UserLoggedInForm({ UserData }: UserLoggedInFormProps): J
           : "no active appointments."}
         {UserData?.appointments.length === 0 && (
           <div className="lg:pr-8 py-10 lg:col-span-2 text-3xl font-mono animate__animated animate__fadeInDown">
-            Book some at the Search Companies Page!
+            Book some at the "Search Companies" Page!
           </div>
         )}
       </div>

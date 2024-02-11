@@ -24,7 +24,7 @@ interface SelectedAppointment {
   dayIndex: number;
 }
 
-export default function CompanyCreateAppointmentForm({
+export default function CompanyCreateAppointmentForm({   // KNOWN BUG IS ON SATURDAY THE ISAPPBOOKED FUNTION NOT WORKING!
   CompanyData,
 }: CompanyAppointmentCreateProps) {
   
