@@ -205,7 +205,7 @@ export default function HomePageForm() {
       </div>
 
       <div className="flex justify-center px-10 py-10 text-5xl" style={containerStyle}>
-        <h1 style={gradientStyle}> Looking for more?</h1>
+        <h1 className="text-center" style={gradientStyle}> Looking for more?</h1>
       </div>
 
       {/* ... (existing code) */}
