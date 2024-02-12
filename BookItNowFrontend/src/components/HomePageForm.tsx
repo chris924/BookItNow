@@ -11,16 +11,38 @@ import CardComponent from "./CardComponent";
 import fasticon from "../styles/images/fasticon.png"
 import customimage from "../styles/images/customimage.png"
 import persistentimage from "../styles/images/persistentimage.png"
+import GitHubFetch, { GitHubData } from "../services/GitHubFetch";
+import UserCardComponent from "./UserCardComponent";
+import LoadingCircle from "./LoadingCircle";
 
 export default function HomePageForm() {
 
   const [featherHovered, setFeatherHovered] = useState(false);
+
+  const [gitHubData, setGitHubData] = useState<GitHubData>();
+
 
   const {navigateToGitHubRepository, navigateToFeaturesPage} = UseNavigation();
 
 
   const bookControls = useAnimation();
   const createControls = useAnimation();
+
+
+  useEffect(() => {
+
+    const fetchData = async () => {
+
+      const data = await GitHubFetch();
+
+      setGitHubData(data.data);
+    }
+
+    fetchData();
+  }, [])
+
+
+
 
   const animateBookTextOnHover = () => {
       bookControls.start({
@@ -67,7 +89,6 @@ export default function HomePageForm() {
     })
   }
 
-  
 
 
 
@@ -75,13 +96,23 @@ export default function HomePageForm() {
     background: 'linear-gradient(90deg, #8E2DE2 0%, #800080 100%)',
     WebkitBackgroundClip: 'text',
     color: 'transparent',
-    display: 'inline-block',
+    
   };
 
   const containerStyle = {
     fontFamily: 'Poppins, sans-serif',
     fontWeight: 700,
   };
+
+
+  if(gitHubData?.name === undefined || gitHubData.login === undefined || gitHubData.avatar_url === undefined || gitHubData.followers === undefined || gitHubData.following === undefined)
+  {
+    return(
+      <LoadingCircle/>
+    )
+  }
+
+
 
   return (
     <>
@@ -140,6 +171,7 @@ export default function HomePageForm() {
 
      
       <div className="container mx-auto px-10 py-10 grid grid-cols-1 lg:grid-cols-3 items-center">
+        
         <CardComponent
           cardTitle="Fast"
           cardBody="React provides a fast zero-delay experience"
@@ -147,6 +179,8 @@ export default function HomePageForm() {
           href="https://react.dev/"
           src={fasticon}
         />
+       
+       
         <CardComponent
           cardTitle="Custom"
           cardBody="NextUi provides an easily customizable user interface"
@@ -154,6 +188,8 @@ export default function HomePageForm() {
           href="https://nextui.org/"
           src={customimage}
         />
+      
+        
         <CardComponent
           cardTitle="Persistent"
           cardBody="Spring Boot and MySQL provides persistent data"
@@ -161,6 +197,15 @@ export default function HomePageForm() {
           href="https://spring.io/projects/spring-boot"
           src={persistentimage}
         />
+      </div>
+    
+      <div className="flex justify-center px-10 py-10 text-5xl" style={containerStyle}>
+        <h1 style={gradientStyle}> Looking for more?</h1>
+      </div>
+
+
+      <div className="flex justify-center px-10 py-10">
+      <UserCardComponent cardName={gitHubData.name} cardUsername={gitHubData.login} cardFollowers={gitHubData.followers} cardFollowing={gitHubData.following} src={gitHubData.avatar_url} href={gitHubData.html_url}/>
       </div>
     </>
   );
