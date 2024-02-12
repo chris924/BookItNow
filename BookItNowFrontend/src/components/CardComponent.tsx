@@ -17,7 +17,7 @@ export default function CardComponent({cardTitle, cardBody, cardFooter, href, sr
 
     return(
       <div className="py-5">
-        <Card className="max-w-[400px]">
+        <Card className="max-w-[450px]">
         <CardHeader className="flex gap-3">
           <Image
             alt="nextui logo"

@@ -96,12 +96,13 @@ export default function HomePageForm() {
     background: 'linear-gradient(90deg, #8E2DE2 0%, #800080 100%)',
     WebkitBackgroundClip: 'text',
     color: 'transparent',
-    
+    display: 'inline-block',
   };
 
   const containerStyle = {
     fontFamily: 'Poppins, sans-serif',
     fontWeight: 700,
+    lineHeight: '1.5',
   };
 
 
@@ -116,7 +117,7 @@ export default function HomePageForm() {
 
   return (
     <>
-      <div className="container mx-auto py-10 grid grid-cols-1 lg:grid-cols-4 items-center text-4xl">
+      <div className="container mx-auto py-10 grid grid-cols-1 lg:grid-cols-4 items-center text-5xl overflow-x-hidden">
         <div className="lg:pr-8 py-10 lg:col-span-2">
           <div style={containerStyle} className="animate__animated animate__fadeInDown">
             <motion.span style={gradientStyle} animate={createControls}>
@@ -129,7 +130,7 @@ export default function HomePageForm() {
             various appointments <br />
           </div>
           <div className="pr-8 py-7 font-mono">
-            <span className="text-xl text-gray-400">
+            <span className="text-2xl text-gray-400">
               Fast, modern, and responsive Fullstack Pet Project
             </span>
           </div>
@@ -169,43 +170,48 @@ export default function HomePageForm() {
         </div>
       </div>
 
-     
-      <div className="container mx-auto px-10 py-10 grid grid-cols-1 lg:grid-cols-3 items-center">
-        
-        <CardComponent
-          cardTitle="Fast"
-          cardBody="React provides a fast zero-delay experience"
-          cardFooter="Check out React Framework"
-          href="https://react.dev/"
-          src={fasticon}
-        />
-       
-       
-        <CardComponent
-          cardTitle="Custom"
-          cardBody="NextUi provides an easily customizable user interface"
-          cardFooter="Check out NextUi"
-          href="https://nextui.org/"
-          src={customimage}
-        />
-      
-        
-        <CardComponent
-          cardTitle="Persistent"
-          cardBody="Spring Boot and MySQL provides persistent data"
-          cardFooter="Check out Spring Boot"
-          href="https://spring.io/projects/spring-boot"
-          src={persistentimage}
-        />
-      </div>
     
+      
+      <div className="container mx-auto px-10 py-10 grid grid-cols-1 lg:grid-cols-3 items-center lg:gap-12 lg:space-x-5">
+        <div>
+          <CardComponent
+            cardTitle="Fast"
+            cardBody="React provides a fast zero-delay experience"
+            cardFooter="Check out React Framework"
+            href="https://react.dev/"
+            src={fasticon}
+          />
+        </div>
+
+        <div>
+          <CardComponent
+            cardTitle="Custom"
+            cardBody="NextUi provides an easily customizable user interface"
+            cardFooter="Check out NextUi"
+            href="https://nextui.org/"
+            src={customimage}
+          />
+        </div>
+
+        <div>
+          <CardComponent
+            cardTitle="Persistent"
+            cardBody="Spring Boot and MySQL provides persistent data"
+            cardFooter="Check out Spring Boot"
+            href="https://spring.io/projects/spring-boot"
+            src={persistentimage}
+          />
+        </div>
+      </div>
+
       <div className="flex justify-center px-10 py-10 text-5xl" style={containerStyle}>
         <h1 style={gradientStyle}> Looking for more?</h1>
       </div>
 
+      {/* ... (existing code) */}
 
       <div className="flex justify-center px-10 py-10">
-      <UserCardComponent cardName={gitHubData.name} cardUsername={gitHubData.login} cardFollowers={gitHubData.followers} cardFollowing={gitHubData.following} src={gitHubData.avatar_url} href={gitHubData.html_url}/>
+        <UserCardComponent cardName={gitHubData.name} cardUsername={gitHubData.login} cardFollowers={gitHubData.followers} cardFollowing={gitHubData.following} src={gitHubData.avatar_url} href={gitHubData.html_url}/>
       </div>
     </>
   );

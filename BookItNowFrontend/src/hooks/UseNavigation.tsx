@@ -94,6 +94,11 @@ export default function UseNavigation()
     {
         window.open('https://github.com/chris924/BookItNow', '_blank');
     }
+
+    function navigateToGiHubProfile()
+    {
+        window.open('https://github.com/chris924', '_blank');
+    }
     
 
     
@@ -118,6 +123,7 @@ export default function UseNavigation()
         navigateToCompanySettings,
         navigateToGitHubRepository,
         navigateToUserSearchPage,
+        navigateToGiHubProfile,
     }
 
     
