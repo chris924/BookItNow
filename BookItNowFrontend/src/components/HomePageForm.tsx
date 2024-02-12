@@ -46,11 +46,13 @@ export default function HomePageForm() {
 
   const animateBookTextOnHover = () => {
       bookControls.start({
+        scale: 1.2,
           y: ['0%', '-50%'],
           transition: {
               y: {
                   ease: 'easeInOut'
               }
+             
           }
 
       })
@@ -58,36 +60,42 @@ export default function HomePageForm() {
 
   const animateBookTextEndHover = () => {
     bookControls.start({
+      scale: 1,
       y: ['-50%', '0%'],
       transition: {
         y: {
           ease: 'easeInOut'
         }
+        
       }
     })
   }
 
   const animateCreateTextOnHover = () => {
     createControls.start({
+      scale: 1.2,
       y: ['0%', '-50%'],
       transition: {
         y: {
           ease: 'easeInOut'
         }
+      
       }
     })
   }
 
   const animateCreateTextEndHover = () => {
     createControls.start({
+      scale: 1,
       y: ['-50%', '0%'],
       transition: {
         y: {
           ease: 'easeInOut'
         }
+       
       }
-    })
-  }
+    });
+  };
 
 
 
@@ -118,7 +126,7 @@ export default function HomePageForm() {
   return (
     <>
       <div className="container mx-auto py-10 grid grid-cols-1 lg:grid-cols-4 items-center text-5xl overflow-x-hidden">
-        <div className="lg:pr-8 py-10 lg:col-span-2">
+        <div className="lg:pr-8 py-10 px-10 lg:col-span-2">
           <div style={containerStyle} className="animate__animated animate__fadeInDown">
             <motion.span style={gradientStyle} animate={createControls}>
               Create
@@ -208,7 +216,7 @@ export default function HomePageForm() {
         <h1 className="text-center" style={gradientStyle}> Looking for more?</h1>
       </div>
 
-      {/* ... (existing code) */}
+     
 
       <div className="flex justify-center px-10 py-10">
         <UserCardComponent cardName={gitHubData.name} cardUsername={gitHubData.login} cardFollowers={gitHubData.followers} cardFollowing={gitHubData.following} src={gitHubData.avatar_url} href={gitHubData.html_url}/>
