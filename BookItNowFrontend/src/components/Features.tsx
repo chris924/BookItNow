@@ -2,7 +2,11 @@ import CardComponent from "./CardComponent";
 import FeaturesCardComponent from "./FeaturesCardComponent";
 import arrowDown from "../styles/images/arrowdown.png";
 import StepByStepComponent from "./StepByStepComponent";
-
+import easyBookingIcon from "../styles/images/easybookingicon.png";
+import intuitiveDashboardIcon from "../styles/images/intuitivedashboardicon.png";
+import appointmentManagementIcon from "../styles/images/appointmentmanagementicon.png";
+import bookingInsightsIcon from "../styles/images/bookinginsightsicon.png";
+import flexibilityIcon from "../styles/images/flexibilityicon.png"
 
 export default function Features() {
 
@@ -24,7 +28,7 @@ export default function Features() {
 
 
   return (
-    <div className="container mx-auto my-8">
+    <div className="container mx-auto my-8 overflow-x-hidden">
       <h1 className="flex justify-center text-4xl font-bold mb-8 ">Key Features</h1>
 
       <div style={containerStyle}>
@@ -32,16 +36,20 @@ export default function Features() {
       </div>
 
       <div className="flex flex-col lg:flex-row justify-center gap-10 py-10">
+        <div className=" animate__animated animate__backInLeft">
         <FeaturesCardComponent
           cardTitle="Easy Booking"
           cardBody="Streamline the appointment booking process as a user. Browse through available slots, choose a suitable time, and confirm your booking effortlessly."
-          src=""
+          src={easyBookingIcon}
         />
+        </div>
+        <div className=" animate__animated animate__backInRight">
         <FeaturesCardComponent
           cardTitle="Intuitive Dashboard"
           cardBody="Access a user-friendly dashboard that provides a comprehensive overview of your active appointments and history. Manage your schedule with ease."
-          src=""
+          src={intuitiveDashboardIcon}
         />
+        </div>
       </div>
 
       <div style={containerStyle}>
@@ -49,21 +57,27 @@ export default function Features() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 items-center gap-10">
+        <div className=" animate__animated animate__backInLeft">
         <FeaturesCardComponent
           cardTitle="Effortless Appointment Management"
           cardBody="Create, modify, or cancel appointment dates with ease. Specify available time slots and other relevant details effortlessly."
-          src=""
+          src={appointmentManagementIcon}
         />
+        </div>
+        <div className="animate__animated animate__backInUp">
         <FeaturesCardComponent
           cardTitle="Booking Insights"
           cardBody="Gain insights into who booked your appointments. Access a comprehensive list of booked appointments along with user details."
-          src=""
+          src={bookingInsightsIcon}
         />
+        </div>
+        <div className="animate__animated animate__backInRight">
         <FeaturesCardComponent
           cardTitle="Flexibility to Modify or Cancel"
           cardBody="Modify or cancel appointments as needed. Access the Booked Appointments section on your dashboard for quick adjustments."
-          src=""
+          src={flexibilityIcon}
         />
+        </div>
       </div>
 
 
