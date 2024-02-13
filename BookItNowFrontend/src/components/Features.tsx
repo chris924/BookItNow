@@ -1,5 +1,8 @@
 import CardComponent from "./CardComponent";
 import FeaturesCardComponent from "./FeaturesCardComponent";
+import arrowDown from "../styles/images/arrowdown.png";
+import StepByStepComponent from "./StepByStepComponent";
+
 
 export default function Features() {
 
@@ -62,43 +65,27 @@ export default function Features() {
           src=""
         />
       </div>
+
+
+      <div style={containerStyle}>
+      <h2 className="flex justify-center text-3xl font-semibold mb-4 py-10" style={gradientStyle}>How do I start?</h2>
+      </div>
+ 
+      <div className="flex flex-col justify-center ">
+      <StepByStepComponent title="Create a Company Account" text="Visit the For Companies page and create a company account."/>
+      <StepByStepComponent title="Create Appointment Slots" text="Click on your default avatar, and create free appointment slots. Choose some available slots."/>
+      <StepByStepComponent title="Log Out" text="Once you have set up your company with available appointment slots, log out."/>
+      <StepByStepComponent title="Create a User Profile" text="Click on the register on the right side to create a user profile."/>
+      <StepByStepComponent title="Book an Appointment" text="Click on the three buttons on the right side of your created company and choose Book."/>
+      <StepByStepComponent title="View Active Appointment" text="After booking an available slot that you created as a company, you can see your active appointment in the My Appointments section."/>
+      <StepByStepComponent title="View User Profile" text="You can also see the specific user profile that booked an appointment on the company side."/>
     </div>
+
+    </div>
+
+    
+
+
   );
       
-  /*<h2 className="text-2xl font-semibold mb-4">How do I start?</h2>
-  <p>
-    First off, you can try out the Company features. Here's a step-by-step guide:
-  </p>
-  <ol className="list-decimal pl-6">
-    <li>
-      <strong>Create a Company Account:</strong> Visit the For Companies page and create a company account.
-    </li>
-    <li>
-      <strong>Log In:</strong> After creating your account, log in to access the company features.
-    </li>
-    <li>
-      <strong>Create Appointment Slots:</strong> Click on your default avatar, and create free appointment slots. Choose some available slots.
-    </li>
-    <li>
-      <strong>Log Out:</strong> Once you have set up your company with available appointment slots, log out.
-    </li>
-    <li>
-      <strong>Create a User Profile:</strong> Click on the register on the right side to create a user profile.
-    </li>
-    <li>
-      <strong>Log In as a User:</strong> Log in as a user. You should see your created company.
-    </li>
-    <li>
-      <strong>Book an Appointment:</strong> Click on the three buttons on the right side of your created company and choose "Book."
-    </li>
-    <li>
-      <strong>View Active Appointment:</strong> After booking an available slot that you created as a company, you can see your active appointment in the "My Appointments" section.
-    </li>
-    <li>
-      <strong>View User Profile:</strong> You can also see the specific user profile that booked an appointment on the company side.
-    </li>
-  </ol>
-</div>
-    
-  );*/
 }
