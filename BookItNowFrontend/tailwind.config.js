@@ -43,7 +43,7 @@ export default {
         },
         "purple-dark": {
           extend: "dark", // <- inherit default values from dark theme
-          body: "background: linear-gradient(to right, #4a5568, #1a202c, #000000)",
+          background: "linear-gradient(to right, #4a5568, #1a202c, #000000)",
           colors: {
             background: "#0D001A",
             foreground: "#ffffff",
