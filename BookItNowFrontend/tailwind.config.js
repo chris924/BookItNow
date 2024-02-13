@@ -45,7 +45,7 @@ export default {
           extend: "dark", // <- inherit default values from dark theme
           body: "bg-gradient-to-r from-gray-700 via-gray-900 to-black",
           colors: {
-            background: "bg-gradient-to-r from-gray-700 via-gray-900 to-black",
+            background: "#0D001A",
             foreground: "#ffffff",
             primary: {
               50: "#3B096C",
