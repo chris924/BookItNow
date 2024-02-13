@@ -28,7 +28,7 @@ export default function App() {
 
  return (
   <NextUIProvider>
-  <main className="purple-dark purple-dark:bg-gradient-to-r from-gray-700 via-gray-900 to-black" style={{ backgroundColor: 'linear-gradient(to right, #4a5568, #1a202c, #000000)' }}>
+  <main className="purple-dark purple-dark:bg-gradient-to-r from-gray-700 via-gray-900 to-black min-h-max" style={{ backgroundColor: 'linear-gradient(to right, #4a5568, #1a202c, #000000)' }}>
   <Routes>
   <Route path="/" element={<HomePage />} />
   <Route path="/faq" element={<FAQPage />} />
