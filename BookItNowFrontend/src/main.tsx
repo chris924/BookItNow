@@ -28,7 +28,7 @@ export default function App() {
 
  return (
   <NextUIProvider>
-  <main className="purple-dark  min-width: 980px">
+  <main className="purple-dark bg-gradient-to-r from-gray-700 via-gray-900 to-black min-width: 980px">
   <Routes>
   <Route path="/" element={<HomePage />} />
   <Route path="/faq" element={<FAQPage />} />
