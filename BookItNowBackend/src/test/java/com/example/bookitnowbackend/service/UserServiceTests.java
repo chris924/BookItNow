@@ -3,12 +3,14 @@ package com.example.bookitnowbackend.service;
 import com.example.bookitnowbackend.entity.User;
 import com.example.bookitnowbackend.repository.IUserRepository;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
 
@@ -22,6 +24,8 @@ public class UserServiceTests {
 
     @InjectMocks
     private UserService userService;
+
+
 
     @Test
     public void UserService_GetUserByUsername_ReturnUser()
