@@ -1,8 +1,6 @@
 package com.example.bookitnowbackend.controller;
 
-import com.example.bookitnowbackend.entity.Company;
-import com.example.bookitnowbackend.entity.User;
-import com.example.bookitnowbackend.entity.UserUpdateAvatarDTO;
+import com.example.bookitnowbackend.entity.*;
 import com.example.bookitnowbackend.repository.ICompanyRepository;
 import com.example.bookitnowbackend.repository.IUserRepository;
 import com.example.bookitnowbackend.service.*;
@@ -79,6 +77,33 @@ public class UserController {
 
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error updating avatar");
+        }
+    }
+
+
+    @PostMapping("/changeUserEmail")
+    public ResponseEntity<?> ChangeUserEmail(@RequestBody UserChangeEmailDTO userChangeEmailDTO)
+    {
+        try {
+            userService.UpdateEmail(userChangeEmailDTO.getNewEmail(), userChangeEmailDTO.getUserId());
+            return ResponseEntity.status(HttpStatus.OK).body("Email changed successfully");
+
+        }catch (Exception e)
+        {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error updating email");
+        }
+    }
+
+    @PostMapping("/changeUserPassword")
+    public ResponseEntity<?> ChangeUserPassword(@RequestBody UserChangePasswordDTO userChangePasswordDTO)
+    {
+        try {
+                userService.UpdatePassword(userChangePasswordDTO.getNewPassword(), userChangePasswordDTO.getUserId());
+            return ResponseEntity.status(HttpStatus.OK).body("Password changed successfully");
+
+        }catch (Exception e)
+        {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error updating password");
         }
     }
 

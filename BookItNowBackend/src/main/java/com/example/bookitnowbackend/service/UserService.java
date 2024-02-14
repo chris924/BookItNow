@@ -3,7 +3,7 @@ package com.example.bookitnowbackend.service;
 import com.example.bookitnowbackend.entity.User;
 import com.example.bookitnowbackend.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.nio.file.*;
@@ -19,6 +19,13 @@ public class UserService {
 
     @Autowired
     private IUserRepository userRepository;
+
+
+    private final PasswordEncoder passwordEncoder;
+
+    public UserService(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
 
     public User saveUser(User user) {
         try {
@@ -107,4 +114,40 @@ public class UserService {
             throw new RuntimeException("Error updating user", e);
         }
     }
+
+    public void UpdateEmail(String email, Integer id)
+    {
+        try {
+        User existingUser = userRepository.findById(id).orElse(null);
+            if (existingUser == null) {
+                throw new IllegalArgumentException("User with ID " + id + " not found");
+            }
+
+            existingUser.setEmail(email);
+            userRepository.save(existingUser);
+
+        }catch (Exception e)
+        {
+            throw new RuntimeException("Error updating email", e);
+        }
+    }
+
+    public void UpdatePassword(String password, Integer id)
+    {
+        try {
+            User existingUser = userRepository.findById(id).orElse(null);
+            if (existingUser == null) {
+                throw new IllegalArgumentException("User with ID " + id + " not found");
+            }
+
+            existingUser.setPassword(passwordEncoder.encode(password));
+            userRepository.save(existingUser);
+
+
+        }catch (Exception e)
+        {
+            throw new RuntimeException("Error updating password", e);
+        }
+    }
+
 }
