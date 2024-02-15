@@ -115,8 +115,8 @@ const UserSettingsForm: React.FC<UserSettingsFormProps> = ({ UserData, onAvatarC
 
 
     return (
-        <div className="container mx-auto px-10 py-10 grid grid-cols-1 lg:grid-cols-1 items-center lg:gap-12 lg:space-x-5">
-          <div className="flex flex-col mx-w-md mx-auto">
+        <div className="container mx-auto grid grid-cols-1 lg:grid-cols-1 items-center lg:gap-12 lg:space-x-5">
+        <div className=" mx-auto">
 
         <Card className="my-5">
         <CardHeader className="flex justify-center">
