@@ -5,6 +5,7 @@ import UserAvatarUploadFetch from "../../services/user/UserAvatarUploadFetch";
 import UseNavigation from "../../hooks/UseNavigation";
 import { useNavigate } from "react-router-dom";
 import UserChangeEmailetch from "../../services/user/UserChangeEmailFetch";
+import UserChangePasswordfetch from "../../services/user/UserChangePasswordFetch";
 
 interface UserSettingsFormProps {
   UserData: UserDataResult['data'];
@@ -13,15 +14,22 @@ interface UserSettingsFormProps {
 
 const UserSettingsForm: React.FC<UserSettingsFormProps> = ({ UserData, onAvatarChange }) => {
 
-  const [currentEmail, setCurrentEmail] = useState("");
   const [newEmail, setNewEmail] = useState("");
+  const [newReEmail, setReNewEmail] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
 
-  const [currentPassword, setCurrentPassword] = useState("");
+  
   const [newPassword, setNewPassword] = useState("");
+  const [reNewPassword, setReNewPassword] = useState("");
 
 
   const [emailButtonEnabled, setEmailButtonEnabled] = useState(true);
+  const [passwordButtonEnabled, setPasswordButtonEnabled] = useState(true);
+
+
+  const [emailChangeResult, setEmailChangeResult] = useState(false);
+  const [passwordChangeResult, setPasswordChangeResult] = useState(false);
+  const [avatarChangeResult,  setAvatarChangeResult] = useState(false);
   
   const navigate = useNavigate();
 
@@ -34,6 +42,8 @@ const UserSettingsForm: React.FC<UserSettingsFormProps> = ({ UserData, onAvatarC
     if(UserData !== undefined && selectedFile !== null)
      await UserAvatarUploadFetch(UserData?.userId, selectedFile)
      onAvatarChange();
+     setAvatarChangeResult(true);
+      setTimeout(() => setAvatarChangeResult(false), 2000);
   };
 
 
@@ -41,30 +51,58 @@ const UserSettingsForm: React.FC<UserSettingsFormProps> = ({ UserData, onAvatarC
 
       if(UserData?.id)
       {
-        const response = await UserChangeEmailetch(UserData?.id, newEmail)
+        const response = await UserChangeEmailetch(UserData?.id, newEmail);
 
         if(response.success)
         {
-          console.log("EMAIL CHANGED SUCCESSFULLY!");
-          onAvatarChange();
-         
+          
+          setEmailChangeResult(true);
+          setTimeout(() => setEmailChangeResult(false), 2000);
         }
       }
       
     }
 
+    const handlePasswordChange = async () => {
+
+      if(UserData?.id)
+      {
+        const response = await UserChangePasswordfetch(UserData.id, newPassword);
+
+        if(response.success)
+        {
+          
+          setPasswordChangeResult(true);
+          setTimeout(() => setPasswordChangeResult(false), 2000)
+        }
+      }
+
+    }
+
+
+
     useEffect(() => {
       
-      if(UserData?.email === currentEmail)
-      {
-        setEmailButtonEnabled(false);
-      }
-      else
+      if(newEmail !== newReEmail || newEmail.length === 0 || newReEmail.length === 0)
       {
         setEmailButtonEnabled(true);
       }
+      else
+      {
+        setEmailButtonEnabled(false);
+      }
 
-    }, [currentEmail, handleEmailChange])
+      if(newPassword !== reNewPassword || newPassword.length === 0 || reNewPassword.length === 0)
+      {
+        setPasswordButtonEnabled(true);
+      }
+      else
+      {
+        setPasswordButtonEnabled(false);
+      }
+      
+
+    }, [newEmail, newReEmail, handleEmailChange, newPassword, reNewPassword])
 
 
 
@@ -78,11 +116,12 @@ const UserSettingsForm: React.FC<UserSettingsFormProps> = ({ UserData, onAvatarC
         </CardHeader>
         <CardBody>    
         <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
-        <Input maxLength={30} key="currentEmailField" type="email" label="Current Email" placeholder="Enter your current email" onChange={(e) => setCurrentEmail(e.target.value)} />
-        <Input maxLength={30} type="email" label="New Email" placeholder="Enter your new email" onChange={(e) => setNewEmail(e.target.value)}/>
+        <Input maxLength={30} key="currentEmailField" type="email" label="New Email" placeholder="Enter your new email" onChange={(e) => setNewEmail(e.target.value)} />
+        <Input maxLength={30} type="email" label="New Email" placeholder="Retype your new email" onChange={(e) => setReNewEmail(e.target.value)}/>
          </div>
           <Button className="my-2" isDisabled={emailButtonEnabled} onClick={() => handleEmailChange()} onTouchStart={() => handleEmailChange()}>Update Email</Button>
-          {emailButtonEnabled && currentEmail.length > 0 && <Card><CardBody className="text-center">Current Email is not correct!</CardBody></Card>}
+          {emailButtonEnabled && newEmail.length > 0 && newReEmail.length > 0 && <Card><CardBody className="text-center">The two email is not the same</CardBody></Card>}
+          {emailChangeResult && <Button color="success">Successfully changed Email!</Button>}
         </CardBody>
       </Card>
 
@@ -95,12 +134,12 @@ const UserSettingsForm: React.FC<UserSettingsFormProps> = ({ UserData, onAvatarC
         </CardHeader>
         <CardBody>    
         <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
-        <Input type="password" label="Current Password" placeholder="Enter your current password" />
-        <Input type="password" label="New Password" placeholder="Enter your new password" />
-        <Input type="password" label="Retype New Password" placeholder="Retype your new password" />
+        <Input type="password" label="New Password" placeholder="Enter your new password" onChange={(e) => setNewPassword(e.target.value)} />
+        <Input type="password" label="New Password" placeholder="Retype your new password" onChange={(e) => setReNewPassword(e.target.value)} />
          </div>
-          <Button className="my-2" >Update Password</Button>
-        
+          <Button className="my-2" isDisabled={passwordButtonEnabled}  onClick={() => handlePasswordChange()} onTouchStart={() => handlePasswordChange()}>Update Password</Button>
+          {passwordButtonEnabled && newPassword.length > 0 && reNewPassword.length > 0 && <Card><CardBody className="text-center">The two password is not the same</CardBody></Card>}
+          {passwordChangeResult && <Button color="success">Successfully changed Password!</Button>}
         </CardBody>
       </Card>
 
@@ -112,7 +151,7 @@ const UserSettingsForm: React.FC<UserSettingsFormProps> = ({ UserData, onAvatarC
         <CardBody>    
         <input className="flex justify-center text-center" type="file" onChange={handleFileChange} accept="image/*" />
           <Button className="my-2" onClick={handleUpload} onTouchStart={handleUpload}>Upload Avatar</Button>
-        
+          {avatarChangeResult && <Button color="success">Successfully changed Avatar!</Button>}
         </CardBody>
       </Card>
       </div>

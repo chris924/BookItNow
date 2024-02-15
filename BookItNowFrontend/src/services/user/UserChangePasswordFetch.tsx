@@ -19,12 +19,12 @@ export default async function UserChangePasswordfetch(userId:Number, newPassword
 
     const passwordChangeData = {
         userId: userId, 
-        newEmail: newPassword,
+        newPassword: newPassword,
     };
 
 
     try{
-        const response = await fetch(`${apiURL.BASE_URL}${apiURL.USER_CHANGE_EMAIL_ENDPOINT}`,{
+        const response = await fetch(`${apiURL.BASE_URL}${apiURL.USER_CHANGE_PASSWORD_ENDPOINT}`,{
         method: "POST",
         headers: headers,
         body: JSON.stringify(passwordChangeData)
