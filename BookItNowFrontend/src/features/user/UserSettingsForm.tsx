@@ -25,7 +25,7 @@ const UserSettingsForm: React.FC<UserSettingsFormProps> = ({ UserData, onAvatarC
 
   const [emailButtonEnabled, setEmailButtonEnabled] = useState(true);
   const [passwordButtonEnabled, setPasswordButtonEnabled] = useState(true);
-
+  const [avatarButtonEnabled, setAvatarButtonEnabled] = useState(true);
 
   const [emailChangeResult, setEmailChangeResult] = useState(false);
   const [passwordChangeResult, setPasswordChangeResult] = useState(false);
@@ -100,17 +100,25 @@ const UserSettingsForm: React.FC<UserSettingsFormProps> = ({ UserData, onAvatarC
       {
         setPasswordButtonEnabled(false);
       }
+
+      if(selectedFile !== null)
+      {
+        setAvatarButtonEnabled(false);
+      }
+      else
+      {
+        setAvatarButtonEnabled(true);
+      }
       
 
-    }, [newEmail, newReEmail, handleEmailChange, newPassword, reNewPassword])
-
-
-
+    }, [newEmail, newReEmail, handleEmailChange, newPassword, reNewPassword, handleFileChange])
 
 
     return (
         <div className="container mx-auto px-10 py-10 grid grid-cols-1 lg:grid-cols-1 items-center lg:gap-12 lg:space-x-5">
-          <Card>
+          <div className="flex flex-col mx-w-md mx-auto">
+
+        <Card className="my-5">
         <CardHeader className="flex justify-center">
           <p className="text-center">Change Your Email:</p>
         </CardHeader>
@@ -128,14 +136,14 @@ const UserSettingsForm: React.FC<UserSettingsFormProps> = ({ UserData, onAvatarC
      
 
 
-      <Card>
+      <Card className="my-5">
         <CardHeader className="flex justify-center">
           <p className="text-center">Change Your Password:</p>
         </CardHeader>
         <CardBody>    
         <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
-        <Input type="password" label="New Password" placeholder="Enter your new password" onChange={(e) => setNewPassword(e.target.value)} />
-        <Input type="password" label="New Password" placeholder="Retype your new password" onChange={(e) => setReNewPassword(e.target.value)} />
+        <Input maxLength={30} type="password" label="New Password" placeholder="Enter your new password" onChange={(e) => setNewPassword(e.target.value)} />
+        <Input maxLength={30} type="password" label="New Password" placeholder="Retype your new password" onChange={(e) => setReNewPassword(e.target.value)} />
          </div>
           <Button className="my-2" isDisabled={passwordButtonEnabled}  onClick={() => handlePasswordChange()} onTouchStart={() => handlePasswordChange()}>Update Password</Button>
           {passwordButtonEnabled && newPassword.length > 0 && reNewPassword.length > 0 && <Card><CardBody className="text-center">The two password is not the same</CardBody></Card>}
@@ -143,17 +151,18 @@ const UserSettingsForm: React.FC<UserSettingsFormProps> = ({ UserData, onAvatarC
         </CardBody>
       </Card>
 
-
-      <Card>
+     
+      <Card className="my-5">
         <CardHeader className="flex justify-center">
           <p className="text-center">Change Your Profile Picture:</p>
         </CardHeader>
         <CardBody>    
         <input className="flex justify-center text-center" type="file" onChange={handleFileChange} accept="image/*" />
-          <Button className="my-2" onClick={handleUpload} onTouchStart={handleUpload}>Upload Avatar</Button>
+          <Button className="my-2" onClick={handleUpload} onTouchStart={handleUpload} isDisabled={avatarButtonEnabled}>Upload Avatar</Button>
           {avatarChangeResult && <Button color="success">Successfully changed Avatar!</Button>}
         </CardBody>
       </Card>
+      </div>
       </div>
     );
 
