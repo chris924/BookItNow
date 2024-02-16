@@ -88,7 +88,7 @@ public class CompanyAuthenticationService {
             return new CompanyLoginResponseDTO(companyRepository.getCompanyByEmail(email).get().getCompanyName(), token);
 
         }catch (AuthenticationException e) {
-            return new CompanyLoginResponseDTO();
+            return new CompanyLoginResponseDTO(null, "");
         }
 
 

@@ -128,7 +128,7 @@ const UserSettingsForm: React.FC<UserSettingsFormProps> = ({ UserData, onAvatarC
         <Input maxLength={30} type="email" label="New Email" placeholder="Retype your new email" onChange={(e) => setReNewEmail(e.target.value)}/>
          </div>
           <Button className="my-2" isDisabled={emailButtonEnabled} onClick={() => handleEmailChange()} onTouchStart={() => handleEmailChange()}>Update Email</Button>
-          {emailButtonEnabled && newEmail.length > 0 && newReEmail.length > 0 && <Card><CardBody className="text-center">The two email is not the same</CardBody></Card>}
+          {emailButtonEnabled && newEmail.length > 0 && newReEmail.length > 0 && <Card><CardBody className="text-center">The two email is not the same!</CardBody></Card>}
           {emailChangeResult && <Button color="success">Successfully changed Email!</Button>}
         </CardBody>
       </Card>
@@ -146,7 +146,7 @@ const UserSettingsForm: React.FC<UserSettingsFormProps> = ({ UserData, onAvatarC
         <Input maxLength={30} type="password" label="New Password" placeholder="Retype your new password" onChange={(e) => setReNewPassword(e.target.value)} />
          </div>
           <Button className="my-2" isDisabled={passwordButtonEnabled}  onClick={() => handlePasswordChange()} onTouchStart={() => handlePasswordChange()}>Update Password</Button>
-          {passwordButtonEnabled && newPassword.length > 0 && reNewPassword.length > 0 && <Card><CardBody className="text-center">The two password is not the same</CardBody></Card>}
+          {passwordButtonEnabled && newPassword.length > 0 && reNewPassword.length > 0 && <Card><CardBody className="text-center">The two password is not the same!</CardBody></Card>}
           {passwordChangeResult && <Button color="success">Successfully changed Password!</Button>}
         </CardBody>
       </Card>

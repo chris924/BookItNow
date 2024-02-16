@@ -26,6 +26,7 @@ export default async function UserLoginFetch(email:string, password:string): Pro
         {
             
                 const data: UserLoginResponse = await response.json();
+                console.log("DATA IN FETCH RESPONSE:", data);
                     const token = data.jwt;
                     console.log("Successfully logged in!");
                     return {success: true, jwt: token};

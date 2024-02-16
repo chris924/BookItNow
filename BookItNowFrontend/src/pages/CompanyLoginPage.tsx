@@ -17,10 +17,14 @@ export default function CompanyLoginPage(): JSX.Element
 
         const result = await CompanyLoginFetch(email, password);
 
+      console.log("RESULT:", result);
+
+
         const token = result.jwt;   
 
         if (result.success === true && token !== undefined) {
             console.log("Company logged in successfully!");
+            console.log("TOKEN:", token);
             SetCookie("authToken", token);
             navigateToCompanyLoggedInPage();
         } else {

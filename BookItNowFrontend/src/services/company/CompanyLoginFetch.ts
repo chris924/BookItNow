@@ -24,8 +24,8 @@ export default async function CompanyLoginFetch(email:string, password:string): 
         
         if(response.ok)
         {
-            
                 const data: CompanyLoginResponse = await response.json();
+                console.log("DATA IN FETCH RESPONSE:", data);
                     const token = data.jwt;
                     
                     return {success: true, jwt: token};

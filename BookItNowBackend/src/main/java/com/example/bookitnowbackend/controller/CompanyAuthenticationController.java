@@ -12,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Objects;
+
 
 @RestController
 @RequestMapping("/auth/company")
@@ -53,7 +55,15 @@ public class CompanyAuthenticationController {
 
         try {
             CompanyLoginResponseDTO companyLoginResponseDTO =  companyAuthenticationService.loginCompany(body.getEmail(), body.getPassword());
-            return ResponseEntity.status(HttpStatus.OK).body(companyLoginResponseDTO);
+
+            if(companyLoginResponseDTO.getEmail() == null || Objects.equals(companyLoginResponseDTO.getJwt(), ""))
+            {
+                return  ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Bad Credentials");
+            }
+            else {
+                return ResponseEntity.status(HttpStatus.OK).body(companyLoginResponseDTO);
+            }
+
         } catch (Exception e)
         {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error during login company");

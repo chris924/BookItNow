@@ -22,6 +22,8 @@ export default function UserLoginPage(): JSX.Element
 
         const result = await UserLoginFetch(email, password);
 
+      console.log("RESULT:", result);
+
         const token = result.jwt;
 
         if (result.success === true && token !== undefined) {
