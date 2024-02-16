@@ -3,7 +3,9 @@ package com.example.bookitnowbackend.service;
 import com.example.bookitnowbackend.entity.Company;
 import com.example.bookitnowbackend.entity.User;
 import com.example.bookitnowbackend.repository.ICompanyRepository;
+import com.example.bookitnowbackend.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.nio.file.Files;
@@ -20,6 +22,14 @@ public class CompanyService {
     @Autowired
     private ICompanyRepository companyRepository;
 
+
+    private final PasswordEncoder passwordEncoder;
+
+    @Autowired
+    public CompanyService(ICompanyRepository companyRepository, PasswordEncoder passwordEncoder) {
+        this.companyRepository = companyRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
     public Company saveCompany(Company company)
     {
         try {
@@ -100,6 +110,42 @@ public class CompanyService {
 
         } catch (Exception e) {
             throw new RuntimeException("Error updating company avatar", e);
+        }
+    }
+
+
+
+    public void UpdateEmail(String email, Integer id)
+    {
+        try {
+            Company existingCompany = companyRepository.findById(id).orElse(null);
+            if (existingCompany == null) {
+                throw new IllegalArgumentException("Company with ID " + id + " not found");
+            }
+
+            existingCompany.setEmail(email);
+            companyRepository.save(existingCompany);
+
+        }catch (Exception e)
+        {
+            throw new RuntimeException("Error updating email", e);
+        }
+    }
+
+    public void UpdatePassword(String password, Integer id)
+    {
+        try {
+            Company existingCompany = companyRepository.findById(id).orElse(null);
+            if (existingCompany == null) {
+                throw new IllegalArgumentException("Company with ID " + id + " not found");
+            }
+
+            existingCompany.setPassword(passwordEncoder.encode(password));
+            companyRepository.save(existingCompany);
+
+        }catch (Exception e)
+        {
+            throw new RuntimeException("Error updating password", e);
         }
     }
 
