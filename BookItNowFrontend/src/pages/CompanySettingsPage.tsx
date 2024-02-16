@@ -11,7 +11,7 @@ export default function CompanyLoggedInPage(): JSX.Element
 {
   const [companyData, setCompanyData] = useState<CompanyDataResult>();
   const [loading, setLoading] = useState(false);
-  const [avatarUploadFlag, setAvatarUploadFlag] = useState(false);
+  const [dataChange, setDataChange] = useState(false);
   
   
   const {navigateToMainPage} = UseNavigation();
@@ -35,7 +35,7 @@ export default function CompanyLoggedInPage(): JSX.Element
     };
 
     fetchData();
-  }, [avatarUploadFlag]);
+  }, [dataChange]);
 
   if (companyData === null || companyData === undefined || loading) {
     return <LoadingCircle/>;
@@ -49,7 +49,7 @@ export default function CompanyLoggedInPage(): JSX.Element
     return (
       <>    
       <CompanyLoggedInLayout  CompanyData={companyData.data}/>   
-      <CompanySettingsForm companyData={companyData.data} onAvatarChange={() => setAvatarUploadFlag((prevFlag) => !prevFlag)}/>
+      <CompanySettingsForm companyData={companyData.data} onDataChange={() => setDataChange((prevFlag) => !prevFlag)}/>
       </>
     );
 }

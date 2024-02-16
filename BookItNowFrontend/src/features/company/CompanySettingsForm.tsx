@@ -8,10 +8,10 @@ import CompanyChangePasswordFetch from "../../services/company/CompanyChangePass
 
 interface CompanySettingsFormProps {
   companyData: CompanyDataResult['data'];
-  onAvatarChange: () => void;
+  onDataChange: () => void;
 }
 
-const CompanySettingsForm: React.FC<CompanySettingsFormProps> = ({ companyData, onAvatarChange }) => {
+const CompanySettingsForm: React.FC<CompanySettingsFormProps> = ({ companyData, onDataChange }) => {
 
   const [newEmail, setNewEmail] = useState("");
   const [newReEmail, setReNewEmail] = useState("");
@@ -41,7 +41,7 @@ const CompanySettingsForm: React.FC<CompanySettingsFormProps> = ({ companyData, 
   const handleUpload = async () => {
     if(companyData !== undefined && selectedFile !== null)
      await CompanyAvatarUploadFetch(companyData.id, selectedFile)
-     onAvatarChange();
+     onDataChange();
      setAvatarChangeResult(true);
      setTimeout(() => setAvatarChangeResult(false), 2000);
   };
@@ -55,6 +55,7 @@ const CompanySettingsForm: React.FC<CompanySettingsFormProps> = ({ companyData, 
 
       if(response.success)
       {
+        onDataChange();
         setEmailChangeResult(true);
         setTimeout(() => setEmailChangeResult(false), 2000);
       }
@@ -70,7 +71,7 @@ const CompanySettingsForm: React.FC<CompanySettingsFormProps> = ({ companyData, 
 
       if(response.success)
       {
-        
+        onDataChange();
         setPasswordChangeResult(true);
         setTimeout(() => setPasswordChangeResult(false), 2000)
       }

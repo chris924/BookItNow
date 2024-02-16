@@ -9,10 +9,10 @@ import UserChangePasswordfetch from "../../services/user/UserChangePasswordFetch
 
 interface UserSettingsFormProps {
   UserData: UserDataResult['data'];
-  onAvatarChange: () => void;
+  onDataChange: () => void;
 }
 
-const UserSettingsForm: React.FC<UserSettingsFormProps> = ({ UserData, onAvatarChange }) => {
+const UserSettingsForm: React.FC<UserSettingsFormProps> = ({ UserData, onDataChange }) => {
 
   const [newEmail, setNewEmail] = useState("");
   const [newReEmail, setReNewEmail] = useState("");
@@ -41,7 +41,7 @@ const UserSettingsForm: React.FC<UserSettingsFormProps> = ({ UserData, onAvatarC
   const handleUpload = async () => {
     if(UserData !== undefined && selectedFile !== null)
      await UserAvatarUploadFetch(UserData?.userId, selectedFile)
-     onAvatarChange();
+     onDataChange();
      setAvatarChangeResult(true);
       setTimeout(() => setAvatarChangeResult(false), 2000);
   };
@@ -55,7 +55,7 @@ const UserSettingsForm: React.FC<UserSettingsFormProps> = ({ UserData, onAvatarC
 
         if(response.success)
         {
-          
+          onDataChange();
           setEmailChangeResult(true);
           setTimeout(() => setEmailChangeResult(false), 2000);
         }
@@ -71,7 +71,7 @@ const UserSettingsForm: React.FC<UserSettingsFormProps> = ({ UserData, onAvatarC
 
         if(response.success)
         {
-          
+          onDataChange();
           setPasswordChangeResult(true);
           setTimeout(() => setPasswordChangeResult(false), 2000)
         }

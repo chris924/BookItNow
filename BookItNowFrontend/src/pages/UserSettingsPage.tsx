@@ -13,7 +13,7 @@ export default function UserSettingsPage(): JSX.Element
 {
     const [userData, setUserData] = useState<UserDataResult>();
     const [loading, setLoading] = useState(false);
-    const [avatarUploadFlag, setAvatarUploadFlag] = useState(false);
+    const [dataChange, setDataChange] = useState(false);
     
     const {navigateToMainPage} = UseNavigation();
 
@@ -42,7 +42,7 @@ export default function UserSettingsPage(): JSX.Element
         };
     
         fetchData();
-      }, [avatarUploadFlag]);
+      }, [dataChange]);
     
       if (userData === null || userData === undefined || loading) {
         return <LoadingCircle />;
@@ -55,7 +55,7 @@ export default function UserSettingsPage(): JSX.Element
       return (
         <>
           <UserLoggedInLayout UserData={userData.data} />
-          <UserSettingsForm UserData={userData.data} onAvatarChange={() => setAvatarUploadFlag((prevFlag) => !prevFlag)}/>
+          <UserSettingsForm UserData={userData.data} onDataChange={() => setDataChange((prevFlag) => !prevFlag)}/>
         </>
       );
 }
