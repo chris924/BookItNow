@@ -21,7 +21,7 @@ import { BASE_URL } from '../lib/constants/apiURL';
 const UserLoggedInLayout: React.FC<UserLoggedInLayoutProps> = ({ UserData }) => {
 
 
-  const {navigateToMainPage, navigateToMyUserAppointments, navigateToUserSettings, navigateToUserSearchPage} = UseNavigation();
+  const {navigateToMainPage, navigateToMyUserAppointments, navigateToUserSettings, navigateToUserSearchPage, navigateToFeedbackPage} = UseNavigation();
   
 
   
@@ -71,7 +71,7 @@ const UserLoggedInLayout: React.FC<UserLoggedInLayoutProps> = ({ UserData }) => 
                   <DropdownItem className="cursor-pointer" key="settings" onClick={() => navigateToUserSearchPage()} onTouchStart={() => navigateToUserSearchPage()}>Search Companies</DropdownItem>
                   <DropdownItem className="cursor-pointer" key="appointments" onClick={() => navigateToMyUserAppointments()} onTouchStart={() => navigateToMyUserAppointments()}>My Appointments</DropdownItem>
                   <DropdownItem className="cursor-pointer" key="settings" onClick={() => navigateToUserSettings()} onTouchStart={() => navigateToUserSettings()}>My Settings</DropdownItem>
-                  <DropdownItem className="cursor-pointer" key="help_and_feedback">Help & Feedback</DropdownItem>
+                  <DropdownItem className="cursor-pointer" key="help_and_feedback" onClick={() => navigateToFeedbackPage()} onTouchStart={() => navigateToFeedbackPage()}>Help & Feedback</DropdownItem>
                   
                   <DropdownItem className="cursor-pointer" key="logout" color="danger" onClick={() => handleLogout()} onTouchStart={() => handleLogout()}>
                     Log Out

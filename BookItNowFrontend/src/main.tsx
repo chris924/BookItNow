@@ -18,6 +18,7 @@ import FeaturesPage from './pages/FeaturesPage';
 import UserSettingsPage from './pages/UserSettingsPage';
 import CompanySettingsPage from './pages/CompanySettingsPage';
 import UserLoggedInPage from './pages/UserLoggedInPage';
+import FeedbackPage from './pages/FeedbackPage';
 
 
 
@@ -33,6 +34,7 @@ export default function App() {
   <Route path="/" element={<HomePage />} />
   <Route path="/faq" element={<FAQPage />} />
   <Route path="features" element={<FeaturesPage/>}/>
+  <Route path='/feedback' element={<FeedbackPage/>}/>
   <Route path="user">
     <Route path="login" element={<UserLoginPage />} />
     <Route path="register" element={<UserRegisterPage />} />

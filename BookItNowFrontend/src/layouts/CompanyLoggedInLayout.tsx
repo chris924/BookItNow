@@ -21,7 +21,7 @@ import { BASE_URL } from '../lib/constants/apiURL';
 const CompanyLoggedInLayout: React.FC<CompanyLoggedInLayoutProps> = ({ CompanyData }) => {
 
 
-  const {navigateToMainPage, navigateToCreateAppointment, navigateToCompanyMyBookedAppointmentsPage, navigateToCompanyAppointmentsHistoryPage, navigateToCompanySettings} = UseNavigation();
+  const {navigateToMainPage, navigateToCreateAppointment, navigateToCompanyMyBookedAppointmentsPage, navigateToCompanyAppointmentsHistoryPage, navigateToCompanySettings, navigateToFeedbackPage} = UseNavigation();
 
 
 
@@ -69,7 +69,7 @@ const CompanyLoggedInLayout: React.FC<CompanyLoggedInLayoutProps> = ({ CompanyDa
                   <DropdownItem className="cursor-pointer" key="listbookedappointments" onClick={() => navigateToCompanyMyBookedAppointmentsPage()} onTouchStart={() => navigateToCompanyMyBookedAppointmentsPage()}>My Booked Appointments </DropdownItem>
                   <DropdownItem className="cursor-pointer" key="listhistory" onClick={() => navigateToCompanyAppointmentsHistoryPage()} onTouchStart={() => navigateToCompanyAppointmentsHistoryPage()}>My Appointments History</DropdownItem>
                   <DropdownItem className="cursor-pointer" key="createappointments" onClick={() => navigateToCreateAppointment()} onTouchStart={() => navigateToCreateAppointment()}>Create Appointments</DropdownItem>
-                  <DropdownItem className="cursor-pointer" key="help_and_feedback">Help & Feedback</DropdownItem>
+                  <DropdownItem className="cursor-pointer" key="help_and_feedback"onClick={() => navigateToFeedbackPage()} onTouchStart={() => navigateToFeedbackPage()}>Help & Feedback</DropdownItem>
                   <DropdownItem className="cursor-pointer" key="settings" onClick={() => navigateToCompanySettings()} onTouchStart={() => navigateToCompanySettings()}>My Settings</DropdownItem>
                   <DropdownItem className="cursor-pointer" key="logout" color="danger" onClick={() => handleLogout()} onTouchStart={() => handleLogout()}>
                     Log Out

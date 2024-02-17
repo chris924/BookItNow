@@ -99,6 +99,11 @@ export default function UseNavigation()
     {
         window.open('https://github.com/chris924', '_blank');
     }
+
+    function navigateToFeedbackPage()
+    {
+        navigate('/feedback');
+    }
     
 
     
@@ -124,6 +129,7 @@ export default function UseNavigation()
         navigateToGitHubRepository,
         navigateToUserSearchPage,
         navigateToGiHubProfile,
+        navigateToFeedbackPage
     }
 
     
