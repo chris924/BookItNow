@@ -1,4 +1,6 @@
-import { Card, CardBody } from "@nextui-org/react";
+import { Button, Card, CardBody } from "@nextui-org/react";
+import { useState } from "react";
+import UseNavigation from "../hooks/UseNavigation";
 
 
 
@@ -18,14 +20,18 @@ export default function FeedbackForm()
         lineHeight: '1.5',
       };
 
+      const {navigateToMainPage} = UseNavigation();
+
+
 
     return(
-        <div className="flex items-center justify-center h-screen text-3xl" style={containerStyle}>
+        <>
+        <div className="flex items-center justify-center text-3xl" style={containerStyle}>
         <Card>
             <CardBody>
                 <div >
                     <div style={gradientStyle}>
-                    If you have any questions, or would like to give feedback you can do it here:
+                    If you have any questions, or would like to give feedback you can do it here
                     </div>
                     <div className="text-center py-3">
                      <a href="mailto:kriszb924@gmail.com" className="text-blue-500">Email</a>
@@ -39,6 +45,11 @@ export default function FeedbackForm()
             </CardBody>
 
         </Card>
+        
         </div>
+        <div className="flex justify-center">
+            <Button onClick={() => navigateToMainPage()} onTouchStart={() => navigateToMainPage()}>Go Back</Button>
+        </div>
+        </>
     )
 }
