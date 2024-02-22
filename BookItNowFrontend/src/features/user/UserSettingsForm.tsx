@@ -39,11 +39,25 @@ const UserSettingsForm: React.FC<UserSettingsFormProps> = ({ UserData, onDataCha
 
 
   const handleUpload = async () => {
-    if(UserData !== undefined && selectedFile !== null)
-     await UserAvatarUploadFetch(UserData?.userId, selectedFile)
-     onDataChange();
-     setAvatarChangeResult(true);
-      setTimeout(() => setAvatarChangeResult(false), 2000);
+    if (UserData !== undefined && selectedFile !== null) {
+      const maxSizeInBytes = 1024 * 1024; // 1 MB 
+  
+      
+      const file = selectedFile as File;
+  
+      if (file.size > maxSizeInBytes) {
+        console.error("File size exceeds the allowed limit");
+        return;
+      }
+      else{
+        await UserAvatarUploadFetch(UserData?.userId, file);
+        onDataChange();
+        setAvatarChangeResult(true);
+        setTimeout(() => setAvatarChangeResult(false), 2000);
+      }
+  
+       
+    }
   };
 
 
