@@ -30,16 +30,30 @@ const CompanySettingsForm: React.FC<CompanySettingsFormProps> = ({ companyData, 
   const [passwordChangeResult, setPasswordChangeResult] = useState(false);
   const [avatarChangeResult,  setAvatarChangeResult] = useState(false);
 
-
+  const [avatarSizeTooBig, setAvatarSizeTooBig] = useState(false);
 
   const handleFileChange = (event: any) => {
-    setSelectedFile(event.target.files[0]);
+  
+    const maxSizeInBytes = 1024 * 1024; // 1 MB 
+  
+      
+    const file = event.target.files[0] as File;
+
+    if (file.size > maxSizeInBytes) {
+      setAvatarSizeTooBig(true);
+    }
+    else{
+      setAvatarSizeTooBig(false);
+      setSelectedFile(event.target.files[0]);
+    }
+
+
   };
 
   const navigate = useNavigate();
 
   const handleUpload = async () => {
-    if(companyData !== undefined && selectedFile !== null)
+    if(companyData !== undefined && selectedFile !== null && avatarSizeTooBig === false)
      await CompanyAvatarUploadFetch(companyData.id, selectedFile)
      onDataChange();
      setAvatarChangeResult(true);
@@ -101,7 +115,7 @@ const CompanySettingsForm: React.FC<CompanySettingsFormProps> = ({ companyData, 
       setPasswordButtonEnabled(false);
     }
 
-    if(selectedFile !== null)
+    if(selectedFile !== null && avatarSizeTooBig === false)
     {
       setAvatarButtonEnabled(false);
     }
@@ -162,6 +176,7 @@ const CompanySettingsForm: React.FC<CompanySettingsFormProps> = ({ companyData, 
     <input className="flex justify-center text-center" type="file" onChange={handleFileChange} accept="image/*" />
       <Button className="my-2" onClick={handleUpload} onTouchStart={handleUpload} isDisabled={avatarButtonEnabled}>Upload Avatar</Button>
       {avatarChangeResult && <Button color="success">Successfully changed Avatar!</Button>}
+      {avatarSizeTooBig && <Button color="danger">Avatar size too big!</Button>}
     </CardBody>
   </Card>
   </div>
