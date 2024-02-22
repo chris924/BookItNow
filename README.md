@@ -16,11 +16,11 @@ BookItNow is a modern appointment booking system designed to streamline the proc
 
 ## Tech Stack
 
-**Client:** React, JavaScript, HTML, CSS
+**Client:** React, TailWind CSS, NextUi, JavaScript, HTML, CSS
 
-**Server:** Java Spring Boot, Spring MVC, Spring Data
+**Server:** Java Spring Boot, MySQL
 
 
 ## Getting Started
 
-To get started with BookItNow, clone the repository and follow the instructions in the README.md file.
+Open https://bookitnowproject.vercel.app/
