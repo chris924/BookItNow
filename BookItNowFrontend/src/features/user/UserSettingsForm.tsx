@@ -30,34 +30,42 @@ const UserSettingsForm: React.FC<UserSettingsFormProps> = ({ UserData, onDataCha
   const [emailChangeResult, setEmailChangeResult] = useState(false);
   const [passwordChangeResult, setPasswordChangeResult] = useState(false);
   const [avatarChangeResult,  setAvatarChangeResult] = useState(false);
+
+  const [avatarSizeTooBig, setAvatarSizeTooBig] = useState(false);
   
   const navigate = useNavigate();
 
   const handleFileChange = (event: any) => {
-    setSelectedFile(event.target.files[0]);
+  
+    const maxSizeInBytes = 1024 * 1024; // 1 MB 
+  
+      
+    const file = event.target.files[0] as File;
+
+    if (file.size > maxSizeInBytes) {
+      setAvatarSizeTooBig(true);
+    }
+    else{
+      setAvatarSizeTooBig(false);
+      setSelectedFile(event.target.files[0]);
+    }
+
+
+
   };
 
 
   const handleUpload = async () => {
-    if (UserData !== undefined && selectedFile !== null) {
-      const maxSizeInBytes = 1024 * 1024; // 1 MB 
-  
-      
-      const file = selectedFile as File;
-  
-      if (file.size > maxSizeInBytes) {
-        console.error("File size exceeds the allowed limit");
-        return;
-      }
-      else{
-        await UserAvatarUploadFetch(UserData?.userId, file);
+    if (UserData !== undefined && selectedFile !== null && avatarSizeTooBig === false) {
+     
+        await UserAvatarUploadFetch(UserData?.userId, selectedFile);
         onDataChange();
         setAvatarChangeResult(true);
         setTimeout(() => setAvatarChangeResult(false), 2000);
       }
   
        
-    }
+    
   };
 
 
@@ -115,7 +123,7 @@ const UserSettingsForm: React.FC<UserSettingsFormProps> = ({ UserData, onDataCha
         setPasswordButtonEnabled(false);
       }
 
-      if(selectedFile !== null)
+      if(selectedFile !== null && avatarSizeTooBig === false)
       {
         setAvatarButtonEnabled(false);
       }
@@ -174,6 +182,7 @@ const UserSettingsForm: React.FC<UserSettingsFormProps> = ({ UserData, onDataCha
         <input className="flex justify-center text-center" type="file" onChange={handleFileChange} accept="image/*" />
           <Button className="my-2" onClick={handleUpload} onTouchStart={handleUpload} isDisabled={avatarButtonEnabled}>Upload Avatar</Button>
           {avatarChangeResult && <Button color="success">Successfully changed Avatar!</Button>}
+          {avatarButtonEnabled && <Button color="danger">Avatar size too big!</Button>}
         </CardBody>
       </Card>
       </div>
